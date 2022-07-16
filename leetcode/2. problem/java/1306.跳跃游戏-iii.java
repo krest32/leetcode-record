@@ -14,7 +14,28 @@ class Solution {
         // return extracted(arr, start);
 
         // DFS 对内存更加友好，时间上提升不少
-        return extracted2(arr, start);
+        // return extracted2(arr, start);
+
+        return test(arr, start);
+    }
+
+    private boolean test(int[] arr, int start) {
+        int len = arr.length;
+        boolean[] vis = new boolean[len];
+        return testDfs(arr, vis, start, len);
+    }
+
+    private boolean testDfs(int[] arr, boolean[] vis, int idx, int len) {
+        if (idx < 0 || idx >= len || vis[idx])
+            return false;
+
+        if (arr[idx] == 0)
+            return true;
+
+        int step = arr[idx];
+        vis[idx] = true;
+        return testDfs(arr, vis, idx + step, len)
+                || testDfs(arr, vis, idx - step, len);
     }
 
     private boolean extracted2(int[] arr, int start) {
@@ -43,7 +64,8 @@ class Solution {
         }
         int step = num[idx];
         visited[idx] = true;
-        return dfs(num, idx + step, n, visited) || dfs(num, idx - step, n, visited);
+        return dfs(num, idx + step, n, visited)
+                || dfs(num, idx - step, n, visited);
     }
 
     /**
