@@ -30,7 +30,9 @@ class Solution {
             ans.append(word2.charAt(idx2++));
         }
 
-        ans.append(idx1 == len1 ? word2.substring(idx2) : word1.substring(idx1));
+        ans.append(idx1 == len1
+                ? word2.substring(idx2)
+                : word1.substring(idx1));
         return ans.toString();
     }
 }

@@ -7,6 +7,14 @@
 // @lc code=start
 class Solution {
     public int removeDuplicates(int[] nums) {
+        // 双指针
+        return extracted(nums);
+    }
+
+    /**
+     * 
+     */
+    private int extracted(int[] nums) {
         int n = nums.length;
         if (n <= 2) {
             return n;
@@ -15,12 +23,11 @@ class Solution {
         while (fast < n) {
             if (nums[slow - 2] != nums[fast]) {
                 nums[slow] = nums[fast];
-                ++slow;
+                slow++;
             }
-            ++fast;
+            fast++;
         }
         return slow;
     }
 }
 // @lc code=end
-
