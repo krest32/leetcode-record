@@ -1,3 +1,4 @@
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -26,9 +27,15 @@ import entrty.TreeNode;
  * }
  */
 class Solution {
+    // 记录 最大的个数， 记录节点最大的值
     int n = 0, p = 0;
 
     public boolean isCompleteTree(TreeNode root) {
+        // 深度优先遍历
+        return extracted(root);
+    }
+
+    private boolean extracted(TreeNode root) {
         if (!dfs(root, 1))
             return false;
         return n == p;
@@ -44,7 +51,8 @@ class Solution {
         // 记录节点数和最大节点编号值
         p = Math.max(p, k);
         // 递归左右子树
-        return dfs(root.left, 2 * k) && dfs(root.right, 2 * k + 1); 
+        return dfs(root.left, 2 * k)
+                && dfs(root.right, 2 * k + 1);
     }
 }
 // @lc code=end

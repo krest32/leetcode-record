@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 /*
  * @lc app=leetcode.cn id=767 lang=java
  *
@@ -27,20 +25,25 @@ class Solution {
         int[] counts = new int[26];
         int maxCount = 0;
         int length = s.length();
+        // 统计每个字符的数量，如果大于len/2，那么说明不能满足要求，同时将字符统计的数量计入数组
         for (int i = 0; i < length; i++) {
             char c = s.charAt(i);
             counts[c - 'a']++;
             maxCount = Math.max(maxCount, counts[c - 'a']);
+            if (maxCount > (length + 1) / 2) {
+                return "";
+            }
         }
-        if (maxCount > (length + 1) / 2) {
-            return "";
-        }
+
+        // 开始进行重新排序
         char[] reorganizeArray = new char[length];
         int evenIndex = 0, oddIndex = 1;
         int halfLength = length / 2;
         for (int i = 0; i < 26; i++) {
             char c = (char) ('a' + i);
-            while (counts[i] > 0 && counts[i] <= halfLength && oddIndex < length) {
+            while (counts[i] > 0
+                    && counts[i] <= halfLength
+                    && oddIndex < length) {
                 reorganizeArray[oddIndex] = c;
                 counts[i]--;
                 oddIndex += 2;
