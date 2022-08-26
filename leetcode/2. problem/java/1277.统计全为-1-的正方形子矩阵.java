@@ -7,6 +7,11 @@
 // @lc code=start
 class Solution {
     public int countSquares(int[][] matrix) {
+        // 动态规划
+        return extracted(matrix);
+    }
+
+    private int extracted(int[][] matrix) {
         int n = matrix.length, m = matrix[0].length;
         int ans = 0;
         // i, j 作为正方形的右下角, dp记录边长大于1的正方形
