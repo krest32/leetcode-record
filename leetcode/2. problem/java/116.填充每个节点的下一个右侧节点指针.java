@@ -2,7 +2,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import entrty.Node;
-import entrty.TreeNode;
 
 /**
  * @lc app=leetcode.cn id=116 lang=java
@@ -40,7 +39,7 @@ class Solution {
         // return extracted(root);
 
         // 1
-        return test(root);
+        return extracted2(root);
     }
 
     private Node extracted2(Node root) {
