@@ -37,13 +37,16 @@ class Solution {
 
     private boolean dfsTest(int[] nums, int idx, int target, int[] size) {
         if (idx == -1) {
-            if (size[0] == size[1] && size[1] == size[2] && size[2] == size[3])
+            if (size[0] == size[1] && size[1] == size[2] && size[2] == size[3]) {
                 return true;
+            }
             return false;
         }
+
         for (int i = 0; i < size.length; i++) {
-            if (size[i] + nums[idx] > target || (i > 0 && size[i] == size[i - 1]))
+            if (size[i] + nums[idx] > target || (i > 0) && size[i] == size[i - 1]) {
                 continue;
+            }
             size[i] += nums[idx];
             if (dfsTest(nums, idx - 1, target, size)) {
                 return true;
@@ -81,6 +84,7 @@ class Solution {
             // 剪枝
             if (size[i] + nums[index] > target || (i > 0 && size[i] == size[i - 1]))
                 continue;
+            ;
             size[i] += nums[index];
             // 然后在放下一个火柴，如果最终能变成正方形，直接返回true
             if (backtrack(nums, index - 1, target, size))

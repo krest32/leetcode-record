@@ -1,5 +1,4 @@
 import entrty.ListNode;
-import java.util.List;
 
 /*
  @lc app=leetcode.cn id=2 lang=java

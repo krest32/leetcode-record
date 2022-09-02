@@ -23,6 +23,7 @@ class Solution {
      * @return
      */
     private int extracted(int[] nums) {
+        
         PriorityQueue<Double> queue = new PriorityQueue<>(
                 new Comparator<Double>() {
                     @Override

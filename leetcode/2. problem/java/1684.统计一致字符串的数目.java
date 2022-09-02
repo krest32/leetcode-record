@@ -15,7 +15,6 @@ class Solution {
 
         // 计数数组代替Set
         // return extracted2(allowed, words);
-
     }
 
     /**
