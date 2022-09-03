@@ -18,7 +18,6 @@ class Solution {
     }
 
     private int test(int[][] clips, int time) {
-        // dp数组记录到达某个时间段，最小的片段个数
         int[] dp = new int[time + 1];
         Arrays.fill(dp, Integer.MAX_VALUE - 1);
         dp[0] = 0;
@@ -29,7 +28,8 @@ class Solution {
                 }
             }
         }
-        return 0;
+
+        return dp[time] == Integer.MAX_VALUE - 1 ? -1 : dp[time];
     }
 
     private int extracted(int[][] clips, int time) {
