@@ -23,6 +23,7 @@ class Solution {
         int n = s.length, i = 0;
         char left = 'L';
         while (i < n) {
+            // 测试
             int j = i;
             while (j < n && s[j] == '.') { // 找到一段连续的没有被推动的骨牌
                 j++;
