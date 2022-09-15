@@ -1,5 +1,4 @@
 
-
 /**
  * @lc app=leetcode.cn id=79 lang=java
  *
@@ -9,6 +8,11 @@
 // @lc code=start
 class Solution {
     public boolean exist(char[][] board, String word) {
+        // 图 DFS 算法
+        return extracted(board, word);
+    }
+
+    private boolean extracted(char[][] board, String word) {
         int width = board.length;
         int high = board[0].length;
         boolean[][] vis = new boolean[width][high];
@@ -36,10 +40,8 @@ class Solution {
             for (int[] dir : direc) {
                 int newi = dir[0] + i;
                 int newj = dir[1] + j;
-                if (newi >= 0 && newi < width && newj >= 0 && newj < high
-                        && !vis[newi][newj]) {
-                    if (check(board, word, vis,
-                            newi, newj, k + 1)) {
+                if (newi >= 0 && newi < width && newj >= 0 && newj < high && !vis[newi][newj]) {
+                    if (check(board, word, vis, newi, newj, k + 1)) {
                         return true;
                     }
 

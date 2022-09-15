@@ -1,7 +1,7 @@
 ### 介绍
 
-leetcode 解题记录合集
+Leetcode 解题记录合集
 
-语言是 java 和 go
+语言是 Java 和 GoLang
 
-主攻语言 java，第二语言 go
+主攻语言 Java，第二语言 GoLang

@@ -11,7 +11,43 @@ import java.util.List;
 class Solution {
     public List<String> generateParenthesis(int n) {
         // 回溯
-        return extracted(n);
+        // return extracted(n);
+
+        // test
+        return test(n);
+
+    }
+
+    /**
+     * 8/8 cases passed (1 ms)
+     * Your runtime beats 75.93 % of java submissions
+     * Your memory usage beats 45.26 % of java submissions (41.5 MB)
+     * 
+     * @param n
+     * @return
+     */
+    private List<String> test(int n) {
+        List<String> ans = new ArrayList<>();
+        backTrackTest(ans, 0, 0, n, new StringBuilder());
+        return ans;
+    }
+
+    private void backTrackTest(List<String> ans, int left, int right, int n, StringBuilder temp) {
+        if (temp.length() == 2 * n) {
+            ans.add(temp.toString());
+        } else {
+            if (left < n) {
+                temp.append("(");
+                backTrackTest(ans, left + 1, right, n, temp);
+                temp.deleteCharAt(temp.length() - 1);
+            }
+            if (right < left) {
+                temp.append(")");
+                backTrackTest(ans, left, right + 1, n, temp);
+                temp.deleteCharAt(temp.length() - 1);
+            }
+        }
+
     }
 
     private List<String> extracted(int n) {

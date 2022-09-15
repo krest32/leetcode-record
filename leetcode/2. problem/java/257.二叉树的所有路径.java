@@ -33,11 +33,60 @@ class Solution {
     public List<String> binaryTreePaths(TreeNode root) {
 
         // 回溯哦，深度优先搜索 -> 最优解
-        return extracted(root);
+        // return extracted(root);
 
         // 双队列，广度优先搜索
         // return extracted2(root);
 
+        return test(root);
+
+    }
+
+    private List<String> test(TreeNode root) {
+        List<String> ans = new ArrayList<>();
+        dfsTest(root, ans, new StringBuilder());
+        return ans;
+    }
+
+    private void dfsTest(TreeNode node, List<String> ans, StringBuilder tempStr) {
+        if (node != null) {
+            StringBuilder path = new StringBuilder(tempStr);
+            path.append(node.val);
+            if (node.left == null && node.right == null) {
+                ans.add(path.toString());
+            } else {
+                path.append("->");
+                dfsTest(node.left, ans, path);
+                dfsTest(node.right, ans, path);
+            }
+        }
+    }
+
+    /**
+     * Your runtime beats 100 % of java submissions
+     * Your memory usage beats 49.59 % of java submissions (41.2 MB)
+     * 
+     * @param root
+     * @return
+     */
+    private List<String> extracted(TreeNode root) {
+        List<String> res = new ArrayList<>();
+        dfs(root, res, new StringBuilder());
+        return res;
+    }
+
+    private void dfs(TreeNode node, List<String> res, StringBuilder temp) {
+        if (node != null) {
+            StringBuilder path = new StringBuilder(temp);
+            path.append(node.val);
+            if (node.left == null && node.right == null) {
+                res.add(path.toString());
+            } else {
+                path.append("->");
+                dfs(node.left, res, path);
+                dfs(node.right, res, path);
+            }
+        }
     }
 
     /**
@@ -79,31 +128,5 @@ class Solution {
         return paths;
     }
 
-    /**
-     * Your runtime beats 100 % of java submissions
-     * Your memory usage beats 49.59 % of java submissions (41.2 MB)
-     * 
-     * @param root
-     * @return
-     */
-    private List<String> extracted(TreeNode root) {
-        List<String> res = new ArrayList<>();
-        dfs(root, res, new StringBuilder());
-        return res;
-    }
-
-    private void dfs(TreeNode node, List<String> res, StringBuilder temp) {
-        if (node != null) {
-            StringBuilder path = new StringBuilder(temp);
-            path.append(node.val);
-            if (node.left == null && node.right == null) {
-                res.add(path.toString());
-            } else {
-                path.append("->");
-                dfs(node.left, res, path);
-                dfs(node.right, res, path);
-            }
-        }
-    }
 }
 // @lc code=end

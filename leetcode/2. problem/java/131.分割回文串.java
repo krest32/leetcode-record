@@ -11,9 +11,43 @@ import java.util.List;
 class Solution {
     public List<List<String>> partition(String s) {
         // 回溯
-        return extracted(s);
+        // return extracted(s);
+
+        // test
+        return test(s);
+
     }
 
+    private List<List<String>> test(String s) {
+        List<List<String>> ans = new ArrayList<>();
+        backTrackingTest(ans, s, new ArrayList<String>());
+        return ans;
+    }
+
+    private void backTrackingTest(List<List<String>> ans, String s, ArrayList<String> arr) {
+        if (s.length() == 0) {
+            ans.add(new ArrayList<>(arr));
+        } else {
+            for (int i = 0; i < s.length(); i++) {
+                if (isPailndome(s, 0, i)) {
+                    arr.add(s.substring(0, i + 1));
+                    backTrackingTest(ans, s.substring(i + 1), arr);
+                    arr.remove(arr.size() - 1);
+                }
+            }
+        }
+    }
+
+    /**
+     * 这道题的牛逼之处在于灵活的处理了原始数据
+     * 
+     * 32/32 cases passed (6 ms)
+     * Your runtime beats 99.1 % of java submissions
+     * Your memory usage beats 62.41 % of java submissions (53.7 MB)
+     * 
+     * @param s
+     * @return
+     */
     private List<List<String>> extracted(String s) {
         List<List<String>> ans = new ArrayList<>();
         backTracking(s, ans, new ArrayList<String>());

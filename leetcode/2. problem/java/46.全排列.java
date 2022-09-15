@@ -12,60 +12,42 @@ class Solution {
     public List<List<Integer>> permute(int[] nums) {
 
         // 回溯
-        // return extracted(nums);
+        return extracted2(nums);
+    }
 
-        // 1
+    /**
+     * 26/26 cases passed (0 ms)
+     * Your runtime beats 100 % of java submissions
+     * Your memory usage beats 70.51 % of java submissions (41.5 MB)
+     * 
+     * @param nums
+     * @return
+     */
+    private List<List<Integer>> extracted2(int[] nums) {
         List<List<Integer>> ans = new ArrayList<>();
         boolean[] vis = new boolean[nums.length];
-        backTrackingTest(nums, ans, vis, new ArrayList<Integer>());
+        bckTra(ans, nums, new ArrayList<Integer>(), vis);
         return ans;
     }
 
-    private void backTrackingTest(int[] nums,
+    private void bckTra(
             List<List<Integer>> ans,
-            boolean[] vis,
-            ArrayList<Integer> arr) {
-        if (arr.size() == nums.length) {
-            ans.add(new ArrayList<>(arr));
-        } else {
-            for (int i = 0; i < nums.length; i++) {
-                if (!vis[i]) {
-                    vis[i] = true;
-                    arr.add(nums[i]);
-                    backTrackingTest(nums, ans, vis, arr);
-                    arr.remove(arr.size() - 1);
-                    vis[i] = false;
-                }
-            }
-        }
-    }
-
-    private List<List<Integer>> extracted(int[] nums) {
-        List<List<Integer>> ans = new ArrayList<>();
-        boolean[] vis = new boolean[nums.length];
-        backTracking(nums, vis, ans, new ArrayList<Integer>(), 0);
-        return ans;
-    }
-
-    private void backTracking(int[] nums,
-            boolean[] vis,
-            List<List<Integer>> ans,
+            int[] nums,
             ArrayList<Integer> arr,
-            int key) {
+            boolean[] vis) {
         if (arr.size() == nums.length) {
             ans.add(new ArrayList<>(arr));
-        } else {
-            for (int i = key; i < nums.length; i++) {
-                // 剪枝，需要将使用过的数字排除在外
-                if (vis[i]) {
-                    continue;
-                }
-                vis[i] = true;
-                arr.add(nums[i]);
-                backTracking(nums, vis, ans, arr, 0);
-                arr.remove(arr.size() - 1);
-                vis[i] = false;
+        }
+
+        for (int i = 0; i < nums.length; i++) {
+            if (vis[i]) {
+                continue;
             }
+            vis[i] = true;
+            arr.add(nums[i]);
+            bckTra(ans, nums, arr, vis);
+            arr.remove(arr.size() - 1);
+            vis[i] = false;
         }
     }
 }

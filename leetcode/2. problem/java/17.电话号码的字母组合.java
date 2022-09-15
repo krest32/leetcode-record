@@ -3,6 +3,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javafx.scene.control.TableView.ResizeFeatures;
+
 /*
  * @lc app=leetcode.cn id=17 lang=java
  *
@@ -14,8 +16,45 @@ class Solution {
 
     public List<String> letterCombinations(String digits) {
         // 回溯
-        return extracted(digits);
+        // return extracted(digits);
 
+        // test
+        return test(digits);
+    }
+
+    private List<String> test(String digits) {
+        List<String> ans = new ArrayList<>();
+        if (digits.length() == 0) {
+            return ans;
+        }
+        Map<Character, String> phoneMap = new HashMap<>();
+        phoneMap.put('2', "abc");
+        phoneMap.put('3', "def");
+        phoneMap.put('4', "ghi");
+        phoneMap.put('5', "jkl");
+        phoneMap.put('6', "mno");
+        phoneMap.put('7', "pqrs");
+        phoneMap.put('8', "tuv");
+        phoneMap.put('9', "wxyz");
+
+        backTrackTest(ans, phoneMap, digits, 0, new StringBuilder());
+        return ans;
+    }
+
+    private void backTrackTest(List<String> ans,
+            Map<Character, String> phoneMap,
+            String digits, int key,
+            StringBuilder temp) {
+        if (key == digits.length()) {
+            ans.add(temp.toString());
+        } else {
+            String phoneStr = phoneMap.get(digits.charAt(key));
+            for (int i = 0; i < phoneStr.length(); i++) {
+                temp.append(phoneStr.charAt(i));
+                backTrackTest(ans, phoneMap, digits, key + 1, temp);
+                temp.deleteCharAt(temp.length() - 1);
+            }
+        }
     }
 
     private List<String> extracted(String digits) {
@@ -35,7 +74,8 @@ class Solution {
         return res;
     }
 
-    private void backTrack(List<String> res,
+    private void backTrack(
+            List<String> res,
             Map<Character, String> phoneMap,
             String digits,
             int k,

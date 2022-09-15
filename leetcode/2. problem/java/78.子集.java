@@ -10,6 +10,11 @@ import java.util.List;
 // @lc code=start
 class Solution {
     public List<List<Integer>> subsets(int[] nums) {
+        return extracted(nums);
+    }
+
+
+    private List<List<Integer>> extracted(int[] nums) {
         List<List<Integer>> ans = new ArrayList<>();
         backTracking(nums, ans, new ArrayList<Integer>(), 0);
         return ans;
