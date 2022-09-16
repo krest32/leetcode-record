@@ -26,7 +26,6 @@ class Solution {
             } else {
                 max = 1;
             }
-
             if (max > dp[cur]) {
                 dp[cur] = max;
             }

@@ -12,6 +12,7 @@ class Solution {
 
     private int extracted(String s) {
         int len = s.length();
+        // dp[0][3],在这个区间内的最长回文子序列长度
         int[][] dp = new int[len][len];
         for (int i = len - 1; i >= 0; i--) {
             dp[i][i] = 1;

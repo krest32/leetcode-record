@@ -1,3 +1,5 @@
+import java.time.format.TextStyle;
+
 /**
  * @lc app=leetcode.cn id=62 lang=java
  *
@@ -7,6 +9,31 @@
 // @lc code=start
 class Solution {
     public int uniquePaths(int m, int n) {
+        // 求取区间内的种类数量
+        // return extracted(m, n);
+
+        // test
+        return test(m, n);
+    }
+
+    private int test(int m, int n) {
+        int[][] dp = new int[m][n];
+        for (int i = 0; i < m; i++) {
+            dp[i][0] = 1;
+        }
+        for (int j = 0; j < n; j++) {
+            dp[0][j] = 1;
+        }
+
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+            }
+        }
+        return dp[m - 1][n - 1];
+    }
+
+    private int extracted(int m, int n) {
         // 动态方程：
         // dp[i][j] = dp[i][j-1] + dp[i-1][j]
         int[][] road = new int[m][n];

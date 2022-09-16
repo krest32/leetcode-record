@@ -27,6 +27,44 @@ import entrty.TreeNode;
  */
 class Solution {
     public List<TreeNode> generateTrees(int n) {
+        // 回溯解法
+        // return extracted(n);
+
+        // test
+        return test(n);
+
+    }
+
+    private List<TreeNode> test(int n) {
+        if (n == 0) {
+            return new ArrayList<TreeNode>();
+        }
+        return backTrackingTest(1, n);
+
+    }
+
+    private List<TreeNode> backTrackingTest(int start, int end) {
+        List<TreeNode> ans = new ArrayList<>();
+        if (start > end) {
+            ans.add(null);
+        } else {
+            for (int i = start; i <= end; i++) {
+                List<TreeNode> left = backTrackingTest(start, i - 1);
+                List<TreeNode> right = backTrackingTest(i + 1, end);
+                for (TreeNode tempLeft : left) {
+                    for (TreeNode tempright : right) {
+                        TreeNode root = new TreeNode(i);
+                        root.left = tempLeft;
+                        root.right = tempright;
+                        ans.add(root);
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+
+    private List<TreeNode> extracted(int n) {
         if (n == 0)
             return new ArrayList<TreeNode>();
         return buildTree(1, n);
@@ -51,7 +89,6 @@ class Solution {
                 }
             }
         }
-
         return ans;
     }
 }

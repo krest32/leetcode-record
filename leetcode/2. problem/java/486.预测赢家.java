@@ -26,11 +26,9 @@ class Solution {
 
         for (int i = len - 2; i >= 0; i--) {
             for (int j = i + 1; j < len; j++) {
-                dp[i][j] = Math.max(nums[i] - dp[i + 1][j],
-                        nums[j] - dp[i][j - 1]);
+                dp[i][j] = Math.max(nums[i] - dp[i + 1][j], nums[j] - dp[i][j - 1]);
             }
         }
-
         return dp[0][len - 1] >= 0;
     }
 
@@ -52,10 +50,12 @@ class Solution {
             dp[i][i] = nums[i];
         }
 
+        /**
+         * 仅当 j>i 的时候，整个系统才是有意义的，而且整个系统需要倒叙进行处理
+         */
         for (int i = length - 2; i >= 0; i--) {
             for (int j = i + 1; j < length; j++) {
-                dp[i][j] = Math.max(nums[i] - dp[i + 1][j],
-                        nums[j] - dp[i][j - 1]);
+                dp[i][j] = Math.max(nums[i] - dp[i + 1][j], nums[j] - dp[i][j - 1]);
             }
         }
         return dp[0][length - 1] >= 0;

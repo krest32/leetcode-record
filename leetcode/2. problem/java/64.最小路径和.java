@@ -11,11 +11,13 @@ import java.util.Queue;
 class Solution {
     public int minPathSum(int[][] grid) {
         // 动态规划
-        return extracted(grid);
+        // return extracted(grid);
 
-        // 广度优先算法 性能太差
+        // 广度优先算法 性能差，超过时间
         // return extracted2(grid);
 
+        // test
+        return test(grid);
     }
 
     /**
@@ -83,27 +85,43 @@ class Solution {
      * @return
      */
     private int extracted(int[][] grid) {
-        int rows = grid.length;
-        int colums = grid[0].length;
-        // 记录走到每一个方格的最小花费
-        int[][] dp = new int[rows][colums];
+        int m = grid.length, n = grid[0].length;
+        // 定义 dp 数组
+        int[][] dp = new int[m][n];
+        // 初始化0值
         dp[0][0] = grid[0][0];
-        // 横行一直向右前进
-        for (int i = 1; i < colums; i++) {
-            dp[0][i] = dp[0][i - 1] + grid[0][i];
+        for (int i = 1; i < m; i++) {
+            dp[i][0] = dp[i - 1][0] + grid[i][0];
         }
-        // 竖行一直向下前进
-        for (int i = 1; i < rows; i++) {
-            dp[i][0] += dp[i - 1][0] + grid[i][0];
+        for (int j = 1; j < n; j++) {
+            dp[0][j] = dp[0][j - 1] + grid[0][j];
         }
-
-        for (int i = 1; i < rows; i++) {
-            for (int j = 1; j < colums; j++) {
-                // 以此记录到达每个位置的最小路径和
+        // 填充dp数组数据
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
                 dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];
             }
         }
-        return dp[rows - 1][colums - 1];
+        return dp[m - 1][n - 1];
+    }
+
+    private int test(int[][] grid) {
+        int m = grid.length, n = grid[0].length;
+        int[][] dp = new int[m][n];
+        dp[0][0] = grid[0][0];
+        for (int i = 1; i < m; i++) {
+            dp[i][0] = dp[i - 1][0] + grid[i][0];
+        }
+        for (int j = 1; j < n; j++) {
+            dp[0][j] = dp[0][j - 1] + grid[0][j];
+        }
+
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];
+            }
+        }
+        return dp[m - 1][n - 1];
     }
 }
 // @lc code=end

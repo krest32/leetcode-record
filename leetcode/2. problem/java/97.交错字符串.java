@@ -1,5 +1,4 @@
 
-
 /*
  * @lc app=leetcode.cn id=97 lang=java
  *
@@ -10,9 +9,46 @@
 class Solution {
     public boolean isInterleave(String s1, String s2, String s3) {
         // 动态规划
-        return extracted(s1, s2, s3);
+        // return extracted(s1, s2, s3);
+
+        // test
+        return test(s1, s2, s3);
     }
 
+    private boolean test(String s1, String s2, String s3) {
+        int len1 = s1.length(), len2 = s2.length(), len3 = s3.length();
+        if (len1 + len2 != len3) {
+            return false;
+        }
+        // 初始化 dp 数组
+        boolean[][] dp = new boolean[len1 + 1][len2 + 1];
+        // 初始化 0 值
+        dp[0][0] = true;
+        // 填充数组
+        for (int i = 0; i <= len1; i++) {
+            for (int j = 0; j <= len2; j++) {
+                int idx = i + j - 1;
+                if (i > 0) {
+                    dp[i][j] = dp[i][j] || (dp[i - 1][j] && s1.charAt(i - 1) == s3.charAt(idx));
+                }
+                if (j > 0) {
+                    dp[i][j] = dp[i][j] || (dp[i][j - 1] && s2.charAt(j - 1) == s3.charAt(idx));
+                }
+            }
+        }
+        return dp[len1][len2];
+    }
+
+    /**
+     * 106/106 cases passed (3 ms)
+     * Your runtime beats 67.41 % of java submissions
+     * Your memory usage beats 92.16 % of java submissions (39.4 MB)
+     * 
+     * @param s1
+     * @param s2
+     * @param s3
+     * @return
+     */
     private boolean extracted(String s1, String s2, String s3) {
         // dp[i][j] = true, 表示s3的[i+j-1],可以是S1的[i]与s2[j]之前的字符组成
         int len1 = s1.length();
@@ -27,12 +63,10 @@ class Solution {
             for (int j = 0; j <= len2; j++) {
                 int idx = i + j - 1;
                 if (i > 0) {
-                    dp[i][j] = dp[i][j] ||
-                            (dp[i - 1][j] && s1.charAt(i - 1) == s3.charAt(idx));
+                    dp[i][j] = dp[i][j] || (dp[i - 1][j] && s1.charAt(i - 1) == s3.charAt(idx));
                 }
                 if (j > 0) {
-                    dp[i][j] = dp[i][j]
-                            || (dp[i][j - 1] && s2.charAt(j - 1) == s3.charAt(idx));
+                    dp[i][j] = dp[i][j] || (dp[i][j - 1] && s2.charAt(j - 1) == s3.charAt(idx));
                 }
             }
         }

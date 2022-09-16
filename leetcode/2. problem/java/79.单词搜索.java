@@ -44,7 +44,6 @@ class Solution {
                     if (check(board, word, vis, newi, newj, k + 1)) {
                         return true;
                     }
-
                 }
             }
             vis[i][j] = false;

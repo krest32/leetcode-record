@@ -8,9 +8,11 @@
 class Solution {
     public int deleteAndEarn(int[] nums) {
         int maxVal = 0;
+        // 比较获取最大的点数
         for (int val : nums) {
             maxVal = Math.max(maxVal, val);
         }
+        // 建立前缀和数组
         int[] sum = new int[maxVal + 1];
         for (int val : nums) {
             sum[val] += val;
@@ -30,4 +32,3 @@ class Solution {
     }
 }
 // @lc code=end
-

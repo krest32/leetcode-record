@@ -12,10 +12,34 @@ class Solution {
 
         // 动态规划
         // return extracted2(s);
-
-
-        
     }
+
+    private String extracted(String s) {
+        int start = 0;
+        int end = 0;
+        for (int i = 0; i < s.length(); i++) {
+            int len1 = getLen(s, i, i);
+            int len2 = getLen(s, i, i + 1);
+            int len = Math.max(len1, len2);
+            if (len > (end - start)) {
+                // start 从0位置开始截取，所以需要先-1，再除2
+                start = i - (len - 1) / 2;
+                end = i + len / 2;
+            }
+        }
+        // 截取字符需要是end+1
+        return s.substring(start, end + 1);
+    }
+
+    private int getLen(String s, int left, int right) {
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            left--;
+            right++;
+        }
+        // 因为是在left++ 和 right-- 之后，两个字符不相等，所以最终差值，要再减一
+        return right - left - 1;
+    }
+
 
     /**
      * Your runtime beats 35.43 % of java submissions
@@ -71,31 +95,6 @@ class Solution {
         return s.substring(begin, begin + maxLen);
     }
 
-    private String extracted(String s) {
-        int start = 0;
-        int end = 0;
-        for (int i = 0; i < s.length(); i++) {
-            int len1 = getLen(s, i, i);
-            int len2 = getLen(s, i, i + 1);
-            int len = Math.max(len1, len2);
-            if (len > (end - start)) {
-                // start 从0位置开始截取，所以需要先-1，再除2
-                start = i - (len - 1) / 2;
-                end = i + len / 2;
-            }
-        }
-        // 截取字符需要是end+1
-        return s.substring(start, end + 1);
-    }
 
-    private int getLen(String s, int left, int right) {
-
-        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
-            left--;
-            right++;
-        }
-        // 因为是在left++ 和 right-- 之后，两个字符不相等，所以最终差值，要再减一
-        return right - left - 1;
-    }
 }
 // @lc code=end

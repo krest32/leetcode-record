@@ -31,7 +31,7 @@ class Solution {
         int[] dp = new int[n + 1];
         Arrays.fill(dp, max);
         dp[0] = 0;
-        for (int i = 1; i * i <= n; i++) {
+        for (int i = 0; i * i <= n; i++) {
             for (int j = i * i; j <= n; j++) {
                 if (dp[j - i * i] != max) {
                     dp[j] = Math.min(dp[j], dp[j - i * i] + 1);

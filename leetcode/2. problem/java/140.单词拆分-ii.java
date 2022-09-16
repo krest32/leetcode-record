@@ -15,6 +15,7 @@ import java.util.Set;
 // @lc code=start
 class Solution {
     public List<String> wordBreak(String s, List<String> wordDict) {
+        // 记录截至某个单词的位置，字符串拆分的List
         Map<Integer, List<List<String>>> map = new HashMap<Integer, List<List<String>>>();
         List<List<String>> wordBreaks = backtrack(s, s.length(), new HashSet<String>(wordDict), 0, map);
         List<String> breakList = new LinkedList<String>();

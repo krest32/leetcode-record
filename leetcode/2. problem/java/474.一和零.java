@@ -7,6 +7,40 @@
 // @lc code=start
 class Solution {
     public int findMaxForm(String[] strs, int m, int n) {
+        // 动态规划
+        // return extracted(strs, m, n);
+
+        // test
+        return test(strs, m, n);
+    }
+
+    private int test(String[] strs, int m, int n) {
+        int[][] dp = new int[m + 1][n + 1];
+        int len = strs.length;
+        for (int i = 0; i < len; i++) {
+            int[] nums = getZerosOnes(strs[i]);
+            int zeros = nums[0], ones = nums[1];
+            // 背包问题
+            for (int j = m; j >= zeros; j--) {
+                for (int k = n; k >= ones; k--) {
+                    dp[j][k] = Math.max(dp[j][k], dp[j - zeros][k - ones] + 1);
+                }
+            }
+        }
+        return dp[m][n];
+    }
+
+    /**
+     * 72/72 cases passed (17 ms)
+     * Your runtime beats 82.08 % of java submissions
+     * Your memory usage beats 73.03 % of java submissions (40.8 MB)
+     * 
+     * @param strs
+     * @param m
+     * @param n
+     * @return
+     */
+    private int extracted(String[] strs, int m, int n) {
         int[][] dp = new int[m + 1][n + 1];
         int len = strs.length;
         for (int i = 0; i < len; i++) {

@@ -7,14 +7,14 @@
 // @lc code=start
 class Solution {
     public int maxSubArray(int[] nums) {
-        // 解法一： 动态规划 --> 优化
+        // 解法一：动态规划-- 基础版
+        // return extracted2(nums);
+
+        // 解法二： 动态规划 --> 优化
         // return extracted(nums);
 
-        // 解法二： 分治
+        // 解法三： 分治
         // return getInfo(nums, 0, nums.length - 1).mSum;
-
-        // 解法三：动态规划-- 基础版
-        // return extracted2(nums);
 
         // 1
         return test(nums);
@@ -41,6 +41,7 @@ class Solution {
      * @return
      */
     private int extracted2(int[] nums) {
+        // dp[i] 记录截至当前数字的最大连续子数组和
         int[] dp = new int[nums.length + 1];
         dp[0] = nums[0];
         int max = dp[0];

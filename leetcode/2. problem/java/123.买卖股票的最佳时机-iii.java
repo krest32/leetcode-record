@@ -13,17 +13,19 @@ class Solution {
 
     private int extracted(int[] prices) {
         int len = prices.length;
-        // 边界判断, 题目中 length >= 1, 所以可省去
         if (len == 0)
             return 0;
         /*
-         * 定义 5 种状态:
-         * 0: 没有操作, 1: 第一次买入, 2: 第一次卖出,
-         * 3: 第二次买入, 4: 第二次卖出
+         * 定义 4 种状态:
+         * 1: 第一次买入, 
+         * 2: 第一次卖出,
+         * 3: 第二次买入, 
+         * 4: 第二次卖出
          */
+        // dp 记录某梯田的
         int[][] dp = new int[len][5];
+        // 初始化 0 值
         dp[0][1] = -prices[0];
-        // 初始化第二次买入的状态是确保 最后结果是最多两次买卖的最大利润
         dp[0][3] = -prices[0];
 
         for (int i = 1; i < len; i++) {

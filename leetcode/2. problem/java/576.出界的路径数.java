@@ -7,6 +7,11 @@
 // @lc code=start
 class Solution {
     public int findPaths(int m, int n, int maxMove, int startRow, int startColumn) {
+        // 动态规划
+        return extracted(m, n, maxMove, startRow, startColumn);
+    }
+
+    private int extracted(int m, int n, int maxMove, int startRow, int startColumn) {
         final int MOD = 1000000007;
         int[][] directions = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
         int outCounts = 0;

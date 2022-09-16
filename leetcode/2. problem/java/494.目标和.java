@@ -12,13 +12,37 @@ class Solution {
 
     public int findTargetSumWays(int[] nums, int target) {
         // 回溯算法
-        // return extracted(nums, target);
+        return extracted(nums, target);
 
         // 二维数组 动态规划 -- 01 背包
         // return extracted2(nums, target);
 
         // 一维数组 动态规划 -- 01 背包
-        return extracted3(nums, target);
+        // return extracted3(nums, target);
+    }
+
+    private int extracted2(int[] nums, int target) {
+        int sum = Arrays.stream(nums).sum();
+
+        // 前置判断
+        int diff = sum - target;
+        if (diff < 0 || diff % 2 != 0)
+            return 0;
+
+        // 创建背包
+        int n = nums.length, neg = diff / 2;
+        int[][] dp = new int[n + 1][neg + 1];
+        dp[0][0] = 1;
+        for (int i = 1; i <= n; i++) {
+            int num = nums[i - 1];
+            for (int j = 0; j <= neg; j++) {
+                dp[i][j] = dp[i - 1][j];
+                if (j >= num) {
+                    dp[i][j] += dp[i - 1][j - num];
+                }
+            }
+        }
+        return dp[n][neg];
     }
 
     private int extracted3(int[] nums, int target) {
@@ -40,28 +64,15 @@ class Solution {
         return dp[size];
     }
 
-    private int extracted2(int[] nums, int target) {
-        int sum = Arrays.stream(nums).sum();
-
-        int diff = sum - target;
-        if (diff < 0 || diff % 2 != 0)
-            return 0;
-
-        int n = nums.length, neg = diff / 2;
-        int[][] dp = new int[n + 1][neg + 1];
-        dp[0][0] = 1;
-        for (int i = 1; i <= n; i++) {
-            int num = nums[i - 1];
-            for (int j = 0; j <= neg; j++) {
-                dp[i][j] = dp[i - 1][j];
-                if (j >= num) {
-                    dp[i][j] += dp[i - 1][j - num];
-                }
-            }
-        }
-        return dp[n][neg];
-    }
-
+    /**
+     * 139/139 cases passed (548 ms)
+     * Your runtime beats 14.47 % of java submissions
+     * Your memory usage beats 55.26 % of java submissions (39.4 MB)
+     * 
+     * @param nums
+     * @param target
+     * @return
+     */
     private int extracted(int[] nums, int target) {
         dfs(nums, target, 0, 0);
         return count;

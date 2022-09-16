@@ -1,3 +1,8 @@
+import java.util.ArrayList;
+import java.util.List;
+
+import entrty.TreeNode;
+
 /*
  * @lc app=leetcode.cn id=96 lang=java
  *
@@ -10,11 +15,59 @@ class Solution {
         // 动态规划
         // return extracted(n);
 
-        // 1
-        return extracted2(n);
+        // 回溯：超时
+        // return extracted2(1, n).size();
+
+        // test
+        return test(n);
+
     }
 
-    private int extracted2(int n) {
+    private int test(int n) {
+        // 定义 dp 数组
+        int[] dp = new int[n + 1];
+        // 初始化 0 值
+        dp[0] = 1;
+        dp[1] = 1;
+        // 填充 dp 数组
+        for (int i = 2; i <= n; i++) {
+            for (int j = 1; j <= i; j++) {
+                dp[i] += dp[j - 1] * dp[i - j];
+            }
+        }
+        return dp[n];
+    }
+
+    /**
+     * Time Limit Exceeded
+     * 12/19 cases passed (N/A)
+     * 
+     * @param start
+     * @param end
+     * @return
+     */
+    private List<TreeNode> extracted2(int start, int end) {
+        List<TreeNode> ans = new ArrayList<>();
+        if (start > end) {
+            ans.add(null);
+        } else {
+            for (int i = start; i <= end; i++) {
+                List<TreeNode> left = extracted2(start, i - 1);
+                List<TreeNode> right = extracted2(i + 1, end);
+                for (TreeNode tempLeft : left) {
+                    for (TreeNode tempRight : right) {
+                        TreeNode root = new TreeNode(i);
+                        root.left = tempLeft;
+                        root.right = tempRight;
+                        ans.add(root);
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+
+    private int extracted(int n) {
         int[] dp = new int[n + 1];
         dp[0] = 1;
         dp[1] = 1;
@@ -27,8 +80,5 @@ class Solution {
         return dp[n];
     }
 
-    private int extracted(int n) {
-        return extracted2(n);
-    }
 }
 // @lc code=end

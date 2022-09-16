@@ -21,6 +21,26 @@ class Solution {
         return extracted4(nums);
     }
 
+
+    /**
+     * 48/48 cases passed (3 ms)
+     * Your runtime beats 79.11 % of java submissions
+     * Your memory usage beats 70.09 % of java submissions (58.3 MB)
+     */
+    private long extracted3(int[] nums) {
+        long pre = 0, cur = 0, ans = 0;
+        for (int x : nums) {
+            if (x != 0) {
+                cur = 0;
+            } else {
+                cur = pre + 1;
+            }
+            ans += cur;
+            pre = cur;
+        }
+        return ans;
+    }
+
     /**
      * 48/48 cases passed (9 ms)
      * Your runtime beats 9.01 % of java submissions
@@ -31,12 +51,12 @@ class Solution {
         Long[] dp = new Long[len];
         for (int i = 0; i < len; i++) {
             if (nums[i] != 0) {
-                dp[i] = 0l;
+                dp[i] = 0L;
             } else {
                 if (i > 0) {
                     dp[i] = dp[i - 1] + 1;
                 } else {
-                    dp[i] = 1l;
+                    dp[i] = 1L;
                 }
             }
         }
@@ -71,24 +91,7 @@ class Solution {
         return ans;
     }
 
-    /**
-     * 48/48 cases passed (3 ms)
-     * Your runtime beats 79.11 % of java submissions
-     * Your memory usage beats 70.09 % of java submissions (58.3 MB)
-     */
-    private long extracted3(int[] nums) {
-        long pre = 0, cur = 0, ans = 0;
-        for (int x : nums) {
-            if (x != 0) {
-                cur = 0;
-            } else {
-                cur = pre + 1;
-            }
-            ans += cur;
-            pre = cur;
-        }
-        return ans;
-    }
+    
 
     /**
      * 48/48 cases passed (2 ms)

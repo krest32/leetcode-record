@@ -28,9 +28,9 @@ import entrty.TreeNode;
 class Solution {
 
     /**
-     * 用 f(o)表示选择o节点的情况下，o节点的
-     * 子树上被选择的节点的最大权值和；g(o) 表示不选择o节点的情况下，
-     * o 节点的子树上被选择的节点的最大权值和；l 和 r 代表 o 的左右孩子。
+     * 用 f(o)表示选择当前节点的情况下，o节点的子树上被选择的节点的最大权值和；
+     * g(o) 表示不选择当前节点的情况下，o 节点的子树上被选择的节点的最大权值和；
+     * 
      */
     Map<TreeNode, Integer> f = new HashMap<TreeNode, Integer>();
     Map<TreeNode, Integer> g = new HashMap<TreeNode, Integer>();
@@ -46,10 +46,10 @@ class Solution {
         }
         dfs(node.left);
         dfs(node.right);
-        // f 记录从累加根节点的数值
+        // f 记录从累加根节点的数值的累加和
         f.put(node, node.val + g.getOrDefault(node.left, 0) + g.getOrDefault(node.right, 0));
 
-        // g 记录
+        // g 记录不包含跟在内的数值的累加和
         g.put(node, Math.max(f.getOrDefault(node.left, 0), g.getOrDefault(node.left, 0))
                 + Math.max(f.getOrDefault(node.right, 0), g.getOrDefault(node.right, 0)));
     }

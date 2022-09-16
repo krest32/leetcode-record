@@ -19,21 +19,22 @@ class Solution {
 
     private int test(int[][] clips, int time) {
         int[] dp = new int[time + 1];
-        Arrays.fill(dp, Integer.MAX_VALUE - 1);
+        Arrays.fill(dp, 500);
         dp[0] = 0;
-        for (int i = 0; i <= time; i++) {
+        for (int i = 1; i <= time; i++) {
             for (int[] clip : clips) {
-                if (clip[0] < i && i <= clip[1]) {
+                if (clip[0] < i && clip[1] >= i) {
                     dp[i] = Math.min(dp[i], dp[clip[0]] + 1);
                 }
             }
         }
-
-        return dp[time] == Integer.MAX_VALUE - 1 ? -1 : dp[time];
+        return dp[time] == 500 ? -1 : dp[time];
     }
 
     private int extracted(int[][] clips, int time) {
+        // 记录 i 时间的最小时评片段匹配数
         int[] dp = new int[time + 1];
+        // 初始化 0 值
         Arrays.fill(dp, Integer.MAX_VALUE - 1);
         dp[0] = 0;
         for (int i = 1; i <= time; i++) {

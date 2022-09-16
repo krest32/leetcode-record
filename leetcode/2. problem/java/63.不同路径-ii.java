@@ -7,11 +7,46 @@
 // @lc code=start
 class Solution {
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
-        // 最优解
-        // return extracted(obstacleGrid);
 
         // 原始动态方程解
-        return extracted2(obstacleGrid);
+        // return extracted2(obstacleGrid);
+
+        // 动态方程优化（不推荐，理解上面存在一定难度）
+        // return extracted(obstacleGrid);
+
+        // test
+        return test(obstacleGrid);
+
+    }
+
+    private int test(int[][] nums) {
+        int m = nums.length, n = nums[0].length;
+        int[][] dp = new int[m][n];
+        // 初始化 0 值
+        for (int i = 0; i < m; i++) {
+            if (nums[i][0] == 0) {
+                dp[i][0] = 1;
+            } else {
+                break;
+            }
+        }
+        for (int j = 0; j < n; j++) {
+            if (nums[0][j] == 0) {
+                dp[0][j] = 1;
+            } else {
+                break;
+            }
+        }
+
+        // 开始获取路径
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                if (nums[i][j] == 0) {
+                    dp[i][j] = dp[i][j - 1] + dp[i - 1][j];
+                }
+            }
+        }
+        return dp[m - 1][n - 1];
     }
 
     /**
@@ -21,28 +56,30 @@ class Solution {
      * @param obstacleGrid
      * @return
      */
-    private int extracted2(int[][] obstacleGrid) {
-        // 动态方程:需要排除掉所有 arr[i][j] == 1 的情况
-        // dp[i][j] = dp[i-1][j] + dp[i][j-1];
-        if (obstacleGrid == null || obstacleGrid.length == 0) {
-            return 0;
-        }
-        // 定义 dp 数组并初始化第 1 行和第 1 列。
-        int m = obstacleGrid.length, n = obstacleGrid[0].length;
+    private int extracted2(int[][] numss) {
+        int m = nums.length, n = nums[0].length;
         int[][] dp = new int[m][n];
-
-        for (int i = 0; i < m && obstacleGrid[i][0] == 0; i++) {
-            dp[i][0] = 1;
+        // 初始化 0 值
+        for (int i = 0; i < m; i++) {
+            if (nums[i][0] == 0) {
+                dp[i][0] = 1;
+            } else {
+                break;
+            }
         }
-        for (int j = 0; j < n && obstacleGrid[0][j] == 0; j++) {
-            dp[0][j] = 1;
+        for (int j = 0; j < n; j++) {
+            if (nums[0][j] == 0) {
+                dp[0][j] = 1;
+            } else {
+                break;
+            }
         }
 
-        // 根据状态转移方程 dp[i][j] = dp[i - 1][j] + dp[i][j - 1] 进行递推。
+        // 开始获取路径
         for (int i = 1; i < m; i++) {
             for (int j = 1; j < n; j++) {
-                if (obstacleGrid[i][j] == 0) {
-                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+                if (nums[i][j] == 0) {
+                    dp[i][j] = dp[i][j - 1] + dp[i - 1][j];
                 }
             }
         }

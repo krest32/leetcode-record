@@ -13,33 +13,49 @@ class Solution {
         // 两种动态规划速度类似
 
         // 动态规划一
-        return extracted(prices);
+        // return extracted(prices);
 
         // 动态规划二
         // return extracted3(prices);
 
+        // test
+        return test(prices);
+
+    }
+
+    private int test(int[] prices) {
+        int len = prices.length;
+        int[] dp = new int[len];
+        dp[0] = 0;
+        int ans = 0;
+        for (int i = 1; i < len; i++) {
+            int profile = prices[i] - prices[i - 1];
+            dp[i] = Math.max(dp[i - 1] + profile, 0);
+            ans = Math.max(ans, dp[i]);
+        }
+        return ans;
     }
 
     /**
-     * 动态规划二
-     * 执行用时：4 ms, 在所有 Java 提交中击败了24.80%的用户
-     * 内存消耗：52.2 MB, 在所有 Java 提交中击败了63.00%的用户
+     * 211/211 cases passed (4 ms)
+     * Your runtime beats 25.23 % of java submissions
+     * Your memory usage beats 95.32 % of java submissions (52.4 MB)
      * 
      * @param prices
      * @return
      */
     private int extracted3(int[] prices) {
-        // dp[i] = Mathmax(dp[i-1]+(prices[i]-prices[i-1]), 0)
         int len = prices.length;
-        // 求取每个位置上的最大值利润
+        // 初始化 dp 数组, 记录当天卖出股票的最大利润，如果不卖出，那么当天的利润为 0
         int[] dp = new int[len];
+        // 初始化 0 值
         dp[0] = 0;
+        // 填充 dp 数组
         int ans = 0;
-
         for (int i = 1; i < len; i++) {
             int diff = prices[i] - prices[i - 1];
+            // 确认状态转移方程
             dp[i] = Math.max(dp[i - 1] + diff, 0);
-            // 通过比较得出最大的利润值
             ans = Math.max(dp[i], ans);
         }
         return ans;
@@ -66,9 +82,6 @@ class Solution {
     }
 
     /**
-     * 
-     * 动态规划
-     * 
      * Your runtime beats 71.03 % of java submissions
      * Your memory usage beats 21.97 % of java submissions (57.6 MB)
      * 

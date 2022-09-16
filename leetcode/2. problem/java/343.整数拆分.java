@@ -7,9 +7,6 @@
 // @lc code=start
 class Solution {
     public int integerBreak(int n) {
-        // dp[i] 记录数字i的最大n个正整数和,当 n≥2 时可以拆分成至少两个正整数的和
-        // dp[i] = Math.max(dp[i], Math.max((i - j) * j, dp[i - j] * j));
-
         // 普通版动态规划
         return extracted2(n);
 
@@ -40,6 +37,8 @@ class Solution {
      * @return
      */
     private int extracted(int n) {
+        // dp[i] 记录数字i的最大n个正整数和,当 n≥2 时可以拆分成至少两个正整数的和
+        // dp[i] = Math.max(dp[i], Math.max((i - j) * j, dp[i - j] * j));
         int[] dp = new int[n + 1];
         for (int i = 2; i <= n; i++) {
             int curMax = 0;
