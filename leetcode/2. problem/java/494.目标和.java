@@ -12,13 +12,40 @@ class Solution {
 
     public int findTargetSumWays(int[] nums, int target) {
         // 回溯算法
-        return extracted(nums, target);
+        // return extracted(nums, target);
 
         // 二维数组 动态规划 -- 01 背包
         // return extracted2(nums, target);
 
         // 一维数组 动态规划 -- 01 背包
         // return extracted3(nums, target);
+
+        // test
+        return test(nums, target);
+    }
+
+    private int test(int[] nums, int target) {
+        int len = nums.length;
+        int sum = Arrays.stream(nums).sum();
+        int diff = sum - target;
+        if (diff < 0 || diff % 2 != 0) {
+            return 0;
+        }
+
+        int neg = diff / 2;
+  
+        int[][] dp = new int[len + 1][neg + 1];
+        dp[0][0] = 1;
+        for (int i = 1; i <= len; i++) {
+            int curVal = nums[i - 1];
+            for (int j = 0; j <= neg; j++) {
+                dp[i][j] = dp[i - 1][j];
+                if (j >= curVal) {
+                    dp[i][j] += dp[i - 1][j - curVal];
+                }
+            }
+        }
+        return dp[len][neg];
     }
 
     private int extracted2(int[] nums, int target) {
@@ -34,8 +61,10 @@ class Solution {
         int[][] dp = new int[n + 1][neg + 1];
         dp[0][0] = 1;
         for (int i = 1; i <= n; i++) {
+            // 获取当前数字
             int num = nums[i - 1];
             for (int j = 0; j <= neg; j++) {
+                // 继承之前的 dp 结果
                 dp[i][j] = dp[i - 1][j];
                 if (j >= num) {
                     dp[i][j] += dp[i - 1][j - num];

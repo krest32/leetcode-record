@@ -7,7 +7,7 @@
 // @lc code=start
 class Solution {
     public int combinationSum4(int[] nums, int target) {
-        // 动态规划 --> 多重背包？
+        // 动态规划 --> 完全背包
         // return extracted(nums, target);
 
         // 1

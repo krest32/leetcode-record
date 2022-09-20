@@ -24,14 +24,13 @@ class Solution {
     }
 
     private int test(int n) {
-        // 定义 dp 数组
         int[] dp = new int[n + 1];
-        // 初始化 0 值
         dp[0] = 1;
         dp[1] = 1;
-        // 填充 dp 数组
         for (int i = 2; i <= n; i++) {
+            // j 代表根节点的数字，0 不能是根节点, i可以作为根节点
             for (int j = 1; j <= i; j++) {
+                // j-1 是为了去掉根节点的占用数量
                 dp[i] += dp[j - 1] * dp[i - j];
             }
         }
@@ -71,9 +70,10 @@ class Solution {
         int[] dp = new int[n + 1];
         dp[0] = 1;
         dp[1] = 1;
-
         for (int i = 2; i <= n; i++) {
+            // j 代表根节点的数字，0 不能是根节点, i可以作为根节点
             for (int j = 1; j <= i; j++) {
+                // j-1 是为了去掉根节点的占用数量
                 dp[i] += dp[j - 1] * dp[i - j];
             }
         }

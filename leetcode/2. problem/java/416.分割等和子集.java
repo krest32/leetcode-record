@@ -13,26 +13,31 @@ class Solution {
         // dp[j] = max(dp[j], dp[j - weight[i]] + value[i]);
         // return extracted(nums);
 
-        // 1
+        // test
         return test(nums);
 
     }
 
     private boolean test(int[] nums) {
-        int sum = Arrays.stream(nums).sum();
-        if (sum % 2 != 0)
-            return false;
         int len = nums.length;
+        int sum = Arrays.stream(nums).sum();
+        if (sum % 2 != 0) {
+            return false;
+        }
         int half = sum / 2;
         boolean[][] dp = new boolean[len + 1][half + 1];
+
         for (int i = 1; i <= len; i++) {
-            int cur = nums[i - 1];
+            int curVal = nums[i-1];
             for (int j = 0; j <= half; j++) {
+                
                 dp[i][j] = dp[i - 1][j];
-                if (cur == j)
+                if (curVal == j) {
                     dp[i][j] = true;
-                if (cur < j)
-                    dp[i][j] = dp[i][j] || dp[i - 1][j - cur];
+                }
+                if (curVal < j) {
+                    dp[i][j] = dp[i][j] || dp[i - 1][j - curVal];
+                }
             }
         }
         return dp[len][half];
@@ -56,7 +61,7 @@ class Solution {
         for (int i = 1; i <= n; i++) {
             int curValue = nums[i - 1];
             for (int j = 0; j <= halfSum; j++) {
-                // 默认值为false;
+                // 当前 i 个元素，是否能够正好累加变成 j
                 dp[i][j] = dp[i - 1][j];
                 if (curValue == j) {
                     dp[i][j] = true;

@@ -11,6 +11,10 @@ class Solution {
         // return extracted(nums);
 
         // 动态规划
+        return extracted2(nums);
+    }
+
+    private int extracted2(int[] nums) {
         int[] dp = new int[nums.length];
         for (int i = 0; i < dp.length; i++) {
             dp[i] = 1;

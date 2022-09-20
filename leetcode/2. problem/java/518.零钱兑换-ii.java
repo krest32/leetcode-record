@@ -30,11 +30,11 @@ class Solution {
         return dp[amount];
     }
 
-/**
-28/28 cases passed (3 ms)
-Your runtime beats 47.19 % of java submissions
-Your memory usage beats 36.68 % of java submissions (39.1 MB)
- */
+    /**
+     * 28/28 cases passed (3 ms)
+     * Your runtime beats 47.19 % of java submissions
+     * Your memory usage beats 36.68 % of java submissions (39.1 MB)
+     */
     private int extracted(int amount, int[] coins) {
         // dp 数组记录达成该额度最小的硬币数量 dp[i] = dp[i] + dp[i-coin];
         int[] dp = new int[amount + 1];

@@ -6,16 +6,31 @@
 
 // @lc code=start
 class Solution {
-    public int climbStairs(int n) {
 
-        // 动态方程：dp[i] = dp[i-1] + dp[i-2]
+    public int climbStairs(int n) {
 
         // 方法一 动态规划1 最优解->去掉了不必要的数据
         // return extracted(n);
 
         // 方法二 动态规划2 : 保存了所有的计算值，空间上会有一些浪费
-        return extracted2(n);
+        // return extracted2(n);
 
+        // test
+        return test(n);
+
+    }
+
+    private int test(int n) {
+        int[] dp = new int[n + 1];
+        if (n == 0 || n == 1) {
+            return 1;
+        }
+        dp[0] = 1;
+        dp[1] = 1;
+        for (int i = 2; i <= n; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+        return dp[n];
     }
 
     /**

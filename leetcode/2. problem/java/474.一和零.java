@@ -7,7 +7,7 @@
 // @lc code=start
 class Solution {
     public int findMaxForm(String[] strs, int m, int n) {
-        // 动态规划
+        // 动态规划： 背包问题
         // return extracted(strs, m, n);
 
         // test
