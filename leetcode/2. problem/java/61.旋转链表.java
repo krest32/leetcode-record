@@ -28,23 +28,31 @@ class Solution {
     }
 
     private ListNode test(ListNode head, int k) {
-        if (k == 0 || head == null || head.next == null)
+        // 判断特殊情况
+        if (k == 0 || head == null || head.next == null) {
             return head;
+        }
+
         int len = 1;
-        ListNode iter = head;
-        while (iter.next != null) {
-            iter = iter.next;
+        ListNode pre = head;
+        while (pre.next != null) {
+            pre = pre.next;
             len++;
         }
+
+        // 处理k, 避免多转
         k = len - k % len;
-        if (k == len)
+        if (k == len) {
             return head;
-        iter.next = head;
-        while (k-- > 0) {
-            iter = iter.next;
         }
-        ListNode ret = iter.next;
-        iter.next = null;
+
+        pre.next = head;
+        while (k > 0) {
+            pre = pre.next;
+            k--;
+        }
+        ListNode ret = pre.next;
+        pre.next = null;
         return ret;
     }
 

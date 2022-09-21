@@ -40,7 +40,6 @@ class Solution {
         return right - left - 1;
     }
 
-
     /**
      * Your runtime beats 35.43 % of java submissions
      * Your memory usage beats 24.88 % of java submissions (44.4 MB)
@@ -94,7 +93,6 @@ class Solution {
         }
         return s.substring(begin, begin + maxLen);
     }
-
 
 }
 // @lc code=end

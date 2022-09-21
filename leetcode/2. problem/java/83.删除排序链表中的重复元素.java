@@ -24,15 +24,16 @@ class Solution {
     }
 
     private ListNode test(ListNode head) {
-        ListNode dummy = new ListNode(-1);
-        dummy.next = head;
-        while (head != null) {
-            while (head.next != null && head.val == head.next.val) {
-                head.next = head.next.next;
+        ListNode pre = new ListNode(-101, head);
+        ListNode cur = pre;
+        while (cur.next != null) {
+            if (cur.val == cur.next.val) {
+                cur.next = cur.next.next;
+            } else {
+                cur = cur.next;
             }
-            head = head.next;
         }
-        return dummy.next;
+        return pre.next;
     }
 
     /**
@@ -44,16 +45,14 @@ class Solution {
      * @return
      */
     private ListNode extracted(ListNode head) {
-        // 定义哑元节点
-        ListNode pre = new ListNode(-1);
-        pre.next = head;
-        // 开始进行迭代
-        while (head != null) {
-            // 如果存在重复的节点，就跳转下一个节点
-            while (head.next != null && head.val == head.next.val) {
-                head.next = head.next.next;
+        ListNode pre = new ListNode(-101, head);
+        ListNode cur = pre;
+        while (cur.next != null) {
+            if (cur.val == cur.next.val) {
+                cur.next = cur.next.next;
+            } else {
+                cur = cur.next;
             }
-            head = head.next;
         }
         return pre.next;
     }

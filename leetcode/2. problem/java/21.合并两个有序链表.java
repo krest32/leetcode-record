@@ -31,7 +31,32 @@ class Solution {
         // return extracted(list1, list2);
 
         // 解法二： 递归
-        return extracted2(list1, list2);
+        // return extracted2(list1, list2);
+
+        // test
+        return test(list1, list2);
+    }
+
+    private ListNode test(ListNode list1, ListNode list2) {
+        ListNode pre = new ListNode(-1);
+        ListNode cur = pre;
+        while (list1 != null || list2 != null) {
+            if (list1 == null) {
+                cur.next = list2;
+                list2 = list2.next;
+            } else if (list2 == null) {
+                cur.next = list1;
+                list1 = list1.next;
+            } else if (list1.val > list2.val) {
+                cur.next = list2;
+                list2= list2.next;
+            }else{
+                cur.next = list1;
+                list1 = list1.next;
+            }
+            cur = cur.next;
+        }
+        return pre.next;
     }
 
     /**

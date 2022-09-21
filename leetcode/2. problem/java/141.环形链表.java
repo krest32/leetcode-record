@@ -25,10 +25,33 @@ public class Solution {
     public boolean hasCycle(ListNode head) {
 
         // 使用迭代方式 (快慢指针)--> 最优解
-        return extracted(head);
+        // return extracted(head);
 
         // 使用额外内容Set处理
         // return extracted2(head);
+
+        // test
+        return test(head);
+    }
+
+    private boolean test(ListNode head) {
+        if (head == null || head.next == null) {
+            return false;
+        }
+        if (head == head.next && head.next != null) {
+            return true;
+        }
+
+        ListNode slow = head;
+        ListNode fast = head.next;
+        while (slow != fast) {
+            if (fast.next == null || fast.next.next == null) {
+                return false;
+            }
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return true;
     }
 
     /**
@@ -51,8 +74,9 @@ public class Solution {
     /**
      * 迭代
      * 
+     * 22/22 cases passed (0 ms)
      * Your runtime beats 100 % of java submissions
-     * Your memory usage beats 5.03 % of java submissions (42.9 MB)
+     * Your memory usage beats 11.64 % of java submissions (43 MB)
      * 
      * @param head
      * @return

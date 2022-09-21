@@ -49,7 +49,6 @@ class Solution {
         int mid = left + (right - left) / 2;
         ListNode leftSide = megerTest(lists, left, mid);
         ListNode rightSide = megerTest(lists, mid + 1, right);
-
         return mergeNode(leftSide, rightSide);
     }
 
@@ -127,12 +126,10 @@ class Solution {
     private ListNode merge(ListNode[] lists, int left, int right) {
         if (left == right) {
             return lists[left];
-        }
         if (left > right) {
             return null;
         }
         int mid = (left + right) >> 1;
-
         return mergeNode(merge(lists, left, mid), merge(lists, mid + 1, right));
     }
 
@@ -154,7 +151,6 @@ class Solution {
     }
 
     private ListNode mergeNode(ListNode l1, ListNode l2) {
-
         ListNode pre = new ListNode(-1);
         ListNode cur = pre;
         while (l1 != null || l2 != null) {
@@ -173,7 +169,6 @@ class Solution {
             }
             cur = cur.next;
         }
-
         return pre.next;
     }
 }

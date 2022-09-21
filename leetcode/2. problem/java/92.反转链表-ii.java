@@ -1,3 +1,8 @@
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.text.AbstractDocument.LeafElement;
+
 import entrty.ListNode;
 
 /*
@@ -22,25 +27,74 @@ class Solution {
         // 迭代
         // return extracted(head, left, right);
 
+        // 使用 list 实现链表的反转，需要使用额外的空间
+        // return extracted2(head, left, right);
+
         return test(head, left, right);
     }
 
-    private ListNode test(ListNode head, int left, int right) {
-        ListNode dummy = new ListNode(-1, head);
-        ListNode leftHead = dummy;
+    /**
+     * 44/44 cases passed (0 ms)
+     * Your runtime beats 100 % of java submissions
+     * Your memory usage beats 55.39 % of java submissions (39.2 MB)
+     * 
+     * @param head
+     * @param left
+     * @param right
+     * @return
+     */
+    private ListNode extracted2(ListNode head, int left, int right) {
+        ListNode pre = new ListNode(-1, head);
+        ListNode leftHead = pre;
         for (int i = 1; i < left; i++) {
             leftHead = leftHead.next;
         }
+
         ListNode cur = leftHead.next;
-        for (int i = 0; i < right - left; i++) {
-            ListNode next = cur.next;
-            cur.next = next.next;
-            next.next = leftHead.next;
-            leftHead.next = next;
+        List<ListNode> ans = new ArrayList<>();
+
+        for (int i = 0; i < right - left + 1; i++) {
+            ans.add(cur);
+            cur = cur.next;
+            ans.get(i).next = null;
         }
-        return dummy.next;
+
+        for (int i = ans.size() - 1; i >= 0; i--) {
+            leftHead.next = ans.get(i);
+            leftHead = leftHead.next;
+        }
+
+        leftHead.next = cur;
+        return pre.next;
     }
 
+    private ListNode test(ListNode head, int left, int right) {
+        ListNode pre = new ListNode(-1, head);
+        ListNode leftHead = pre;
+        for (int i = 1; i < left; i++) {
+            leftHead = leftHead.next;
+        }
+
+        ListNode cur = leftHead.next;
+        for (int i = 0; i < right - left; i++) {
+            ListNode temp = cur.next;
+            cur.next = temp.next;
+            temp.next = leftHead.next;
+            leftHead.next = temp;
+        }
+        return pre.next;
+    }
+
+    /**
+     * 44/44 cases passed (0 ms)
+     * Your runtime beats 100 % of java submissions
+     * Your memory usage beats 94.23 % of java submissions (38.9 MB)
+     * 
+     * @param head
+     * @param left
+     * @param right
+     * @return
+     */
     private ListNode extracted(ListNode head, int left, int right) {
         ListNode pre = new ListNode(-1, head);
         ListNode leftNode = pre;

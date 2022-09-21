@@ -28,10 +28,11 @@ class Solution {
     }
 
     private ListNode test(ListNode head) {
-        if (head == null)
+        if (head == null || head.next == null) {
             return head;
-        ListNode dummy = new ListNode(-1, head);
-        ListNode cur = dummy;
+        }
+        ListNode pre = new ListNode(-1, head);
+        ListNode cur = pre;
         while (cur.next != null && cur.next.next != null) {
             if (cur.next.val == cur.next.next.val) {
                 int val = cur.next.val;
@@ -42,9 +43,17 @@ class Solution {
                 cur = cur.next;
             }
         }
-        return dummy.next;
+        return pre.next;
     }
 
+    /**
+     * 166/166 cases passed (0 ms)
+     * Your runtime beats 100 % of java submissions
+     * Your memory usage beats 32.95 % of java submissions (41.2 MB)
+     * 
+     * @param head
+     * @return
+     */
     private ListNode extracted(ListNode head) {
         if (head == null)
             return head;

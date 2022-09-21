@@ -1,7 +1,5 @@
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 /*
  * @lc app=leetcode.cn id=3 lang=java
@@ -11,7 +9,7 @@ import java.util.Set;
 
 // @lc code=start
 class Solution {
-    public int lengthOfLongestSubstring(String s) {
+     public int lengthOfLongestSubstring(String s) {
         // 滑动窗口 + 哈希
         // return extracted(s);
 

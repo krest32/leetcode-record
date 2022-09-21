@@ -30,10 +30,10 @@ class Solution {
     }
 
     private ListNode test(ListNode head, int x) {
-        ListNode small = new ListNode(-1);
-        ListNode smallHead = small;
-        ListNode large = new ListNode(-1);
-        ListNode largeHead = large;
+        ListNode smallHead = new ListNode(-1);
+        ListNode small = smallHead;
+        ListNode largeHead = new ListNode(-1);
+        ListNode large = largeHead;
         while (head != null) {
             if (head.val < x) {
                 small.next = head;
@@ -46,10 +46,18 @@ class Solution {
         }
         large.next = null;
         small.next = largeHead.next;
-
         return smallHead.next;
     }
 
+    /**
+     * 168/168 cases passed (0 ms)
+     * Your runtime beats 100 % of java submissions
+     * Your memory usage beats 83.57 % of java submissions (40.7 MB)
+     * 
+     * @param head
+     * @param x
+     * @return
+     */
     private ListNode extracted(ListNode head, int x) {
         ListNode small = new ListNode(0);
         ListNode smallHead = small;

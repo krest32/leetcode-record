@@ -9,8 +9,7 @@ import java.util.Map;
 
 // @lc code=start
 class Solution {
-
-  public int[] twoSum(int[] nums, int target) {
+          public int[] twoSum(int[] nums, int target) {
     // return extracted1(nums, target);
 
     // return extracted2(nums, target);

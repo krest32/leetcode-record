@@ -34,19 +34,8 @@ class Solution {
     }
 
     private ListNode test(ListNode head) {
-        ListNode dummy = new ListNode(-1, head);
-        ListNode cur = dummy;
-        while (cur.next != null && cur.next.next != null) {
-            ListNode node1 = cur.next;
-            ListNode node2 = cur.next.next;
-
-            // 进行交换操作
-            cur.next = node2;
-            node1.next = node2.next;
-            node2.next = node1;
-            cur = node1;
-        }
-        return dummy.next;
+        ListNode pre= new ListNode(-1, head);
+        ListNode cur =
 
     }
 

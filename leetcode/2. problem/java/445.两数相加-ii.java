@@ -21,6 +21,11 @@ import entrty.ListNode;
  */
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        // 使用栈
+        return extracted(l1, l2);
+    }
+
+    private ListNode extracted(ListNode l1, ListNode l2) {
         Stack<Integer> stack1 = new Stack<Integer>();
         Stack<Integer> stack2 = new Stack<Integer>();
         while (l1 != null) {

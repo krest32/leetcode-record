@@ -1,3 +1,4 @@
+import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -40,7 +41,25 @@ class Solution {
         // return extracted2(root);
 
         // 方法三 Morris 中序遍历 了解即可
-        return extracted3(root);
+        // return extracted3(root);
+
+        // test
+        return test(root);
+    }
+
+    private List<Integer> test(TreeNode root) {
+        List<Integer> ans = new ArrayList<>();
+        reverseTest(ans, root);
+        return ans;
+    }
+
+    private void reverseTest(List<Integer> ans, TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        reverseTest(ans, root.left);
+        ans.add(root.val);
+        reverseTest(ans, root.right);
     }
 
     /**

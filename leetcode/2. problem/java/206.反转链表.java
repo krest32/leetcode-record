@@ -37,10 +37,10 @@ class Solution {
         ListNode pre = null;
         ListNode cur = head;
         while (cur != null) {
-            ListNode next = cur.next;
+            ListNode temp = cur.next;
             cur.next = pre;
             pre = cur;
-            cur = next;
+            cur = temp;
         }
         return pre;
     }
@@ -72,14 +72,18 @@ class Solution {
     private ListNode extracted(ListNode head) {
         ListNode pre = null;
         ListNode cur = head;
-        // 利用迭代法对于元素进行迭代
         while (cur != null) {
-            ListNode next = cur.next;
+            // 找到临时便量
+            ListNode temp = cur.next;
+            // 指向正确的变量
             cur.next = pre;
+            // pre 指向当前变量
             pre = cur;
-            cur = next;
+            // 当前变量指向临时变量
+            cur = temp;
         }
         return pre;
+
     }
 }
 // @lc code=end
