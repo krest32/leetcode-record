@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -31,7 +30,7 @@ class Solution {
     List<Integer> list = new ArrayList<>();
 
     public void recoverTree(TreeNode root) {
-        // 遍历
+        // 中序遍历：大小是已经排序好的
         dfs(root);
         int first = 0;
         int second = 0;
@@ -39,14 +38,14 @@ class Solution {
 
         Collections.copy(list, copy);
         Collections.sort(copy);
-        // 找到需要交换的节点
+        // 找到交换数值的两个值
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i) != copy.get(i)) {
                 second = first;
                 first = list.get(i);
             }
         }
-
+        // 进行数值交换
         changeValue(root, first, second);
 
     }

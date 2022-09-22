@@ -29,29 +29,65 @@ import entrty.TreeNode;
  */
 class Solution {
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
-        List<List<Integer>> levelOrder = new LinkedList<List<Integer>>();
-        if (root == null) {
-            return levelOrder;
-        }
-        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        // BFS 遍历树
+        // return extracted(root);
+
+        // test
+        return test(root);
+    }
+
+    private List<List<Integer>> test(TreeNode root) {
+        List<List<Integer>> ans = new ArrayList<>();
+        if (root == null)
+            return ans;
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
         while (!queue.isEmpty()) {
-            List<Integer> level = new ArrayList<Integer>();
+            List<Integer> level = new ArrayList<>();
             int size = queue.size();
             for (int i = 0; i < size; i++) {
                 TreeNode node = queue.poll();
                 level.add(node.val);
-                TreeNode left = node.left, right = node.right;
-                if (left != null) {
-                    queue.offer(left);
+                if (node.left != null) {
+                    queue.offer(node.left);
                 }
-                if (right != null) {
-                    queue.offer(right);
+                if (node.right != null) {
+                    queue.offer(node.right);
                 }
             }
-            levelOrder.add(0, level);
+            ans.add(0, level);
         }
-        return levelOrder;
+        return ans;
+    }
+
+    /**
+     * 34/34 cases passed (1 ms)
+     * Your runtime beats 91.69 % of java submissions
+     * Your memory usage beats 15.87 % of java submissions (41.8 MB)
+     * 
+     * @param root
+     * @return
+     */
+    private List<List<Integer>> extracted(TreeNode root) {
+        List<List<Integer>> ans = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            List<Integer> level = new ArrayList<>();
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                level.add(node.val);
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+            ans.add(0, level);
+        }
+        return ans;
     }
 }
 // @lc code=end

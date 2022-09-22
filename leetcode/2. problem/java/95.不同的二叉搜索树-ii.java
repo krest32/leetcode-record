@@ -37,10 +37,9 @@ class Solution {
 
     private List<TreeNode> test(int n) {
         if (n == 0) {
-            return new ArrayList<TreeNode>();
+            return new ArrayList<>();
         }
         return backTrackingTest(1, n);
-
     }
 
     private List<TreeNode> backTrackingTest(int start, int end) {
@@ -49,13 +48,13 @@ class Solution {
             ans.add(null);
         } else {
             for (int i = start; i <= end; i++) {
-                List<TreeNode> left = backTrackingTest(start, i - 1);
-                List<TreeNode> right = backTrackingTest(i + 1, end);
-                for (TreeNode tempLeft : left) {
-                    for (TreeNode tempright : right) {
+                List<TreeNode> lefts = backTrackingTest(start, i - 1);
+                List<TreeNode> rights = backTrackingTest(i + 1, end);
+                for (TreeNode left : lefts) {
+                    for (TreeNode right : rights) {
                         TreeNode root = new TreeNode(i);
-                        root.left = tempLeft;
-                        root.right = tempright;
+                        root.left = left;
+                        root.right = right;
                         ans.add(root);
                     }
                 }
@@ -64,6 +63,14 @@ class Solution {
         return ans;
     }
 
+    /**
+     * 8/8 cases passed (1 ms)
+     * Your runtime beats 97.75 % of java submissions
+     * Your memory usage beats 32.29 % of java submissions (42.2 MB)
+     * 
+     * @param n
+     * @return
+     */
     private List<TreeNode> extracted(int n) {
         if (n == 0)
             return new ArrayList<TreeNode>();

@@ -25,6 +25,15 @@ class Solution {
         return extracted(l1, l2);
     }
 
+    /**
+     * 1563/1563 cases passed (5 ms)
+     * Your runtime beats 34.25 % of java submissions
+     * Your memory usage beats 19 % of java submissions (41.8 MB)
+     * 
+     * @param l1
+     * @param l2
+     * @return
+     */
     private ListNode extracted(ListNode l1, ListNode l2) {
         Stack<Integer> stack1 = new Stack<Integer>();
         Stack<Integer> stack2 = new Stack<Integer>();
