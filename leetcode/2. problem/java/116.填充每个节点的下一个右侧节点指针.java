@@ -38,35 +38,43 @@ class Solution {
         // 层次遍历
         // return extracted(root);
 
-        // 1
-        return extracted2(root);
+        // test
+        return test(root);
     }
 
-    private Node extracted2(Node root) {
-        if (root == null)
-            return null;
+    private Node test(Node root) {
+        if (root == null) {
+            return root;
+        }
+
         Queue<Node> queue = new LinkedList<>();
         queue.offer(root);
         while (!queue.isEmpty()) {
             int size = queue.size();
             for (int i = 0; i < size; i++) {
-                Node temp = queue.poll();
-                if (i == size - 1) {
-                    temp.next = null;
-                } else {
-                    temp.next = queue.peek();
+                Node node = queue.poll();
+                if (i < size - 1) {
+                    node.next = queue.peek();
                 }
-                if (temp.left != null) {
-                    queue.offer(temp.left);
+                if (node.left != null) {
+                    queue.add(node.left);
                 }
-                if (temp.right != null) {
-                    queue.offer(temp.right);
+                if (node.right != null) {
+                    queue.add(node.right);
                 }
             }
         }
         return root;
     }
 
+    /**
+     * 59/59 cases passed (3 ms)
+     * Your runtime beats 30.03 % of java submissions
+     * Your memory usage beats 96.86 % of java submissions (41.2 MB)
+     * 
+     * @param root
+     * @return
+     */
     private Node extracted(Node root) {
         if (root == null) {
             return root;

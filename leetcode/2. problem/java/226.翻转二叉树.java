@@ -31,7 +31,21 @@ class Solution {
         // return extracted(root);
 
         // 迭代
-        return extracted2(root);
+        // return extracted2(root);
+
+        // test
+        return test(root);
+    }
+
+    private TreeNode test(TreeNode root) {
+        if (root == null) {
+            return root;
+        }
+        TreeNode left = test(root.left);
+        TreeNode right = test(root.right);
+        root.left = right;
+        root.right = left;
+        return root;
     }
 
     /**
@@ -68,7 +82,9 @@ class Solution {
     }
 
     /**
-     * 递归
+     * 77/77 cases passed (0 ms)
+     * Your runtime beats 100 % of java submissions
+     * Your memory usage beats 47.78 % of java submissions (39.1 MB)
      * 
      * @param root
      * @return

@@ -28,6 +28,41 @@ import entrty.TreeNode;
  */
 class Solution {
     public boolean isBalanced(TreeNode root) {
+        // 递归
+        // return extracted(root);
+
+        // test
+        return test(root);
+
+    }
+
+    private boolean test(TreeNode root) {
+        if (root == null)
+            return true;
+
+        int leftDep = depth(root.left);
+        int rightDep = depth(root.right);
+        return Math.abs(leftDep - rightDep) <= 1 && test(root.left) && test(root.right);
+    }
+
+    private int depth(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+        int left = depth(node.left);
+        int right = depth(node.right);
+        return Math.max(left, right) + 1;
+    }
+
+    /**
+     * 228/228 cases passed (1 ms)
+     * Your runtime beats 44.25 % of java submissions
+     * Your memory usage beats 68.53 % of java submissions (41 MB)
+     * 
+     * @param root
+     * @return
+     */
+    private boolean extracted(TreeNode root) {
         if (root == null)
             return true;
         int leftDepth = getDepth(root.left);

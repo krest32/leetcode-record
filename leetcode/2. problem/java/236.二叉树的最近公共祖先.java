@@ -43,7 +43,8 @@ class Solution {
         boolean lson = dfs(root.left, p, q);
         boolean rson = dfs(root.right, p, q);
 
-        if ((lson && rson) || (root.val == p.val || root.val == q.val && (lson || rson))) {
+        if ((lson && rson) || (root.val == p.val || root.val == q.val
+                && (lson || rson))) {
             cur = root;
         }
 

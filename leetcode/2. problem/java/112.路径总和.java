@@ -1,3 +1,4 @@
+import java.time.format.TextStyle;
 import java.util.LinkedList;
 import java.util.Queue;
 import entrty.TreeNode;
@@ -30,11 +31,23 @@ class Solution {
         // 递归
         // return extracted(root, targetSum);
 
-        /**
-         * 迭代-> 广度优先算法
-         * 
-         */
-        return extracted1(root, targetSum);
+        // 迭代-> 广度优先算法
+        // return extracted1(root, targetSum);
+
+        // test
+        return test(root, targetSum);
+    }
+
+    private boolean test(TreeNode root, int targetSum) {
+        if (root == null) {
+            return false;
+        }
+        if (root.left == null && root.right == null && targetSum == root.val) {
+            return true;
+        }
+
+        return test(root.left, targetSum - root.val)
+                || test(root.right, targetSum - root.val);
     }
 
     /**
@@ -75,7 +88,9 @@ class Solution {
     }
 
     /**
-     * 递归
+     * 117/117 cases passed (0 ms)
+     * Your runtime beats 100 % of java submissions
+     * Your memory usage beats 63.99 % of java submissions (41.2 MB)
      * 
      * @param root
      * @param targetSum

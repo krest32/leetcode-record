@@ -36,7 +36,21 @@ class Solution {
         // return extracted(root);
 
         // 广度优先搜说
-        return extracted2(root);
+        // return extracted2(root);
+
+        // test
+        List<Integer> ans = new ArrayList<>();
+        return test(root, ans);
+    }
+
+    private List<Integer> test(TreeNode root, List<Integer> ans) {
+        if (root == null) {
+            return ans;
+        }
+        ans.add(root.val);
+        test(root.left, ans);
+        test(root.right, ans);
+        return ans;
     }
 
     /**
@@ -72,6 +86,13 @@ class Solution {
         return res;
     }
 
+    /**
+     * 69/69 cases passed (0 ms)
+     * Your runtime beats 100 % of java submissions
+     * Your memory usage beats 97.37 % of java submissions (39.3 MB)
+     * 
+     * @param root
+     */
     private void getNode(TreeNode root) {
         if (root == null) {
             return;
