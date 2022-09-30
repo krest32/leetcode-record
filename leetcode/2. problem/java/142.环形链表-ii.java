@@ -23,6 +23,10 @@ import entrty.ListNode;
  */
 public class Solution {
     public ListNode detectCycle(ListNode head) {
+        return extracted(head);
+    }
+
+    private ListNode extracted(ListNode head) {
         ListNode pos = head;
         Set<ListNode> visited = new HashSet<ListNode>();
         while (pos != null) {

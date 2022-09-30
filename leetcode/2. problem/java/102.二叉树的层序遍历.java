@@ -29,6 +29,47 @@ import entrty.TreeNode;
  */
 class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
+        // BFS
+        // return extracted(root);
+
+        // test
+        return test(root);
+    }
+
+    private List<List<Integer>> test(TreeNode root) {
+        List<List<Integer>> ans = new ArrayList<>();
+        if (root == null) {
+            return ans;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            List<Integer> tempArr = new ArrayList<>();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                tempArr.add(node.val);
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+            ans.add(tempArr);
+        }
+        return ans;
+    }
+
+    /**
+     * 34/34 cases passed (0 ms)
+     * Your runtime beats 100 % of java submissions
+     * Your memory usage beats 17.21 % of java submissions (41.8 MB)
+     * 
+     * @param root
+     * @return
+     */
+    private List<List<Integer>> extracted(TreeNode root) {
         List<List<Integer>> res = new ArrayList<>();
         if (root == null) {
             return res;

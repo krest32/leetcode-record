@@ -4,7 +4,7 @@ import entrty.ListNode;
 /*
  * @lc app=leetcode.cn id=21 lang=java
  *
- * [21] 
+ * [21] 合并两个有序链表
  * 
  */
 
@@ -37,22 +37,22 @@ class Solution {
         return test(list1, list2);
     }
 
-    private ListNode test(ListNode list1, ListNode list2) {
+    private ListNode test(ListNode l1, ListNode l2) {
         ListNode pre = new ListNode(-1);
         ListNode cur = pre;
-        while (list1 != null || list2 != null) {
-            if (list1 == null) {
-                cur.next = list2;
-                list2 = list2.next;
-            } else if (list2 == null) {
-                cur.next = list1;
-                list1 = list1.next;
-            } else if (list1.val > list2.val) {
-                cur.next = list2;
-                list2= list2.next;
-            }else{
-                cur.next = list1;
-                list1 = list1.next;
+        while (l1 != null || l2 != null) {
+            if (l1 == null) {
+                cur.next = l2;
+                l2 = l2.next;
+            } else if (l2 == null) {
+                cur.next = l1;
+                l1 = l1.next;
+            } else if (l1.val <= l2.val) {
+                cur.next = l1;
+                l1 = l1.next;
+            } else {
+                cur.next = l2;
+                l2 = l2.next;
             }
             cur = cur.next;
         }

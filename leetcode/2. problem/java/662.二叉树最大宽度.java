@@ -1,6 +1,5 @@
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.Queue;
 
 import entrty.TreeNode;
 
@@ -32,7 +31,6 @@ class Solution {
         // return extracted(root);
 
         // 给树的每个节点进行编号，然后比较最左边和最右边的数字大小即可
-
         if (root == null) {
             return 0;
         }

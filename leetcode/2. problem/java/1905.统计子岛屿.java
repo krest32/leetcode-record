@@ -6,6 +6,7 @@
 
 // @lc code=start
 class Solution {
+    
     int[][] direcs = { { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
 
     public int countSubIslands(int[][] grid1, int[][] grid2) {
