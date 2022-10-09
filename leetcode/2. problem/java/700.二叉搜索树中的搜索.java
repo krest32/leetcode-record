@@ -25,10 +25,10 @@ import entrty.TreeNode;
 class Solution {
     public TreeNode searchBST(TreeNode root, int val) {
         // 递归
-        // return extracted(root, val);
+        return extracted(root, val);
 
         // 迭代
-        return extracted2(root, val);
+        // return extracted2(root, val);
     }
 
     private TreeNode extracted2(TreeNode root, int val) {
