@@ -88,6 +88,11 @@ class Solution {
         return seq1.equals(seq2);
     }
 
+    /**
+     * dfs 方法获取所有的 
+     * @param node
+     * @param seq
+     */
     public void dfs(TreeNode node, List<Integer> seq) {
         if (node.left == null && node.right == null) {
             seq.add(node.val);
