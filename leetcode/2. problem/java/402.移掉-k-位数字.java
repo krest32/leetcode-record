@@ -14,15 +14,17 @@ class Solution {
         // return extracted(num, k);
 
         // 1
-        return extracted2(num, k);
+        return test(num, k);
     }
 
-    private String extracted2(String num, int k) {
+    private String test(String num, int k) {
         Deque<Character> deque = new LinkedList<>();
         int len = num.length();
         for (int i = 0; i < len; i++) {
             char tempNum = num.charAt(i);
-            while (!deque.isEmpty() && deque.peekLast() > tempNum
+            // 前面凡是大于当前数字的都应该被移除
+            while (!deque.isEmpty()
+                    && deque.peekLast() > tempNum
                     && k > 0) {
                 deque.pollLast();
                 k--;

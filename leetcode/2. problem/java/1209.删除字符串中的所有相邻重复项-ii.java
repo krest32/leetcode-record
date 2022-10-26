@@ -22,7 +22,7 @@ class Solution {
         // 记忆法 最优 --> 在for循环的过程中修改索引值
         // return extracted3(s, k);
 
-        // 栈 --> 也还可以
+        // 栈 --> 也还可以(推荐)
         return extracted4(s, k);
     }
 
@@ -36,11 +36,13 @@ class Solution {
      */
     private String extracted4(String s, int k) {
         StringBuilder sb = new StringBuilder(s);
+        // 记录字符串中指针移动到该为值
         Stack<Integer> counts = new Stack<>();
         for (int i = 0; i < sb.length(); ++i) {
             if (i == 0 || sb.charAt(i) != sb.charAt(i - 1)) {
                 counts.push(1);
             } else {
+                // 代表i位置上与前面字符相同的个数
                 int incremented = counts.pop() + 1;
                 if (incremented == k) {
                     sb.delete(i - k + 1, i + 1);
