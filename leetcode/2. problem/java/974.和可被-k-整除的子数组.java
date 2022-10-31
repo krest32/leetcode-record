@@ -11,7 +11,8 @@ class Solution {
         // return extracted(A, K);
 
         // 计数
-        // 故若想 (sum[j] - sum[i])%K = (sum[j]−sum[i])%K =0 ，
+        // 
+        // 记录故若想 (sum[j] - sum[i])%K = (sum[j]−sum[i])%K =0 ，
         // 则必有 sum[j]%K = sum[i]%K。
         return extracted2(A, K);
 
@@ -27,6 +28,7 @@ class Solution {
      */
     private int extracted2(int[] A, int K) {
         int N = A.length, sum = 0, ans = 0;
+        // 记录
         int[] map = new int[K];
         map[0] = 1;
         for (int i = 1; i <= N; i++) {

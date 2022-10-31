@@ -39,7 +39,11 @@ class Solution {
             for (; idx < len; idx++) {
                 cnt1[str.charAt(idx) - 'a']++;
                 cnt2[pattern.charAt(idx) - 'a']++;
-                // 对应的字符类型是否一致
+                /**
+                 * 两层校验：
+                 * 1. 比对字符对应的情况
+                 * 2. 比对出现字符的次数
+                 */
                 if (map.containsKey(pattern.charAt(idx))) {
                     char pair = map.get(pattern.charAt(idx));
                     if (pair != str.charAt(idx)) {

@@ -1,5 +1,7 @@
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /*
  * @lc app=leetcode.cn id=318 lang=java
@@ -10,17 +12,18 @@ import java.util.Map;
 // @lc code=start
 class Solution {
     public int maxProduct(String[] words) {
-        // 位运算
+        // 位运算 哈希实现 -- > 效率有些低
         // return extracted(words);
 
-        // 哈希实现 -- > 效率有些低
+        // 暴力运算
         return extracted2(words);
-
     }
 
+
     /**
-     * Your runtime beats 8.93 % of java submissions
-     * Your memory usage beats 13.19 % of java submissions (41.6 MB)
+     * 168/168 cases passed (432 ms)
+     * Your runtime beats 12.03 % of java submissions
+     * Your memory usage beats 55.67 % of java submissions (42.9 MB)
      * 
      * @param words
      * @return
@@ -31,7 +34,7 @@ class Solution {
             for (int j = i + 1; j < words.length; j++) {
                 String A = words[i];
                 String B = words[j];
-                if (check(A, B)) {
+                if (A.length() * B.length() > ret && check(A, B)) {
                     ret = Math.max(ret, A.length() * B.length());
                 }
             }

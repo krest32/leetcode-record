@@ -12,20 +12,10 @@ import java.util.Set;
 class Solution {
     public int canBeTypedWords(String text, String brokenLetters) {
         // 哈希
-        return extracted(text, brokenLetters);
-    }
-
-    /**
-     * Your runtime beats 56.53 % of java submissions
-     * Your memory usage beats 43.75 % of java submissions (40.9 MB)
-     * 
-     * @param text
-     * @param brokenLetters
-     * @return
-     */
-    private int extracted(String text, String brokenLetters) {
         return extracted2(text, brokenLetters);
     }
+
+
 
     /**
      * Your runtime beats 56.53 % of java submissions

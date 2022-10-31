@@ -34,6 +34,7 @@ class Solution {
      */
     private int extracted3(int[] nums) {
         int maxLength = 0;
+        // map 记录戒指当前位置的累加数值对应的idx位置
         Map<Integer, Integer> map = new HashMap<Integer, Integer>();
         int counter = 0;
         map.put(counter, -1);
@@ -47,6 +48,7 @@ class Solution {
             }
             if (map.containsKey(counter)) {
                 int prevIndex = map.get(counter);
+                // 求取一个位置的区间
                 maxLength = Math.max(maxLength, i - prevIndex);
             } else {
                 map.put(counter, i);

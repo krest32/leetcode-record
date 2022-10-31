@@ -19,9 +19,11 @@ class Solution {
 
     private List<String> extracted(String[] words, int k) {
         Map<String, Integer> cnt = new HashMap<>();
+        // 记录每个字符串出现的次数
         for (String word : words) {
             cnt.put(word, cnt.getOrDefault(word, 0) + 1);
         }
+        // 将数据放入到 List 中进行排序-> 按照出现的次数，如果次数相同，就按照字典顺序排序
         List<String> rec = new ArrayList<String>();
         for (Map.Entry<String, Integer> entry : cnt.entrySet()) {
             rec.add(entry.getKey());
@@ -33,6 +35,7 @@ class Solution {
                         : cnt.get(word2) - cnt.get(word1);
             }
         });
+        // 返回数据
         return rec.subList(0, k);
     }
 }
