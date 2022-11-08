@@ -1,5 +1,3 @@
-import java.io.CharArrayReader;
-
 /*
  * @lc app=leetcode.cn id=1576 lang=java
  *
