@@ -7,6 +7,7 @@
 // @lc code=start
 class Solution {
     public boolean checkOnesSegment(String s) {
+        // 不能包含“01”
         return extracted(s);
     }
 

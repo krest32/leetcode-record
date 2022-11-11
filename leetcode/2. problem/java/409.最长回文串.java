@@ -7,6 +7,12 @@
 // @lc code=start
 class Solution {
     public int longestPalindrome(String s) {
+        // 模拟
+        return extracted(s);
+
+    }
+
+    private int extracted(String s) {
         int[] ins = new int[128];
         char[] chs = s.toCharArray();
         int res = 0;
@@ -20,7 +26,6 @@ class Solution {
             return res + 1;
         }
         return res;
-
     }
 }
 // @lc code=end

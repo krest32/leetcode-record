@@ -38,7 +38,6 @@ class Solution {
         for (int i = 0; i < ans.size(); i++) {
             ret.add(ans.get(i).toString());
         }
-
         return ret;
     }
 
