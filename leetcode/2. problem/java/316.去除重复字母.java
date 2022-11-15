@@ -7,6 +7,48 @@
 // @lc code=start
 class Solution {
     public String removeDuplicateLetters(String s) {
+        // 贪心
+        // return extracted(s);
+
+        // test
+        return test(s);
+    }
+
+    private String test(String s) {
+        boolean[] vis = new boolean[26];
+        int[] cnt = new int[26];
+        for (char ch : s.toCharArray()) {
+            cnt[ch - 'a']++;
+        }
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            char tempCh = s.charAt(i);
+            if (!vis[tempCh - 'a']) {
+                while (res.length() > 0 && res.charAt(res.length() - 1) > tempCh) {
+                    if (cnt[res.charAt(res.length() - 1) - 'a'] > 0) {
+                        vis[res.charAt(res.length() - 1) - 'a'] = false;
+                        res.deleteCharAt(res.length() - 1);
+                    } else {
+                        break;
+                    }
+                }
+                vis[tempCh - 'a'] = true;
+                res.append(tempCh);
+            }
+            cnt[tempCh - 'a']--;
+        }
+        return res.toString();
+    }
+
+    /**
+     * 290/290 cases passed (1 ms)
+     * Your runtime beats 100 % of java submissions
+     * Your memory usage beats 70.31 % of java submissions (40.4 MB)
+     * 
+     * @param s
+     * @return
+     */
+    private String extracted(String s) {
         boolean[] vis = new boolean[26];
         int[] num = new int[26];
         // 记录每个字符出现的次数

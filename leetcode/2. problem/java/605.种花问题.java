@@ -8,6 +8,10 @@
 class Solution {
     public boolean canPlaceFlowers(int[] flowerbed, int n) {
         // 贪心
+        return extracted(flowerbed, n);
+    }
+
+    private boolean extracted(int[] flowerbed, int n) {
         int index = 0;
         for (int i = 0; i < flowerbed.length; i++) {
             if (flowerbed[i] == 0) {

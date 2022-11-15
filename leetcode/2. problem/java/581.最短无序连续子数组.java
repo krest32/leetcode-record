@@ -10,7 +10,7 @@ import java.util.Arrays;
 // @lc code=start
 class Solution {
     public int findUnsortedSubarray(int[] nums) {
-        // 首位双指针
+        // 首尾双指针
         // return extracted(nums);
 
         // 1

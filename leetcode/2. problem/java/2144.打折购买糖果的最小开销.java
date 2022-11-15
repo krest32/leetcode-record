@@ -20,8 +20,9 @@ class Solution {
         Arrays.sort(cost);
         for (int i = n - 1; i >= 0; i--) {
             minCost += cost[i];
-            if (i - 1 >= 0)
+            if (i - 1 >= 0) {
                 minCost += cost[i - 1];
+            }
             i -= 2;
         }
         return minCost;

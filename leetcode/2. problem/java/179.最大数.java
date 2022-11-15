@@ -9,6 +9,12 @@ import java.util.Arrays;
 // @lc code=start
 class Solution {
     public String largestNumber(int[] nums) {
+        // 排序
+        return extracted(nums);
+
+    }
+
+    private String extracted(int[] nums) {
         Integer[] numArr = new Integer[nums.length];
         for (int i = 0; i < nums.length; i++) {
             numArr[i] = nums[i];
@@ -33,7 +39,6 @@ class Solution {
             res.append(numArr[i].toString());
         }
         return res.toString();
-
     }
 }
 // @lc code=end

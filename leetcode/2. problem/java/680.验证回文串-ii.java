@@ -28,7 +28,6 @@ class Solution {
             } else {
                 return isPalindrome(s, left + 1, right)
                         || isPalindrome(s, left, right - 1);
-
             }
         }
         return true;
