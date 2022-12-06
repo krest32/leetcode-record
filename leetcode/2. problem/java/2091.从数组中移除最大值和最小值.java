@@ -7,6 +7,18 @@
 // @lc code=start
 class Solution {
     public int minimumDeletions(int[] nums) {
+        return extracted(nums);
+    }
+
+    /**
+     * 61/61 cases passed (2 ms)
+     * Your runtime beats 100 % of java submissions
+     * Your memory usage beats 63.35 % of java submissions (48.8 MB)
+     * 
+     * @param nums
+     * @return
+     */
+    private int extracted(int[] nums) {
         if (nums.length <= 2)
             return nums.length;
 

@@ -8,14 +8,29 @@
 // @lc code=start
 class Solution {
     public int shipWithinDays(int[] weights, int days) {
+        return extracted(weights, days);
+    }
+
+    /**
+     * 85/85 cases passed (11 ms)
+     * Your runtime beats 62.33 % of java submissions
+     * Your memory usage beats 90.95 % of java submissions (44.7 MB)
+     * 
+     * @param weights
+     * @param days
+     * @return
+     */
+    private int extracted(int[] weights, int days) {
         int max = 0;
         int sum = 0;
+        // 得到最大单位、累加和
         for (int weight : weights) {
             max = Math.max(max, weight);
             sum += weight;
         }
 
         int left = max, right = sum;
+        // 二分查找，判断最低载重
         while (left < right) {
             int mid = left + (right - left) / 2;
             if (check(weights, mid, days)) {

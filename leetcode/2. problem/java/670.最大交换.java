@@ -42,11 +42,12 @@ class Solution {
         int len = s.length();
 
         char[] arr = s.toCharArray();
+        // 记录数字最后出现的坐标
         for (int i = 0; i < arr.length; i++) {
             last[arr[i] - '0'] = i;
         }
-
         for (int i = 0; i < len; i++) {
+            // 遍历数字最后出现坐标，同时要替换的数字大于当前数字 i
             for (int j = 9; j > arr[i] - '0'; j--) {
                 if (last[j] > i) {
                     swap(arr, i, last[j]);
