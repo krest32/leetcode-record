@@ -20,25 +20,27 @@ class Solution {
 
     private List<List<Integer>> test(int[] candidates, int target) {
         List<List<Integer>> ans = new ArrayList<>();
-        // 因为存在重复数字,所以先进行排序
         Arrays.sort(candidates);
-        backTackingTest(candidates, target, new ArrayList<Integer>(), 0, ans);
+        backTrackTest(ans, candidates, target, 0, new ArrayList<Integer>());
         return ans;
     }
 
-    private void backTackingTest(int[] candidates, int target, ArrayList<Integer> arr, int key,
-            List<List<Integer>> ans) {
+    private void backTrackTest(List<List<Integer>> ans,
+            int[] candidates,
+            int target,
+            int k,
+            ArrayList<Integer> arr) {
         if (target == 0) {
             ans.add(new ArrayList<>(arr));
         } else {
-            for (int i = key; i < candidates.length; i++) {
-                // 此处的剪枝设计很微妙,需要细细思考
-                if (i != key && candidates[i] == candidates[i - 1]) {
+            for (int i = k; i < candidates.length; i++) {
+                // 注意 i != 0 , 继续本次循环
+                if (i != k && candidates[i - 1] == candidates[i]) {
                     continue;
                 }
-                if (candidates[i] <= target) {
+                if (target - candidates[i] >= 0) {
                     arr.add(candidates[i]);
-                    backTackingTest(candidates, target - candidates[i], arr, i + 1, ans);
+                    backTrackTest(ans, candidates, target - candidates[i], i + 1, arr);
                     arr.remove(arr.size() - 1);
                 }
             }

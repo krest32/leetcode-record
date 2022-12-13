@@ -10,6 +10,13 @@ import java.util.List;
 // @lc code=start
 class Solution {
     public List<List<Integer>> combine(int n, int k) {
+        return extracted(n, k);
+    }
+
+
+
+    
+    private List<List<Integer>> extracted(int n, int k) {
         List<List<Integer>> ans = new ArrayList<>();
         backTracking(n, k, ans, new ArrayList<Integer>(), 1);
         return ans;

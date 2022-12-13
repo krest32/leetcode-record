@@ -12,45 +12,12 @@ import java.util.List;
 class Solution {
     public List<List<Integer>> permuteUnique(int[] nums) {
         // return extracted(nums);
-
-        // test
-        return test(nums);
     }
 
     /**
      * 33/33 cases passed (1 ms)
      * Your runtime beats 99.8 % of java submissions
      * Your memory usage beats 82.27 % of java submissions (42 MB)
-     * 
-     * @param nums
-     * @return
-     */
-    private List<List<Integer>> test(int[] nums) {
-        List<List<Integer>> ans = new ArrayList<>();
-        Arrays.sort(nums);
-        boolean[] vis = new boolean[nums.length];
-        backTrackingTest(ans, nums, vis, new ArrayList<Integer>());
-        return ans;
-    }
-
-    private void backTrackingTest(List<List<Integer>> ans, int[] nums, boolean[] vis, ArrayList<Integer> arr) {
-        if (arr.size() == nums.length) {
-            ans.add(new ArrayList<>(arr));
-        } else {
-            for (int i = 0; i < nums.length; i++) {
-                if (vis[i] || (i != 0 && nums[i] == nums[i - 1] && !vis[i - 1])) {
-                    continue;
-                }
-                vis[i] = true;
-                arr.add(nums[i]);
-                backTrackingTest(ans, nums, vis, arr);
-                arr.remove(arr.size() - 1);
-                vis[i] = false;
-            }
-        }
-    }
-
-    /**
      * 
      * @param nums
      * @return

@@ -10,9 +10,38 @@ import java.util.List;
 // @lc code=start
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
-
         // 回溯
-        return extracted2(nums);
+        // return extracted2(nums);
+
+        return test(nums);
+    }
+
+    private List<List<Integer>> test(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        boolean[] vis = new boolean[nums.length];
+        backTrackTest(ans, nums, new ArrayList<Integer>(), vis);
+        return ans;
+    }
+
+    private void backTrackTest(List<List<Integer>> ans,
+            int[] nums,
+            ArrayList<Integer> arr,
+            boolean[] vis) {
+        if (arr.size() == nums.length) {
+            ans.add(new ArrayList<>(arr));
+        } else {
+            for (int i = 0; i < nums.length; i++) {
+                if (vis[i]) {
+                    continue;
+                }
+                vis[i] = true;
+                arr.add(nums[i]);
+                backTrackTest(ans, nums, arr, vis);
+                arr.remove(arr.size() - 1);
+                vis[i] = false;
+
+            }
+        }
     }
 
     /**
