@@ -84,7 +84,6 @@ class Solution {
             // 剪枝
             if (size[i] + nums[index] > target || (i > 0 && size[i] == size[i - 1]))
                 continue;
-            ;
             size[i] += nums[index];
             // 然后在放下一个火柴，如果最终能变成正方形，直接返回true
             if (backtrack(nums, index - 1, target, size))

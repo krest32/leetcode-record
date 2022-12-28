@@ -12,10 +12,31 @@ class Solution {
     int maxSplit = 1;
 
     public int maxUniqueSplit(String s) {
-        Set<String> set = new HashSet<>();
-        backTracking(s, set, 0, 0);
-        return maxSplit;
+        // 回溯
+        // return extracted(s);
 
+        // test
+        return test(s);
+    }
+
+    private int test(String s) {
+        Set<String> set = new HashSet<>();
+        backTrackingTest(set, s, 0, 0);
+        return maxSplit;
+    }
+
+    private void backTrackingTest(Set<String> set, String s, int key, int split) {
+        if (key == s.length()) {
+            maxSplit = Math.max(maxSplit, split);
+        } else {
+            for (int i = key; i < s.length(); i++) {
+                String subStr = s.substring(key, i + 1);
+                if (set.add(subStr)) {
+                    backTrackingTest(set, s, i + 1, split + 1);
+                    set.remove(subStr);
+                }
+            }
+        }
     }
 
     /**
@@ -28,6 +49,12 @@ class Solution {
      * @param idx   记录字符串截取的位置
      * @param split 记录被截取的字符串的个数
      */
+    private int extracted(String s) {
+        Set<String> set = new HashSet<>();
+        backTracking(s, set, 0, 0);
+        return maxSplit;
+    }
+
     private void backTracking(String s,
             Set<String> set,
             int idx,

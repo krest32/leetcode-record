@@ -36,25 +36,26 @@ class Solution {
     }
 
     private List<TreeNode> test(int n) {
+        List<TreeNode> ans = new ArrayList<>();
         if (n == 0) {
-            return new ArrayList<>();
+            return ans;
         }
-        return backTrackingTest(1, n);
+        return buildTreeTest(1, n);
     }
 
-    private List<TreeNode> backTrackingTest(int start, int end) {
+    private List<TreeNode> buildTreeTest(int start, int end) {
         List<TreeNode> ans = new ArrayList<>();
         if (start > end) {
             ans.add(null);
         } else {
             for (int i = start; i <= end; i++) {
-                List<TreeNode> lefts = backTrackingTest(start, i - 1);
-                List<TreeNode> rights = backTrackingTest(i + 1, end);
-                for (TreeNode left : lefts) {
-                    for (TreeNode right : rights) {
+                List<TreeNode> lefts = buildTreeTest(start, i - 1);
+                List<TreeNode> rights = buildTreeTest(i + 1, end);
+                for (TreeNode tempLeft : lefts) {
+                    for (TreeNode tempRigt : rights) {
                         TreeNode root = new TreeNode(i);
-                        root.left = left;
-                        root.right = right;
+                        root.left = tempLeft;
+                        root.right = tempRigt;
                         ans.add(root);
                     }
                 }

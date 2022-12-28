@@ -40,16 +40,15 @@ class Solution {
         // return extracted2(root);
 
         return test(root);
-
     }
 
     private List<String> test(TreeNode root) {
         List<String> ans = new ArrayList<>();
-        dfsTest(root, ans, new StringBuilder());
+        backTrackingTest(ans, root, new StringBuilder());
         return ans;
     }
 
-    private void dfsTest(TreeNode node, List<String> ans, StringBuilder tempStr) {
+    private void backTrackingTest(List<String> ans, TreeNode node, StringBuilder tempStr) {
         if (node != null) {
             StringBuilder path = new StringBuilder(tempStr);
             path.append(node.val);
@@ -57,10 +56,9 @@ class Solution {
                 ans.add(path.toString());
             } else {
                 path.append("->");
-                dfsTest(node.left, ans, path);
-                dfsTest(node.right, ans, path);
+                backTrackingTest(ans, node.left, path);
+                backTrackingTest(ans, node.right, path);
             }
-
         }
     }
 
