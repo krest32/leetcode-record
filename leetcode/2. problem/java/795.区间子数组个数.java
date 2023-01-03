@@ -11,16 +11,15 @@ class Solution {
         // return extracted(nums, left, right);
 
         // test
-        return extracted2(nums, left, right);
+        return test(nums, left, right);
     }
 
-    private int extracted2(int[] nums, int left, int right) {
-        int preLess = 0;
-        int preMatch = 0;
-        int total = 0;
+    private int test(int[] nums, int left, int right) {
         int len = nums.length;
-        for (int i = 0; i < len; i++) {
-            int curNum = nums[i];
+        // preless 记录小于left的个数， preMatch 记录在区间中的子数组个数
+        int total = 0, preLess = 0, preMatch = 0;
+        for (int i = 1; i <= len; i++) {
+            int curNum = nums[i - 1];
             if (curNum < left) {
                 preLess++;
             } else if (curNum <= right) {

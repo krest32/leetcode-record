@@ -7,7 +7,7 @@
 // @lc code=start
 class Solution {
     public int maxScoreSightseeingPair(int[] values) {
-        // 动态规划
+        // 贪心
         // return method(values);
 
         return test(values);

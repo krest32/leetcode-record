@@ -29,8 +29,8 @@ class Solution {
         dp[0] = 0;
         int ans = 0;
         for (int i = 1; i < len; i++) {
-            int profile = prices[i] - prices[i - 1];
-            dp[i] = Math.max(dp[i - 1] + profile, 0);
+            int diff = prices[i] - prices[i - 1];
+            dp[i] = Math.max(dp[i - 1] + diff, 0);
             ans = Math.max(ans, dp[i]);
         }
         return ans;

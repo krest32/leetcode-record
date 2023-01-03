@@ -16,17 +16,16 @@ class Solution {
     }
 
     private int test(int amount, int[] coins) {
-        // dp[i] 记录金额为 i 时， coin 的组合数量
         int[] dp = new int[amount + 1];
+        // dp[i] += dp[i-coins[j]]
         dp[0] = 1;
-        for (int coin : coins) {
-            for (int i = 1; i <= amount; i++) {
-                if (i >= coin) {
-                    dp[i] += dp[i - coin];
+        for (int j = 0; j < coins.length; j++) {
+            for (int i = 0; i <= amount; i++) {
+                if (i >= coins[j]) {
+                    dp[i] += dp[i - coins[j]];
                 }
             }
         }
-
         return dp[amount];
     }
 

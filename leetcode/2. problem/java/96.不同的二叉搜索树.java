@@ -28,6 +28,26 @@ class Solution {
         dp[0] = 1;
         dp[1] = 1;
         for (int i = 2; i <= n; i++) {
+            for (int j = 1; j <= i; j++) {
+                dp[i] += dp[j - 1] * dp[i - j];
+            }
+        }
+        return dp[n];
+    }
+
+    /**
+     * 19/19 cases passed (0 ms)
+     * Your runtime beats 100 % of java submissions
+     * Your memory usage beats 28.65 % of java submissions (38.4 MB)
+     * 
+     * @param n
+     * @return
+     */
+    private int extracted(int n) {
+        int[] dp = new int[n + 1];
+        dp[0] = 1;
+        dp[1] = 1;
+        for (int i = 2; i <= n; i++) {
             // j 代表根节点的数字，0 不能是根节点, i可以作为根节点
             for (int j = 1; j <= i; j++) {
                 // j-1 是为了去掉根节点的占用数量
@@ -64,20 +84,6 @@ class Solution {
             }
         }
         return ans;
-    }
-
-    private int extracted(int n) {
-        int[] dp = new int[n + 1];
-        dp[0] = 1;
-        dp[1] = 1;
-        for (int i = 2; i <= n; i++) {
-            // j 代表根节点的数字，0 不能是根节点, i可以作为根节点
-            for (int j = 1; j <= i; j++) {
-                // j-1 是为了去掉根节点的占用数量
-                dp[i] += dp[j - 1] * dp[i - j];
-            }
-        }
-        return dp[n];
     }
 
 }

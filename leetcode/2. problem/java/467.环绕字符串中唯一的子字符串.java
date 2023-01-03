@@ -18,6 +18,33 @@ class Solution {
     private int test(String p) {
         // 记录到达该字符串，且以该字符结尾的字符串个数
         int[] dp = new int[26];
+        int lastChar = -1, curNum = 0;
+        for (char ch : p.toCharArray()) {
+            int curChar = ch - 'a';
+            if (lastChar + 1 == curChar || (lastChar == 25 && curChar == 0)) {
+                curNum++;
+            } else {
+                curNum = 1;
+            }
+            if (curNum > dp[curChar]) {
+                dp[curChar] = curNum;
+            }
+            lastChar = curChar;
+        }
+        return Arrays.stream(dp).sum();
+    }
+
+    /**
+     * 81/81 cases passed (4 ms)
+     * Your runtime beats 88.76 % of java submissions
+     * Your memory usage beats 15.3 % of java submissions (41.5 MB)
+     * 
+     * @param p
+     * @return
+     */
+    private int extracted(String p) {
+        // 记录到达该字符串，且以该字符结尾的字符串个数
+        int[] dp = new int[26];
         int last = -1, max = 0;
         for (char ch : p.toCharArray()) {
             int cur = ch - 'a';
@@ -32,40 +59,6 @@ class Solution {
             last = cur;
         }
         return Arrays.stream(dp).sum();
-    }
-
-    /**
-     * 81/81 cases passed (4 ms)
-     * Your runtime beats 88.76 % of java submissions
-     * Your memory usage beats 15.3 % of java submissions (41.5 MB)
-     * 
-     * @param p
-     * @return
-     */
-    private int extracted(String p) {
-        // 记录每一个字符
-        int[] dp = new int[26];
-        int last = -1, max = 0;
-        // 依次遍历 p 中的字符
-        char[] cs = p.toCharArray();
-        for (char c : cs) {
-            int cur = c - 'a';
-            // 计算以当前字符为结尾的字符串的个数
-            max = (cur == last + 1) || (last == 25 && cur == 0)
-                    ? max + 1
-                    : 1;
-            // 记录当前元素可能的累加和
-            if (max > dp[cur]) {
-                dp[cur] = max;
-            }
-            // 记录上一个字符的字典序
-            last = cur;
-        }
-        int ans = 0;
-        for (int num : dp) {
-            ans += num;
-        }
-        return ans;
     }
 }
 // @lc code=end

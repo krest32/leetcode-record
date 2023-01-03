@@ -16,15 +16,14 @@ class Solution {
 
     private int test(int k, int[] prices) {
         int len = prices.length;
-        if (len == 0)
-            return 0;
-        // 初始化利润 dp 数组, 两个状态的最大利润：0 表示卖出， 1 表示持有
+        // 0 表示卖出， 1 表示持有
         int[][][] dp = new int[len][k + 1][2];
-        // 初始化 0 值
+        if (len == 0) {
+            return 0;
+        }
         for (int i = 0; i <= k; i++) {
             dp[0][i][1] = -prices[0];
         }
-
         for (int i = 1; i < len; i++) {
             for (int j = 1; j <= k; j++) {
                 dp[i][j][0] = Math.max(dp[i - 1][j][0], dp[i - 1][j][1] + prices[i]);
@@ -34,6 +33,15 @@ class Solution {
         return dp[len - 1][k][0];
     }
 
+    /**
+     * 210/210 cases passed (7 ms)
+     * Your runtime beats 32.06 % of java submissions
+     * Your memory usage beats 22.32 % of java submissions (41.8 MB)
+     * 
+     * @param k
+     * @param prices
+     * @return
+     */
     private int extracted(int k, int[] prices) {
         if (prices.length == 0)
             return 0;

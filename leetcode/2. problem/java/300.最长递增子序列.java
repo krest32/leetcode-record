@@ -9,25 +9,26 @@ class Solution {
     public int lengthOfLIS(int[] nums) {
         // 动态规划
         // return extracted(nums);
-        
+
         return test(nums);
 
     }
 
     private int test(int[] nums) {
         int len = nums.length;
-        if (len == 0)
+        if (len == 0) {
             return 0;
+        }
         int[] dp = new int[len];
         int ans = 0;
         for (int i = 0; i < len; i++) {
             dp[i] = 1;
             for (int j = 0; j < i; j++) {
                 if (nums[j] < nums[i]) {
-                    dp[i] = Math.min(dp[j] + 1, dp[i]);
+                    dp[i] = Math.max(dp[j] + 1, dp[i]);
                 }
             }
-            ans = Math.max(dp[i], ans);
+            ans = Math.max(ans, dp[i]);
         }
         return ans;
     }

@@ -19,7 +19,7 @@ class Solution {
 
     private int test(int[][] clips, int time) {
         int[] dp = new int[time + 1];
-        Arrays.fill(dp, 500);
+        Arrays.fill(dp, Integer.MAX_VALUE - 1);
         dp[0] = 0;
         for (int i = 1; i <= time; i++) {
             for (int[] clip : clips) {
@@ -28,9 +28,18 @@ class Solution {
                 }
             }
         }
-        return dp[time] == 500 ? -1 : dp[time];
+        return dp[time] == Integer.MAX_VALUE - 1 ? -1 : dp[time];
     }
 
+    /**
+     * 60/60 cases passed (1 ms)
+     * Your runtime beats 84.78 % of java submissions
+     * Your memory usage beats 28.33 % of java submissions (39.4 MB)
+     * 
+     * @param clips
+     * @param time
+     * @return
+     */
     private int extracted(int[][] clips, int time) {
         // 记录 i 时间的最小时评片段匹配数
         int[] dp = new int[time + 1];

@@ -18,7 +18,6 @@ class Solution {
 
     private boolean test(int[] nums) {
         int len = nums.length;
-        // 记录数组为 i,j 时最大差值
         int[][] dp = new int[len][len];
         for (int i = 0; i < len; i++) {
             dp[i][i] = nums[i];

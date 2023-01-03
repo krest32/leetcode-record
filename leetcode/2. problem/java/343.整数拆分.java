@@ -22,16 +22,17 @@ class Solution {
     private int test(int n) {
         int[] dp = new int[n + 1];
         for (int i = 2; i <= n; i++) {
-            for (int j = 00; j < i; j++) {
-                dp[i] = Math.max(dp[i], Math.max(j * (i - j), dp[i - j] * j));
+            for (int j = 0; j < i; j++) {
+                dp[i] = Math.max(dp[i], Math.max((i - j) * j, dp[i - j] * j));
             }
         }
         return dp[n];
     }
 
     /**
-     * Your runtime beats 75.02 % of java submissions
-     * Your memory usage beats 60.92 % of java submissions (37.8 MB)
+     * 50/50 cases passed (2 ms)
+     * Your runtime beats 5.43 % of java submissions
+     * Your memory usage beats 68.65 % of java submissions (38.2 MB)
      * 
      * @param n
      * @return

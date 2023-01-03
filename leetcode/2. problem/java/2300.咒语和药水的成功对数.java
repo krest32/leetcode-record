@@ -10,7 +10,7 @@ import java.util.Arrays;
 class Solution {
     public int[] successfulPairs(int[] spells, int[] potions, long success) {
         // 暴力超时
-        return extracted(spells, potions, success)
+        // return extracted(spells, potions, success);
 
         // 二分查找法
         return extracted2(spells, potions, success);

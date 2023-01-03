@@ -20,7 +20,7 @@ public class Solution {
         int[] dp = new int[len];
         int sum = 0;
         for (int i = 2; i < len; i++) {
-            if (a[i] - a[i - 1] == a[i - 1] - a[i - 2]) {
+            if (a[i - 1] - a[i - 2] == a[i] - a[i - 1]) {
                 dp[i] = dp[i - 1] + 1;
                 sum += dp[i];
             }

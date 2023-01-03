@@ -11,31 +11,35 @@ class Solution {
         // return extracted(nums);
 
         // 1
-        return extracted2(nums);
+        return test(nums);
 
     }
 
-    private int extracted2(int[] nums) {
-        if (nums == null || nums.length == 0) {
+    private int test(int[] nums) {
+        int len = nums.length;
+        if (nums == null || len == 0) {
             return 0;
         }
-        if (nums.length == 1) {
+        if (len == 1) {
             return nums[0];
         }
-        int len = nums.length;
         int[] dp = new int[len];
-
-        // 初始化 0 值
         dp[0] = nums[0];
-        dp[1] = Math.max(nums[0], nums[1]);
-
-        // 填充
+        dp[1] = Math.max(dp[0], nums[1]);
         for (int i = 2; i < len; i++) {
             dp[i] = Math.max(dp[i - 2] + nums[i], dp[i - 1]);
         }
         return dp[len - 1];
     }
 
+    /**
+     * 70/70 cases passed (0 ms)
+     * Your runtime beats 100 % of java submissions
+     * Your memory usage beats 18.56 % of java submissions (39.2 MB)
+     * 
+     * @param nums
+     * @return
+     */
     private int extracted(int[] nums) {
 
         // dp[i] = Math.max(dp[i-2]+nums[i], dp[i-1]);

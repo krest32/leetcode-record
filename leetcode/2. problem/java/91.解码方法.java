@@ -16,17 +16,13 @@ class Solution {
 
     private int test(String s) {
         int len = s.length();
-        // 定义 dp 数组
         int[] dp = new int[len + 1];
-        // 初始化 0 值
         dp[0] = 1;
-        // 填充 dp 输出
         for (int i = 1; i <= len; i++) {
             if (s.charAt(i - 1) != '0') {
                 dp[i] += dp[i - 1];
             }
-            if (i > 1
-                    && s.charAt(i - 2) != '0'
+            if (i > 1 && s.charAt(i - 2) != '0'
                     && ((s.charAt(i - 2) - '0') * 10 + (s.charAt(i - 1) - '0')) <= 26) {
                 dp[i] += dp[i - 2];
             }

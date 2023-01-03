@@ -25,7 +25,7 @@ class Solution {
                     // 统计竖着的矩形数量
                 } else if (mat[i][j] != 0) {
                     row[i][j] = row[i][j - 1] + 1;
-                } else {
+                } else {、
                     row[i][j] = 0;
                 }
             }

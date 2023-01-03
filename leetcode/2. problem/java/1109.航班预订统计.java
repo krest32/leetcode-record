@@ -18,7 +18,7 @@ class Solution {
         int[] nums = new int[n];
         for (int[] booking : bookings) {
             nums[booking[0] - 1] += booking[2];
-            if (booking[1] < n) {
+            if (booking[1] < n) {   
                 nums[booking[1]] -= booking[2];
             }
         }

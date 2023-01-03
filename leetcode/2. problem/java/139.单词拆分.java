@@ -34,8 +34,9 @@ class Solution {
     }
 
     /**
-     * Your runtime beats 62.97 % of java submissions
-     * Your memory usage beats 31.56 % of java submissions (41.5 MB)
+     * 45/45 cases passed (7 ms)
+     * Your runtime beats 52.13 % of java submissions
+     * Your memory usage beats 58.83 % of java submissions (41.5 MB)
      * 
      * @param s
      * @param wordDict

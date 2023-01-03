@@ -17,7 +17,7 @@ class Solution {
         int right = len - 1;
         while (left <= right) {
             int mid = left + (right - left) / 2;
-            // 有 n−mid 篇论文被引用了至少citations[mid] 次
+            // 有 len − mid 篇论文被引用了至少citations[mid] 次
             if (citations[mid] >= len - mid) {
                 right = mid - 1;
             } else {

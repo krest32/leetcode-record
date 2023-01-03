@@ -20,11 +20,8 @@ class Solution {
         if (len1 + len2 != len3) {
             return false;
         }
-        // 初始化 dp 数组
         boolean[][] dp = new boolean[len1 + 1][len2 + 1];
-        // 初始化 0 值
         dp[0][0] = true;
-        // 填充数组
         for (int i = 0; i <= len1; i++) {
             for (int j = 0; j <= len2; j++) {
                 int idx = i + j - 1;

@@ -28,9 +28,8 @@ class Solution {
         boolean[][] dp = new boolean[len + 1][half + 1];
 
         for (int i = 1; i <= len; i++) {
-            int curVal = nums[i-1];
+            int curVal = nums[i - 1];
             for (int j = 0; j <= half; j++) {
-                
                 dp[i][j] = dp[i - 1][j];
                 if (curVal == j) {
                     dp[i][j] = true;
@@ -44,8 +43,9 @@ class Solution {
     }
 
     /**
-     * Your runtime beats 6.03 % of java submissions
-     * Your memory usage beats 26.9 % of java submissions (42.2 MB)
+     * 141/141 cases passed (63 ms)
+     * Your runtime beats 5.06 % of java submissions
+     * Your memory usage beats 13.81 % of java submissions (43.9 MB)
      * 
      * @param nums
      * @return

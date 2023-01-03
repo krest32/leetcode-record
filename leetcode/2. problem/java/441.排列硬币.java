@@ -8,6 +8,10 @@
 class Solution {
     public int arrangeCoins(int n) {
         // 二分查找
+        return extracted(n);
+    }
+
+    private int extracted(int n) {
         int l = 0;
         int h = n;
         while (l <= h) {

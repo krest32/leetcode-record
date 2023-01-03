@@ -7,6 +7,11 @@
 // @lc code=start
 class Solution {
     public boolean judgeSquareSum(int c) {
+        // 二分查找法
+        return extracted(c);
+    }
+
+    private boolean extracted(int c) {
         long right = (long) Math.sqrt(c);
         Long left = 0l;
         while (left <= right) {
