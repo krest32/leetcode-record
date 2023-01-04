@@ -17,7 +17,7 @@ class Solution {
         // hash
         // return extracted2(s, k);
 
-        // 1
+        // 很惊艳的想法
         return test(s, k);
 
     }
@@ -32,29 +32,30 @@ class Solution {
      * @return
      */
     private int test(String s, int k) {
-        if (s.length() < k)
+        int len = s.length();
+        if (len == 0) {
             return 0;
-        Map<Character, Integer> map = new HashMap<>();
-
-        for (int i = 0; i < s.length(); i++) {
-            map.put(s.charAt(i), map.getOrDefault(s.charAt(i), 0) + 1);
         }
-
-        for (char ch : map.keySet()) {
+        Map<Character, Integer> map = new HashMap<>();
+        for (char ch : s.toCharArray()) {
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
+        }
+        for (char ch : s.toCharArray()) {
             if (map.get(ch) < k) {
                 int res = 0;
-                for (String t : s.split(String.valueOf(ch))) {
-                    res = Math.max(res, test(t, k));
+                for (String str : s.split(String.valueOf(ch))) {
+                    res = Math.max(res, test(str, k));
                 }
                 return res;
             }
         }
-        return s.length();
+        return len;
     }
 
     /**
-     * Your runtime beats 56.65 % of java submissions
-     * Your memory usage beats 17.74 % of java submissions (41.2 MB)
+     * 37/37 cases passed (4 ms)
+     * Your runtime beats 65.85 % of java submissions
+     * Your memory usage beats 48.55 % of java submissions (41.1 MB)
      * 
      * @param s
      * @param k

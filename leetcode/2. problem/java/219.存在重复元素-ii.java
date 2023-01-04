@@ -16,7 +16,7 @@ class Solution {
         // return extracted(nums, k);
 
         // 滑动窗口 -> 最优
-        return extracted2(nums, k);
+        // return extracted2(nums, k);
     }
 
     /**

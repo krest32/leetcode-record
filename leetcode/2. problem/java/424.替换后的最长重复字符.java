@@ -10,6 +10,40 @@ import java.util.Map;
 // @lc code=start
 class Solution {
     public int characterReplacement(String s, int k) {
+        // return extracted(s, k);
+
+        // test
+        return test(s, k);
+    }
+
+    private int test(String s, int k) {
+        int len = s.length();
+        int left = 0;
+        int maxLen = 0, winLen = 0;
+        Map<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < len; i++) {
+            char ch = s.charAt(i);
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
+            winLen = Math.max(winLen, map.get(ch));
+            if ((winLen + k) < (i - left + 1)) {
+                map.put(s.charAt(left), map.get(s.charAt(left)) - 1);
+                left++;
+            }
+            maxLen = Math.max(maxLen, i - left + 1);
+        }
+        return maxLen;
+    }
+
+    /**
+     * 37/37 cases passed (27 ms)
+     * Your runtime beats 9.95 % of java submissions
+     * Your memory usage beats 38.44 % of java submissions (41.4 MB)
+     * 
+     * @param s
+     * @param k
+     * @return
+     */
+    private int extracted(String s, int k) {
         char[] chars = s.toCharArray();
         int left = 0;
         // 当前窗口最大次数的数值

@@ -14,10 +14,37 @@ class Solution {
 
     public List<String> findRepeatedDnaSequences(String s) {
         // 滑动窗口+哈希表
-        return extracted(s);
+        // return extracted(s);
+
+        // test
+        return test(s);
 
     }
 
+    private List<String> test(String s) {
+        int targetLen = 10;
+        int len = s.length();
+        List<String> ans = new ArrayList<>();
+        Map<String, Integer> map = new HashMap<>();
+        for (int i = 0; i <= len - targetLen; i++) {
+            String subStr = s.substring(i, i + targetLen);
+            map.put(subStr, map.getOrDefault(subStr, 0) + 1);
+            // 精妙之处
+            if (map.get(subStr) == 2) {
+                ans.add(subStr);
+            }
+        }
+        return ans;
+    }
+
+    /**
+     * 31/31 cases passed (22 ms)
+     * Your runtime beats 44.73 % of java submissions
+     * Your memory usage beats 36.22 % of java submissions (50 MB)
+     * 
+     * @param s
+     * @return
+     */
     private List<String> extracted(String s) {
         final int L = 10;
         List<String> ans = new ArrayList<String>();

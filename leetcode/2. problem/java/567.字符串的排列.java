@@ -9,6 +9,10 @@ import java.util.Arrays;
 // @lc code=start
 class Solution {
     public boolean checkInclusion(String s1, String s2) {
+        return extracted(s1, s2);
+    }
+
+    private boolean extracted(String s1, String s2) {
         int len1 = s1.length(), len2 = s2.length();
         if (len1 > len2) {
             return false;

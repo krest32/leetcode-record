@@ -9,7 +9,7 @@ import java.util.Map;
 
 // @lc code=start
 class Solution {
-     public int lengthOfLongestSubstring(String s) {
+    public int lengthOfLongestSubstring(String s) {
         // 滑动窗口 + 哈希
         // return extracted(s);
 
@@ -21,14 +21,15 @@ class Solution {
     }
 
     private int test(String s) {
-        Map<Character, Integer> map = new HashMap();
-        int len = s.length(), ans = 0; // len =字符串长度，ans为返回答案
+        Map<Character, Integer> map = new HashMap<>();
+        int ans = 0;
+        int len = s.length();
         for (int right = 0, left = 0; right < len; right++) {
-            if (map.containsKey(s.charAt(right)))
+            if (map.containsKey(s.charAt(right))) {
                 left = Math.max(left, map.get(s.charAt(right)) + 1);
-            // 取最大值防止区间左端点回退情况
-            ans = Math.max(ans, right - left + 1); // 区间右端点下标-区间左端点下标 +1 = 区间长度
-            map.put(s.charAt(right), right); // 注意，更新字符对应的下标。
+            }
+            ans = Math.max(ans, right - left + 1);
+            map.put(s.charAt(right), right);
         }
         return ans;
     }
@@ -65,8 +66,9 @@ class Solution {
     }
 
     /**
-     * Your runtime beats 86.72 % of java submissions
-     * Your memory usage beats 60.87 % of java submissions (41 MB)
+     * 987/987 cases passed (4 ms)
+     * Your runtime beats 87.47 % of java submissions
+     * Your memory usage beats 41.72 % of java submissions (41.7 MB)
      * 
      * @param s
      * @return
