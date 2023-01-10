@@ -24,7 +24,8 @@ class Solution {
             // right会一个个的减去字符串，直到满足条件，left然后开始移动，收紧整个窗口
             count[s.charAt(right) - 'A']--;
             // 注意此处 left是小于 n（而不是小于right）;因为窗口最小可以为0，这个时候left是大于right的
-            while (left < n && count['Q' - 'A'] <= n / 4
+            while (left < n
+                    && count['Q' - 'A'] <= n / 4
                     && count['W' - 'A'] <= n / 4
                     && count['E' - 'A'] <= n / 4
                     && count['R' - 'A'] <= n / 4) {

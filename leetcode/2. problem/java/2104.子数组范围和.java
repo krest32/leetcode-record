@@ -11,20 +11,6 @@ class Solution {
     public long subArrayRanges(int[] nums) {
         // 滑动窗口
         // return extracted(nums);
-
-        // 1
-        long ret = 0;
-        int len = nums.length;
-        for (int i = 0; i < len; i++) {
-            int max = Integer.MIN_VALUE;
-            int min = Integer.MAX_VALUE;
-            for (int j = i; j < len; j++) {
-                max = Math.max(max, nums[j]);
-                min = Math.min(min, nums[j]);
-                ret += max - min;
-            }
-        }
-        return ret;
     }
 
     private long extracted(int[] nums) {

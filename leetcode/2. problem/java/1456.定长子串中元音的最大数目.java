@@ -11,6 +11,15 @@ class Solution {
         return extracted(s, k);
     }
 
+    /**
+     * 106/106 cases passed (11 ms)
+     * Your runtime beats 83.59 % of java submissions
+     * Your memory usage beats 11.98 % of java submissions (42.4 MB)
+     * 
+     * @param s
+     * @param k
+     * @return
+     */
     private int extracted(String s, int k) {
         int n = s.length();
         int vowelCount = 0;
