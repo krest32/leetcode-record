@@ -7,6 +7,11 @@
 // @lc code=start
 class Solution {
     public String reverseVowels(String s) {
+        // 首尾双指针
+        return extracted(s);
+    }
+
+    private String extracted(String s) {
         char[] sChar = s.toCharArray();
         int right = s.length() - 1;
         int left = 0;

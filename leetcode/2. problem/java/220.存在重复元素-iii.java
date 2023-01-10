@@ -9,6 +9,17 @@ import java.util.TreeSet;
 // @lc code=start
 class Solution {
     public boolean containsNearbyAlmostDuplicate(int[] nums, int k, int t) {
+        return extracted(nums, k, t);
+    }
+
+    /**
+     * 
+     * @param nums
+     * @param k
+     * @param t
+     * @return
+     */
+    private boolean extracted(int[] nums, int k, int t) {
         int n = nums.length;
         TreeSet<Long> set = new TreeSet<Long>();
         for (int i = 0; i < n; i++) {

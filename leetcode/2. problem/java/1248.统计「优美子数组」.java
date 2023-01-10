@@ -10,37 +10,6 @@ class Solution {
         // 滑动窗口
         // return extracted(nums, k);
 
-        // 1
-        return test(nums, k);
-    }
-
-    private int test(int[] nums, int k) {
-        int right = 0;
-        int left = 0;
-        int oddCnt = 0;
-        int res = 0;
-        int len = nums.length;
-        while (right < len) {
-            if (nums[right++] % 2 == 1) {
-                oddCnt++;
-            }
-            if (oddCnt == k) {
-                int temp = right;
-                while (right < len && nums[right] % 2 == 0) {
-                    right++;
-                }
-                int evenRight = right - temp;
-                int evenleft = 0;
-                while (nums[left] % 2 == 0) {
-                    left++;
-                    evenleft++;
-                }
-                res += (evenRight + 1) * (evenleft + 1);
-                left++;
-                oddCnt--;
-            }
-        }
-        return res;
     }
 
     /**

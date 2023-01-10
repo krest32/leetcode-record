@@ -7,6 +7,10 @@
 // @lc code=start
 class Solution {
     public int[] twoSum(int[] numbers, int target) {
+        return extracted(numbers, target);
+    }
+
+    private int[] extracted(int[] numbers, int target) {
         // 双指针，定义左侧、右侧指针
         int i = 0;
         int j = numbers.length - 1;

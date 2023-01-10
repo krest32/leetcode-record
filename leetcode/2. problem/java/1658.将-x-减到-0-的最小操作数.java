@@ -9,6 +9,10 @@ import java.util.Arrays;
 // @lc code=start
 class Solution {
     public int minOperations(int[] nums, int x) {
+        return extracted(nums, x);
+    }
+
+    private int extracted(int[] nums, int x) {
         int maxPart = -1;
         int sum = Arrays.stream(nums).sum();
         int curSum = 0;

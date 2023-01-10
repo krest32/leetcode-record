@@ -15,7 +15,9 @@ class Solution {
         // return extracted(nums);
 
         // 三指针，双指针定义左右，第三指针划分区域
-        return extracted3(nums);
+        // return extracted3(nums);
+
+
     }
 
     /**
@@ -29,6 +31,7 @@ class Solution {
         int res = 0;
         final int mod = 1000000007;
         int[] s = new int[nums.length + 1];
+        // 前缀和
         for (int i = 1; i < s.length; i++) {
             s[i] = s[i - 1] + nums[i - 1];
         }
