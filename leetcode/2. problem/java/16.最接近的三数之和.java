@@ -9,7 +9,7 @@ import java.util.Arrays;
 // @lc code=start
 class Solution {
     public int threeSumClosest(int[] nums, int target) {
-        // 排序 + 双指针
+        // 排序 + 双指针（其实更类似三指针）
         return extracted(nums, target);
     }
 

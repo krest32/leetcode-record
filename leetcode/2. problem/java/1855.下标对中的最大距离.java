@@ -30,7 +30,7 @@ class Solution {
         int i = 0;
         int res = 0;
         for (int j = 0; j < m; j++) {
-            // 因为为非递增数组,所以如果要nums1[i]<nums[j]的话,
+            // 因为是递减数组,所以如果要nums1[i]<nums[j]的话,
             // 就得在nums1[i]>nums2[j]的情况下,i++,直到nums1[i]<nums[j]为止
             while (i < n && nums1[i] > nums2[j]) {
                 i++;

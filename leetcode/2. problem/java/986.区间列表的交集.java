@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.scene.control.ListView.EditEvent;
-
 /*
  * @lc app=leetcode.cn id=986 lang=java
  *

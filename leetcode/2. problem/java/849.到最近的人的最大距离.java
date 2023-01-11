@@ -1,5 +1,3 @@
-import java.util.Set;
-
 /*
  * @lc app=leetcode.cn id=849 lang=java
  *
@@ -49,7 +47,6 @@ class Solution {
                 ans = Math.max(ans, Math.min(left, right));
             }
         }
-
         return ans;
     }
 

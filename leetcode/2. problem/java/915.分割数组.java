@@ -30,6 +30,14 @@ class Solution {
         return pos + 1;
     }
 
+    /**
+     * 66/66 cases passed (3 ms)
+     * Your runtime beats 85.97 % of java submissions
+     * Your memory usage beats 84.8 % of java submissions (50.4 MB)
+     * 
+     * @param nums
+     * @return
+     */
     private int extracted(int[] nums) {
         int n = nums.length;
         int max = nums[0];

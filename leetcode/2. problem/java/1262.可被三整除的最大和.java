@@ -1,5 +1,3 @@
-import javafx.scene.shape.CubicCurve;
-
 /*
  * @lc app=leetcode.cn id=1262 lang=java
  *
