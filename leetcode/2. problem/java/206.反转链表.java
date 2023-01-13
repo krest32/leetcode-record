@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.List;
 
 import entrty.ListNode;
@@ -28,19 +29,48 @@ class Solution {
         // 递归
         // return extracted2(head);
 
-        // 1
-        return test(head);
+        // 使用 List
+        // return extracted3(head);
+
+        // 1迭代
+        return test1(head);
 
     }
 
-    private ListNode test(ListNode head) {
+    /**
+     * 28/28 cases passed (1 ms)
+     * Your runtime beats 4.61 % of java submissions
+     * Your memory usage beats 40.41 % of java submissions (41.4 MB)
+     * 
+     * @param head
+     * @return
+     */
+    private ListNode extracted3(ListNode head) {
+        List<ListNode> list = new ArrayList<>();
+        while (head != null) {
+            list.add(head);
+            head = head.next;
+        }
+        for (ListNode node : list) {
+            node.next = null;
+        }
+        ListNode pre = new ListNode(-1);
+        ListNode cur = pre;
+        for (int i = list.size() - 1; i >= 0; i--) {
+            cur.next = list.get(i);
+            cur = cur.next;
+        }
+        return pre.next;
+    }
+
+    private ListNode test1(ListNode head) {
         ListNode pre = null;
         ListNode cur = head;
         while (cur != null) {
-            ListNode temp = cur.next;
+            ListNode next = cur.next;
             cur.next = pre;
             pre = cur;
-            cur = temp;
+            cur = next;
         }
         return pre;
     }

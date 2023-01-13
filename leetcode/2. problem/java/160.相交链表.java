@@ -1,3 +1,4 @@
+import java.time.format.TextStyle;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,8 +29,27 @@ public class Solution {
         // return extracted(headA, headB);
 
         // 解法二 哈希
-        return extracted2(headA, headB);
+        // return extracted2(headA, headB);
 
+        return test(headA, headB);
+
+    }
+
+    private ListNode test(ListNode headA, ListNode headB) {
+        ListNode A = headA, B = headB;
+        while (A != B) {
+            if (A != null) {
+                A = A.next;
+            } else {
+                A = headB;
+            }
+            if (B != null) {
+                B = B.next;
+            } else {
+                B = headA;
+            }
+        }
+        return A;
     }
 
     /**

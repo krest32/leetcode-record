@@ -1,3 +1,5 @@
+import java.util.List;
+
 import entrty.ListNode;
 
 /*
@@ -28,7 +30,7 @@ class Solution {
     }
 
     private ListNode test(ListNode head) {
-        if (head == null || head.next == null) {
+        if (head == null) {
             return head;
         }
         ListNode pre = new ListNode(-1, head);

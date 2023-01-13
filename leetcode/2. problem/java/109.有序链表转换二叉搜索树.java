@@ -1,3 +1,6 @@
+import java.time.format.TextStyle;
+import java.util.List;
+
 import entrty.ListNode;
 import entrty.TreeNode;
 
@@ -36,9 +39,42 @@ import entrty.TreeNode;
 class Solution {
     public TreeNode sortedListToBST(ListNode head) {
         // 通过中序遍历构建二叉树
-        return buildTree(head, null);
+        // return buildTree(head, null);
+
+        // test
+        return test(head, null);
     }
 
+    private TreeNode test(ListNode left, ListNode right) {
+        if (left == right) {
+            return null;
+        }
+        ListNode mid = getMiddle(left, right);
+        TreeNode root = new TreeNode(mid.val);
+        root.left = test(left, mid);
+        root.right = test(mid.next, right);
+        return root;
+    }
+
+    private ListNode getMiddle(ListNode left, ListNode right) {
+        ListNode slow = left;
+        ListNode fast = left;
+        while (fast != right && fast.next != right) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return slow;
+    }
+
+    /**
+     * 32/32 cases passed (0 ms)
+     * Your runtime beats 100 % of java submissions
+     * Your memory usage beats 54.05 % of java submissions (42.6 MB)
+     * 
+     * @param left
+     * @param right
+     * @return
+     */
     public TreeNode buildTree(ListNode left, ListNode right) {
         if (left == right) {
             return null;

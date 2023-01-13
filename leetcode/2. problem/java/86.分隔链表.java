@@ -1,4 +1,3 @@
-import java.util.List;
 
 import entrty.ListNode;
 

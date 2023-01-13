@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  * @lc app=leetcode.cn id=430 lang=java
@@ -17,8 +19,59 @@ class Node {
 
 class Solution {
     public Node flatten(Node head) {
-        dfs(head);
-        return head;
+        // 迭代
+        // dfs(head);
+        // return head;
+
+        // 集合
+        return listAnswer(head);
+
+    }
+
+    /**
+     * 26/26 cases passed (0 ms)
+     * Your runtime beats 100 % of java submissions
+     * Your memory usage beats 83.45 % of java submissions (39.4 MB)
+     * 
+     * @param head
+     * @return
+     */
+    private Node listAnswer(Node head) {
+        if (head == null) {
+            return head;
+        }
+        // 集合
+        List<Node> nodeList = new ArrayList<>();
+        testList(head, nodeList);
+        // 节点指针置为 null
+        for (Node curNode : nodeList) {
+            curNode.child = null;
+            curNode.next = null;
+        }
+        // 组合新的链表
+        for (int i = 0; i < nodeList.size(); i++) {
+            if (i != 0) {
+                nodeList.get(i).prev = nodeList.get(i - 1);
+            } else {
+                nodeList.get(i).prev = null;
+            }
+            if (i != nodeList.size() - 1) {
+                nodeList.get(i).next = nodeList.get(i + 1);
+            } else {
+                nodeList.get(i).next = null;
+            }
+        }
+        return nodeList.get(0);
+    }
+
+    private void testList(Node head, List<Node> nodeList) {
+        while (head != null) {
+            nodeList.add(head);
+            if (head.child != null) {
+                testList(head.child, nodeList);
+            }
+            head = head.next;
+        }
     }
 
     public Node dfs(Node node) {
@@ -42,7 +95,6 @@ class Solution {
                     childLast.next = next;
                     next.prev = childLast;
                 }
-
                 // 将 child 置为空
                 cur.child = null;
                 last = childLast;

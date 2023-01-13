@@ -38,18 +38,18 @@ public class Solution {
         if (head == null || head.next == null) {
             return false;
         }
-        if (head == head.next && head.next != null) {
+        if (head == head.next) {
             return true;
-        }
 
+        }
         ListNode slow = head;
         ListNode fast = head.next;
         while (slow != fast) {
             if (fast.next == null || fast.next.next == null) {
                 return false;
             }
-            fast = fast.next.next;
             slow = slow.next;
+            fast = fast.next.next;
         }
         return true;
     }
