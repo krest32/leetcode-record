@@ -37,7 +37,7 @@ class Solution {
         // return extracted(root);
 
         // 方法二 迭代法
-        // return extracted2(root);
+        // return extracted2(root)
 
         // 方法三 Morris 中序遍历 了解即可
         // return extracted3(root);
@@ -59,6 +59,7 @@ class Solution {
         reverseTest(ans, root.left);
         ans.add(root.val);
         reverseTest(ans, root.right);
+
     }
 
     /**
@@ -130,8 +131,9 @@ class Solution {
     /**
      * 递归法
      * 
+     * 70/70 cases passed (0 ms)
      * Your runtime beats 100 % of java submissions
-     * Your memory usage beats 49.83 % of java submissions (39.2 MB)
+     * Your memory usage beats 95.89 % of java submissions (39.3 MB)
      * 
      * @param root
      * @return

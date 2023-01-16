@@ -32,7 +32,23 @@ class Solution {
         // return extracted(root);
 
         // 迭代
-        return extracted2(root);
+        // return extracted2(root);
+
+        // test
+        return test(root);
+    }
+
+    private String test(TreeNode root) {
+        if (root == null) {
+            return "";
+        }
+        if (root.left == null && root.right == null) {
+            return root.val + "";
+        }
+        if (root.right == null) {
+            return root.val + "(" + test(root.left) + ")";
+        }
+        return root.val + "(" + test(root.left) + ")" + "(" + test(root.right) + ")";
     }
 
     /**
@@ -68,6 +84,11 @@ class Solution {
         return s.substring(1, s.length() - 1);
     }
 
+    /**
+     * 160/160 cases passed (15 ms)
+     * Your runtime beats 11.91 % of java submissions
+     * Your memory usage beats 16.7 % of java submissions (42.1 MB)
+     */
     private String extracted(TreeNode root) {
         if (root == null)
             return "";

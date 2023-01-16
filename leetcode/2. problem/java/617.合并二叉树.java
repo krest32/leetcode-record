@@ -28,10 +28,26 @@ import entrty.TreeNode;
 class Solution {
     public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
         // 深度优先搜索 --> 最优解
-        return extracted(root1, root2);
+        // return extracted(root1, root2);
 
         // 广度优先历
         // return extracted2(root1, root2);
+
+        // test
+        return test(root1, root2);
+    }
+
+    private TreeNode test(TreeNode root1, TreeNode root2) {
+        if (root1 == null) {
+            return root2;
+        }
+        if (root2 == null) {
+            return root1;
+        }
+        TreeNode root = new TreeNode(root1.val + root2.val);
+        root.left = test(root1.left, root2.left);
+        root.right = test(root1.right, root2.right);
+        return root;
     }
 
     /**
@@ -87,8 +103,9 @@ class Solution {
     }
 
     /**
+     * 182/182 cases passed (0 ms)
      * Your runtime beats 100 % of java submissions
-     * Your memory usage beats 30.82 % of java submissions (41.3 MB)
+     * Your memory usage beats 53.11 % of java submissions (41.5 MB)
      */
     private TreeNode extracted(TreeNode root1, TreeNode root2) {
         if (root1 == null)
