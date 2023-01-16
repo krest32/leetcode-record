@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import entrty.ListNode;
@@ -23,6 +25,33 @@ import entrty.ListNode;
 
 class Solution {
     public ListNode removeZeroSumSublists(ListNode head) {
+        // 迭代
+        // return extracted(head);
+
+        // test
+        return test(head);
+    }
+
+    private ListNode test(ListNode head) {
+        Map<Integer, ListNode> map = new HashMap<>();
+        ListNode pre = new ListNode(-1, head);
+        int sum = 0;
+        ListNode dummy = pre;
+        while (dummy != null) {
+            sum += dummy.val;
+            map.put(sum, dummy);
+        }
+
+        dummy = pre;
+        sum = 0;
+        while (dummy != null) {
+            sum += dummy.val;
+            dummy.next = map.get(sum).next;
+        }
+        return dummy.next;
+    }
+
+    private ListNode extracted(ListNode head) {
         ListNode dummy = new ListNode(-1);
         dummy.next = head;
         Map<Integer, ListNode> map = new HashMap<>();

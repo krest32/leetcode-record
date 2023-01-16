@@ -19,6 +19,12 @@ import entrty.ListNode;
  */
 class Solution {
     public ListNode mergeInBetween(ListNode list1, int a, int b, ListNode list2) {
+        // 迭代
+        // return extracted(list1, a, b, list2);
+
+    }
+
+    private ListNode extracted(ListNode list1, int a, int b, ListNode list2) {
         // 哑元节点
         ListNode ans = new ListNode();
         ans.next = list1;

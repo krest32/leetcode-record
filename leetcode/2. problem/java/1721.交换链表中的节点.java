@@ -19,6 +19,11 @@ import entrty.ListNode;
  */
 class Solution {
     public ListNode swapNodes(ListNode head, int k) {
+        // 迭代
+        return extracted(head, k);
+    }
+
+    private ListNode extracted(ListNode head, int k) {
         ListNode left = head;
         ListNode right = head;
         // 找到 left 节点
