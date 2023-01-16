@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+import entrty.ListNode;
+
 /*
  * @lc app=leetcode.cn id=1019 lang=java
  *
