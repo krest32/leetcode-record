@@ -27,6 +27,44 @@ class Solution {
 
     public int longestUnivaluePath(TreeNode root) {
         // 以当前节点为终点，分别向左右两边发散
+        // return extracted(root);
+
+        // test
+        return test(root);
+    }
+
+    private int test(TreeNode root) {
+        ans = 0;
+        dfsTest(root);
+        return ans;
+    }
+
+    private int dfsTest(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int left = dfsTest(root.left);
+        int right = dfsTest(root.right);
+        int tempLeft = 0, tempRight = 0;
+        if (root.left != null && root.val == root.left.val) {
+            tempLeft = left + 1;
+        }
+        if (root.right != null && root.val == root.right.val) {
+            tempRight = right + 1;
+        }
+        ans = Math.max(ans, tempLeft + tempRight);
+        return Math.max(tempLeft, tempRight);
+    }
+
+    /**
+     * 71/71 cases passed (2 ms)
+     * Your runtime beats 97.8 % of java submissions
+     * Your memory usage beats 79.67 % of java submissions (44.8 MB)
+     * 
+     * @param root
+     * @return
+     */
+    private int extracted(TreeNode root) {
         ans = 0;
         arrowLength(root);
         return ans;

@@ -24,6 +24,40 @@ import entrty.TreeNode;
  */
 class Solution {
     public TreeNode trimBST(TreeNode root, int low, int high) {
+        // 递归
+        // return extracted(root, low, high);
+
+        // test
+        return test(root, low, high);
+    }
+
+    private TreeNode test(TreeNode root, int low, int high) {
+        if (root == null) {
+            return root;
+        }
+        if (root.val > high) {
+            return test(root.left, low, high);
+        }
+
+        if (root.val < low) {
+            return test(root.right, low, high);
+        }
+        root.left = test(root.left, low, high);
+        root.right = test(root.right, low, high);
+        return root;
+    }
+
+    /**
+     * 78/78 cases passed (0 ms)
+     * Your runtime beats 100 % of java submissions
+     * Your memory usage beats 23.77 % of java submissions (41.3 MB)
+     * 
+     * @param root
+     * @param low
+     * @param high
+     * @return
+     */
+    private TreeNode extracted(TreeNode root, int low, int high) {
         if (root == null)
             return root;
         if (root.val > high) {

@@ -39,17 +39,18 @@ class Solution {
     private int test(TreeNode root) {
         if (root == null) {
             return 0;
-        } else if (root.left == null && root.right == null) {
-            return 1;
-        } else {
-            if (root.left != null) {
-                depth = Math.min(depth, test(root.left));
-            }
-            if (root.right != null) {
-                depth = Math.min(depth, test(root.right));
-            }
-            return depth + 1;
         }
+        if (root.left == null && root.right == null) {
+            return 1;
+        }
+        // 注意不能为 null 的情况
+        if (root.left != null) {
+            depth = Math.min(depth, test(root.left));
+        }
+        if (root.right != null) {
+            depth = Math.min(depth, test(root.right));
+        }
+        return depth + 1;
     }
 
     /**

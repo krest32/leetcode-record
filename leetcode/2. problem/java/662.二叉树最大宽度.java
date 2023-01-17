@@ -31,6 +31,11 @@ class Solution {
         // return extracted(root);
 
         // 给树的每个节点进行编号，然后比较最左边和最右边的数字大小即可
+        return test(root);
+
+    }
+
+    private int test(TreeNode root) {
         if (root == null) {
             return 0;
         }
@@ -54,7 +59,6 @@ class Solution {
             }
         }
         return maxWidth;
-
     }
 
     private int extracted(TreeNode root) {

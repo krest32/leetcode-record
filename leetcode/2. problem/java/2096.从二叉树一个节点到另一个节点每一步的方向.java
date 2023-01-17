@@ -27,7 +27,6 @@ import entrty.TreeNode;
  */
 class Solution {
 
-
     Map<Integer, TreeNode> parent = new HashMap<>();
     StringBuilder ret = new StringBuilder();
 
@@ -46,9 +45,13 @@ class Solution {
      * @return
      */
     private String extracted(TreeNode root, int startValue, int destValue) {
+        // 记录每个节点的父节点
         findParent(root);
+        // 找到开始节点
         TreeNode node = getTreeNode(startValue, root);
+        // 采用回溯去搜索路径,然后比较找到最短的
         dfs(startValue, destValue, new StringBuilder(), node);
+        // 返回结果
         return ret.toString();
     }
 
@@ -66,16 +69,12 @@ class Solution {
         return null;
     }
 
-    private void dfs(int from, int dest,
-            StringBuilder res,
-            TreeNode node) {
+    private void dfs(int from, int dest, StringBuilder res, TreeNode node) {
         if (node.val == dest) {
             if (ret.length() == 0) {
                 ret = new StringBuilder(res);
             } else {
-                if (res.length() < ret.length()) {
-                    ret = new StringBuilder(res);
-                }
+                ret = ret.length() < res.length() ? ret : res;
             }
             return;
         }
@@ -97,6 +96,7 @@ class Solution {
             res.deleteCharAt(res.length() - 1);
         }
     }
+
     private void findParent(TreeNode root) {
         if (root.left != null) {
             parent.put(root.left.val, root);

@@ -23,7 +23,25 @@ class Solution {
         // return extracted(root, p, q);
 
         // 一次遍历
-        return extracted2(root, p, q);
+        // return extracted2(root, p, q);
+
+        // test
+        return test(root, p, q);
+    }
+
+    private TreeNode test(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null || root == p || root == q) {
+            return root;
+        }
+        TreeNode left = test(root.left, p, q);
+        TreeNode right = test(root.right, p, q);
+        if (left == null) {
+            return right;
+        }
+        if (right == null) {
+            return left;
+        }
+        return root;
     }
 
     /**
@@ -51,7 +69,9 @@ class Solution {
     }
 
     /**
-     * 递归
+     * 30/30 cases passed (6 ms)
+     * Your runtime beats 37.3 % of java submissions
+     * Your memory usage beats 88.96 % of java submissions (42 MB)
      * 
      * @param root
      * @param p
@@ -62,8 +82,8 @@ class Solution {
         // 终止条件
         if (root == null || root == p || root == q)
             return root;
-        TreeNode left = lowestCommonAncestor(root.left, p, q);
-        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        TreeNode left = extracted(root.left, p, q);
+        TreeNode right = extracted(root.right, p, q);
         // 如果left为空，说明这两个节点在cur结点的右子树上，
         // 我们只需要返回右子树查找的结果即可
         if (left == null)

@@ -24,6 +24,7 @@ import entrty.TreeNode;
  */
 class Solution {
     public boolean isValidBST(TreeNode root) {
+        // 深度有限遍历
         // return dfs(root, Long.MIN_VALUE, Long.MAX_VALUE);
 
         // test
@@ -33,9 +34,11 @@ class Solution {
     private boolean test(TreeNode root, long minValue, long maxValue) {
         if (root == null)
             return true;
-        if (root.val <= minValue || root.val >= maxValue)
+        if (root.val <= minValue || root.val >= maxValue) {
             return false;
-        return test(root.left, minValue, root.val) && test(root.right, root.val, maxValue);
+        }
+        return test(root.left, minValue, root.val)
+                && test(root.right, root.val, maxValue);
     }
 
     /**
@@ -55,7 +58,8 @@ class Solution {
         if (node.val >= upper || node.val <= lower) {
             return false;
         }
-        return dfs(node.left, lower, node.val) && dfs(node.right, node.val, upper);
+        return dfs(node.left, lower, node.val)
+                && dfs(node.right, node.val, upper);
     }
 }
 // @lc code=end

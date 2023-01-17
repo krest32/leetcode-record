@@ -37,12 +37,15 @@ class Solution {
     }
 
     private boolean test(TreeNode root) {
-        if (root == null)
+        if (root == null) {
             return true;
+        }
+        int leftDepth = depth(root.left);
+        int rightDepth = depth(root.right);
+        return Math.abs(rightDepth - leftDepth) <= 1
+                && test(root.left)
+                && test(root.right);
 
-        int leftDep = depth(root.left);
-        int rightDep = depth(root.right);
-        return Math.abs(leftDep - rightDep) <= 1 && test(root.left) && test(root.right);
     }
 
     private int depth(TreeNode node) {

@@ -37,8 +37,21 @@ class Solution {
         // return extracted(p, q);
 
         // 方法二 迭代
-        return extracted2(p, q);
+        // return extracted2(p, q);
 
+        // test
+        return test(p, q);
+
+    }
+
+    private boolean test(TreeNode p, TreeNode q) {
+        if (p == null && q == null) {
+            return true;
+        } else if (p == null || q == null) {
+            return false;
+        } else {
+            return p.val == q.val && test(p.left, q.left) && test(p.right, q.right);
+        }
     }
 
     /**
@@ -87,6 +100,15 @@ class Solution {
         return queue1.isEmpty() && queue2.isEmpty();
     }
 
+    /**
+     * 60/60 cases passed (0 ms)
+     * Your runtime beats 100 % of java submissions
+     * Your memory usage beats 50.26 % of java submissions (39 MB)
+     * 
+     * @param p
+     * @param q
+     * @return
+     */
     private boolean extracted(TreeNode p, TreeNode q) {
         // 进行判空操作
         if (p == null && q == null) {

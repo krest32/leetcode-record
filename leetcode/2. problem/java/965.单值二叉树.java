@@ -30,7 +30,6 @@ class Solution {
             return true;
         }
         val = root.val;
-
         return dfs(root.left) && dfs(root.right);
     }
 

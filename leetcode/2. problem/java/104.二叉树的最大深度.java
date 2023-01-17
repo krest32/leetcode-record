@@ -31,7 +31,20 @@ class Solution {
         // return maxLen(root);
 
         // 迭代
-        return extracted(root);
+        // return extracted(root);
+
+        // test
+        return test(root);
+    }
+
+    private int test(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        if (root.left == null && root.right == null) {
+            return 1;
+        }
+        return Math.max(test(root.left), test(root.right)) + 1;
     }
 
     /**

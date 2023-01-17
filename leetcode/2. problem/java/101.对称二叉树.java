@@ -32,6 +32,21 @@ class Solution {
 
         // 迭代
         // return check(root, root);
+
+        // test
+        return test(root, root);
+    }
+
+    private boolean test(TreeNode root1, TreeNode root2) {
+        if (root1 == null && root2 == null) {
+            return true;
+        } else if (root1 == null || root2 == null) {
+            return false;
+        } else {
+            return root1.val == root2.val
+                    && test(root1.left, root2.right)
+                    && test(root1.right, root2.left);
+        }
     }
 
     /**

@@ -1,4 +1,5 @@
-import java.time.format.TextStyle;
+import java.util.ArrayList;
+import java.util.List;
 
 import entrty.TreeNode;
 
@@ -26,7 +27,8 @@ import entrty.TreeNode;
  */
 class Solution {
     int pre;
-    int ans;
+    int ans = Integer.MAX_VALUE;
+    List<Integer> arr = new ArrayList<>();
 
     public int minDiffInBST(TreeNode root) {
         // DFS
@@ -34,13 +36,15 @@ class Solution {
 
         // test
         return test(root);
-
     }
 
     private int test(TreeNode root) {
-        pre = -1;
-        ans = Integer.MAX_VALUE;
         dfsTest(root);
+        for (int i = 0; i < arr.size(); i++) {
+            for (int j = i + 1; j < arr.size(); j++) {
+                ans = Math.min(ans, Math.abs(arr.get(i) - arr.get(j)));
+            }
+        }
         return ans;
     }
 
@@ -49,12 +53,7 @@ class Solution {
             return;
         }
         dfsTest(root.left);
-        if (pre == -1) {
-            pre = root.val;
-        } else {
-            ans = Math.min(ans, Math.abs(root.val - pre));
-            pre = root.val;
-        }
+        arr.add(root.val);
         dfsTest(root.right);
     }
 
