@@ -11,8 +11,21 @@ import java.util.PriorityQueue;
 class Solution {
     public int halveArray(int[] nums) {
         // 使用优先队列实现减半操作
-        return extracted(nums);
+        // return extracted(nums);
 
+        // test
+        return test(nums);
+    }
+
+    private int test(int[] nums) {
+        PriorityQueue<Double> queue = new PriorityQueue<>(
+                new Comparator<Double>() {
+                    @Override
+                    public int compare(Double o1, Double o2) {
+                        return Double.compare(o2, o1);
+                    }
+                });
+        return 0;
     }
 
     /**
@@ -23,7 +36,7 @@ class Solution {
      * @return
      */
     private int extracted(int[] nums) {
-        
+
         PriorityQueue<Double> queue = new PriorityQueue<>(
                 new Comparator<Double>() {
                     @Override
