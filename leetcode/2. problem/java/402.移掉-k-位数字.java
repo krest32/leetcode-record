@@ -21,34 +21,42 @@ class Solution {
         Deque<Character> deque = new LinkedList<>();
         int len = num.length();
         for (int i = 0; i < len; i++) {
-            char tempNum = num.charAt(i);
-            // 前面凡是大于当前数字的都应该被移除
-            while (!deque.isEmpty()
-                    && deque.peekLast() > tempNum
-                    && k > 0) {
+            char digit = num.charAt(i);
+            while (!deque.isEmpty() && k > 0 && deque.peekLast() > digit) {
                 deque.pollLast();
                 k--;
             }
-            deque.offerLast(tempNum);
+            deque.offerLast(digit);
         }
 
-        for (int i = 0; i < k; i++) {
-            deque.pollLast();
+        if (k > 0) {
+            for (int i = k; i > 0; i--) {
+                deque.pollLast();
+            }
         }
 
-        StringBuilder ret = new StringBuilder();
-        boolean flag = true;
+        StringBuilder ans = new StringBuilder();
+        boolean isZeroLeading = true;
         while (!deque.isEmpty()) {
-            char ch = deque.pollFirst();
-            if (flag && ch == '0') {
+            char digit = deque.pollFirst();
+            if (isZeroLeading && digit == '0') {
                 continue;
             }
-            flag = false;
-            ret.append(ch);
+            isZeroLeading = false;
+            ans.append(digit);
         }
-        return ret.length() == 0 ? "0" : ret.toString();
+        return ans.length() == 0 ? "0" : ans.toString();
     }
 
+    /**
+     * 43/43 cases passed (11 ms)
+     * Your runtime beats 71.56 % of java submissions
+     * Your memory usage beats 33.31 % of java submissions (42.9 MB)
+     * 
+     * @param num
+     * @param k
+     * @return
+     */
     private String extracted(String num, int k) {
         Deque<Character> deque = new LinkedList<Character>();
         int length = num.length();

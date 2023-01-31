@@ -13,7 +13,33 @@ class Solution {
         // return extracted(asteroids);
 
         // 栈
-        return extracted2(asteroids);
+        // return extracted2(asteroids);
+
+        // test
+        return test(asteroids);
+    }
+
+    private int[] test(int[] arr) {
+        Stack<Integer> stack = new Stack<>();
+        for (int ast : arr) {
+            point: {
+                while (!stack.isEmpty() && ast < 0 && stack.peek() > 0) {
+                    if (stack.peek() < -ast) {
+                        stack.pop();
+                        continue;
+                    } else if (stack.peek() == -ast) {
+                        stack.pop();
+                    }
+                    break point;
+                }
+                stack.push(ast);
+            }
+        }
+        int[] ans = new int[stack.size()];
+        for (int t = ans.length - 1; t >= 0; t--) {
+            ans[t] = stack.pop();
+        }
+        return ans;
 
     }
 

@@ -1,3 +1,4 @@
+import java.time.format.TextStyle;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -11,7 +12,10 @@ import java.util.Queue;
 class Solution {
     public int shortestPathBinaryMatrix(int[][] grid) {
         // BFS
-        return extracted(grid);
+        // return extracted(grid);
+
+        // test
+        return test(grid);
     }
 
     /**

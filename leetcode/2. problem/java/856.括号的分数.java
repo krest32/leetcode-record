@@ -23,7 +23,9 @@ class Solution {
             if (ch == '(') {
                 stack.push(0);
             } else {
+                // 
                 int w = stack.pop();
+                // 上一个得分
                 int v = stack.pop();
                 v = v + Math.max(2 * w, 1);
                 stack.push(v);

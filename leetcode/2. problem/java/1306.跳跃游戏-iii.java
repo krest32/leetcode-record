@@ -21,21 +21,22 @@ class Solution {
 
     private boolean test(int[] arr, int start) {
         int len = arr.length;
-        boolean[] vis = new boolean[len];
-        return testDfs(arr, vis, start, len);
+        boolean[] visited = new boolean[len];
+        return testDsf(arr, visited, len, start);
     }
 
-    private boolean testDfs(int[] arr, boolean[] vis, int idx, int len) {
-        if (idx < 0 || idx >= len || vis[idx])
+    private boolean testDsf(int[] arr, boolean[] visited, int len, int pos) {
+
+        if (pos < 0 || pos >= len || visited[pos]) {
             return false;
-
-        if (arr[idx] == 0)
+        }
+        if (arr[pos] == 0) {
             return true;
-
-        int step = arr[idx];
-        vis[idx] = true;
-        return testDfs(arr, vis, idx + step, len)
-                || testDfs(arr, vis, idx - step, len);
+        }
+        visited[pos] = true;
+        int step = arr[pos];
+        return testDsf(arr, visited, len, pos - step)
+                || testDsf(arr, visited, len, pos + step);
     }
 
     private boolean extracted2(int[] arr, int start) {

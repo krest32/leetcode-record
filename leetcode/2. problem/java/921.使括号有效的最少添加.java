@@ -13,7 +13,27 @@ class Solution {
         // return extracted(s);
 
         // 优化栈 -> 使用计数法代替栈
-        return extracted2(s);
+        // return extracted2(s);
+
+        return test(s);
+    }
+
+    private int test(String s) {
+        int len = s.length();
+        int leftCnt = 0, rightCnt = 0;
+        for (int i = 0; i < len; i++) {
+            char ch = s.charAt(i);
+            if (ch == '(') {
+                leftCnt++;
+            } else {
+                if (leftCnt == 0) {
+                    rightCnt++;
+                } else {
+                    leftCnt--;
+                }
+            }
+        }
+        return rightCnt+leftCnt;
     }
 
     /**
