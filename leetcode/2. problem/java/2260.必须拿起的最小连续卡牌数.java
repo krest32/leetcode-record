@@ -19,13 +19,28 @@ class Solution {
         // return extracted2(cards);
 
         // 优化 hash map -> 最优解
-        return extracted3(cards);
+        // return extracted3(cards);
+
+        return test(cards);
+    }
+
+    private int test(int[] cards) {
+        Map<Integer, Integer> map = new HashMap<>();
+        int ans = Integer.MAX_VALUE;
+        int len = cards.length;
+        for (int i = 0; i < len; i++) {
+            if (map.containsKey(cards[i])) {
+                ans = Math.min(ans, i - map.get(cards[i]) + 1);
+            }
+            map.put(cards[i], i);
+        }
+        return ans == Integer.MAX_VALUE ? -1 : ans;
     }
 
     /**
-     * 80/80 cases passed (44 ms)
-     * Your runtime beats 44.68 % of java submissions
-     * Your memory usage beats 36.41 % of java submissions (59.5 MB)
+     * 80/80 cases passed (42 ms)
+     * Your runtime beats 83.92 % of java submissions
+     * Your memory usage beats 18.18 % of java submissions (60 MB)
      * 
      * @param cards
      * @return

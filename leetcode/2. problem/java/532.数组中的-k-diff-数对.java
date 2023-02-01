@@ -1,7 +1,4 @@
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 /*
@@ -14,7 +11,24 @@ import java.util.Set;
 class Solution {
     public int findPairs(int[] nums, int k) {
         // 很精妙的一种思维
-        return extracted(nums, k);
+        // return extracted(nums, k);
+
+        return test(nums, k);
+    }
+
+    private int test(int[] nums, int k) {
+        Set<Integer> visited = new HashSet<>();
+        Set<Integer> ans = new HashSet<>();
+        for (int num : nums) {
+            if (visited.contains(num - k)) {
+                ans.add(num - k);
+            }
+            if (visited.contains(num + k)) {
+                ans.add(num);
+            }
+            visited.add(num);
+        }
+        return ans.size();
     }
 
     /**
@@ -26,7 +40,6 @@ class Solution {
         Set<Integer> visited = new HashSet<Integer>();
         Set<Integer> res = new HashSet<Integer>();
         for (int num : nums) {
-            
             if (visited.contains(num - k)) {
                 res.add(num - k);
             }

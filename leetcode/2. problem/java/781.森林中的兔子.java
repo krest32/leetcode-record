@@ -27,7 +27,7 @@ class Solution {
             } else if (y + 1 >= x) {
                 ans += (y + 1);
             } else {
-                ans+=(x + y) / (y + 1) * (y + 1);
+                ans += (x + y) / (y + 1) * (y + 1);
             }
         }
         return ans;

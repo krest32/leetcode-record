@@ -14,33 +14,42 @@ class Solution {
         // return extracted(nums);
 
         // 1
-        return extracted2(nums);
+        return test(nums);
     }
 
-    private int extracted2(int[] nums) {
+    private int test(int[] nums) {
         Set<Integer> set = new HashSet<>();
+        int ans = 0;
+
         for (int num : nums) {
             set.add(num);
         }
 
-        int maxLen = 0;
-        for (int i = 0; i < nums.length; i++) {
-            int num = nums[i];
+        for (int num : nums) {
             if (!set.contains(num - 1)) {
-                int curNbr = num + 1;
-                int curLen = 1;
-                while (set.contains(curNbr)) {
-                    curLen++;
-                    curNbr++;
+                int tempNum = num;
+                int cnt = 1;
+                while (set.contains(tempNum + 1)) {
+                    cnt++;
+                    tempNum++;
                 }
-                maxLen = Math.max(maxLen, curLen);
+                ans = Math.max(ans, cnt);
             }
         }
-        return maxLen;
+        return ans;
     }
 
+    /**
+     * 72/72 cases passed (279 ms)
+     * Your runtime beats 7.59 % of java submissions
+     * Your memory usage beats 65.19 % of java submissions (57.9 MB)
+     * 
+     * @param nums
+     * @return
+     */
     private int extracted(int[] nums) {
         Set<Integer> set = new HashSet<>();
+        // 需要先初始化集合数据
         for (int i = 0; i < nums.length; i++) {
             set.add(nums[i]);
         }

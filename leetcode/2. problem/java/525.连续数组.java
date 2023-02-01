@@ -21,8 +21,32 @@ class Solution {
         // 我们可以将数组中的 0 视作−1，则原问题转换成「求最长的连续子数组，
         // 其元素和为 0
         // 一次遍历+哈希
-        return extracted3(nums);
+        // return extracted3(nums);
 
+        return test(nums);
+
+    }
+
+    private int test(int[] nums) {
+        int maxLen = 0;
+        int len = nums.length;
+        Map<Integer, Integer> map = new HashMap<>();
+        int cnt = 0;
+        // 初始化 map 
+        map.put(0, -1);
+        for (int i = 0; i < len; i++) {
+            if (nums[i] == 1) {
+                cnt++;
+            } else {
+                cnt--;
+            }
+            if (map.containsKey(cnt)) {
+                maxLen = Math.max(maxLen, i - map.get(cnt));
+            } else {
+                map.put(cnt, i);
+            }
+        }
+        return maxLen;
     }
 
     /**
