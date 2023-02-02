@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 /*
  * @lc app=leetcode.cn id=151 lang=java
  *
@@ -6,8 +8,33 @@
 
 // @lc code=start
 class Solution {
+    private static final String List = null;
+
     public String reverseWords(String s) {
-        return extracted(s);
+        // return extracted(s);
+
+        // test
+        return test(s);
+    }
+
+    private String test(String s) {
+        String[] strs = s.trim().split(" ");
+        List<String> list = new ArrayList<>();
+        for (String str : strs) {
+            if (str.indexOf(" ") >= 0 || str.indexOf(' ') >= 0) {
+                continue;
+            }
+            list.add(str);
+        }
+        StringBuilder ans = new StringBuilder();
+        for (int i = list.size() - 1; i >= 0; i--) {
+            if (i != 0) {
+                ans.append(list.get(i) + " ");
+            } else {
+                ans.append(list.get(i));
+            }
+        }
+        return ans.toString();
     }
 
     /**

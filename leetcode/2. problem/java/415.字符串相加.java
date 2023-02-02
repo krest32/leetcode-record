@@ -1,4 +1,3 @@
-import javafx.beans.binding.StringBinding;
 
 /*
  * @lc app=leetcode.cn id=415 lang=java
@@ -10,6 +9,10 @@ import javafx.beans.binding.StringBinding;
 class Solution {
     public String addStrings(String num1, String num2) {
         // 模拟
+        return extracted(num1, num2);
+    }
+
+    private String extracted(String num1, String num2) {
         StringBuilder res = new StringBuilder();
         int carry = 0;
         int l1 = num1.length() - 1;
