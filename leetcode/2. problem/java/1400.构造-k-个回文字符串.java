@@ -7,6 +7,11 @@
 // @lc code=start
 class Solution {
     public boolean canConstruct(String s, int k) {
+        return extracted(s, k);
+
+    }
+
+    private boolean extracted(String s, int k) {
         // 右边界为字符串的长度
         int right = s.length();
         // 统计每个字符出现的次数
@@ -24,7 +29,6 @@ class Solution {
         // 注意没有出现奇数次的字符的特殊情况
         left = Math.max(left, 1);
         return left <= k && k <= right;
-
     }
 }
 // @lc code=end

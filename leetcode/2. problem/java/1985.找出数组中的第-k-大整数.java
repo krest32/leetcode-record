@@ -9,7 +9,21 @@ import java.util.Arrays;
 // @lc code=start
 class Solution {
     public String kthLargestNumber(String[] nums, int k) {
-        return extracted(nums, k);
+        // 数组排序
+        // return extracted(nums, k);
+
+        // test
+        return test(nums, k);
+
+    }
+
+    private String test(String[] nums, int k) {
+        Arrays.sort(nums, (o1, o2) -> {
+            return o1.length() == o2.length()
+                    ? o2.compareTo(o1)
+                    : o2.length() - o1.length();
+        });
+        return String.valueOf(nums[k - 1]);
     }
 
     /**

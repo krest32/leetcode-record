@@ -2,8 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-import javax.imageio.ImageReadParam;
-
 /*
  * @lc app=leetcode.cn id=1209 lang=java
  *
@@ -24,7 +22,7 @@ class Solution {
         // 记忆法 最优 --> 在for循环的过程中修改索引值
         // return extracted3(s, k);
 
-        // 栈 --> 也还可以(推荐)
+        // 栈 --> 也还可以(推荐) niu
         // return extracted4(s, k);
 
         // test
@@ -32,22 +30,22 @@ class Solution {
     }
 
     private String test(String s, int k) {
-        StringBuilder sb = new StringBuilder(s);
+        StringBuilder ans = new StringBuilder(s);
         Stack<Integer> stack = new Stack<>();
-        for (int i = 0; i < sb.length(); i++) {
-            if (i == 0 || (sb.charAt(i) != sb.charAt(i - 1))) {
+        for (int i = 0; i < ans.length(); i++) {
+            if (i == 0 || ans.charAt(i) != ans.charAt(i - 1)) {
                 stack.push(1);
             } else {
-                int cnt = stack.pop() + 1;
-                if (cnt == k) {
-                    sb.delete(i - k + 1, i + 1);
+                int num = stack.pop() + 1;
+                if (num == k) {
+                    ans = ans.delete(i - k + 1, i + 1);
                     i = i - k;
                 } else {
-                    stack.push(cnt);
+                    stack.push(num);
                 }
             }
         }
-        return sb.toString();
+        return ans.toString();
     }
 
     /**

@@ -18,29 +18,37 @@ class Solution {
     }
 
     private List<String> test(String s) {
-        List<StringBuilder> ans = new ArrayList<>();
-        ans.add(new StringBuilder());
+        List<StringBuilder> list = new ArrayList<>();
+        list.add(new StringBuilder());
         for (char ch : s.toCharArray()) {
-            int n = ans.size();
             if (Character.isLetter(ch)) {
-                for (int i = 0; i < n; i++) {
-                    ans.add(new StringBuilder(ans.get(i)));
-                    ans.get(i).append(Character.toUpperCase(ch));
-                    ans.get(i + n).append(Character.toLowerCase(ch));
+                int len = list.size();
+                for (int i = 0; i < len; i++) {
+                    list.add(new StringBuilder(list.get(i)));
+                    list.get(i).append(Character.toLowerCase(ch));
+                    list.get(i + len).append(Character.toUpperCase(ch));
                 }
             } else {
-                for (int i = 0; i < n; i++) {
-                    ans.get(i).append(ch);
+                for (StringBuilder tempStr : list) {
+                    tempStr.append(ch);
                 }
             }
         }
-        List<String> ret = new ArrayList<>();
-        for (int i = 0; i < ans.size(); i++) {
-            ret.add(ans.get(i).toString());
+        List<String> ans = new ArrayList<>();
+        for (StringBuilder temp : list) {
+            ans.add(temp.toString());
         }
-        return ret;
+        return ans;
     }
 
+    /**
+     * 63/63 cases passed (7 ms)
+     * Your runtime beats 26.02 % of java submissions
+     * Your memory usage beats 7.74 % of java submissions (42.5 MB)
+     * 
+     * @param s
+     * @return
+     */
     private List<String> extracted(String s) {
         List<StringBuilder> ans = new ArrayList<>();
         ans.add(new StringBuilder());

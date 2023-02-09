@@ -1,5 +1,3 @@
-import javax.swing.text.AbstractDocument.Content;
-
 /*
  * @lc app=leetcode.cn id=686 lang=java
  *
