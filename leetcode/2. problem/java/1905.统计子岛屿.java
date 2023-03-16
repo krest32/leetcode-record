@@ -6,11 +6,45 @@
 
 // @lc code=start
 class Solution {
-    
-    int[][] direcs = { { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
 
     public int countSubIslands(int[][] grid1, int[][] grid2) {
-        return extracted(grid1, grid2);
+        // BFS 深度优先遍历
+        // return extracted(grid1, grid2);
+
+        // test
+        return test(grid1, grid2);
+    }
+
+    private int test(int[][] grid1, int[][] grid2) {
+        int row = grid1.length, column = grid1[0].length;
+        int ans = 0;
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < column; j++) {
+                if (grid2[i][j] == 1 && checkArr(grid1, grid2, i, j)) {
+                    ans++;
+                }
+            }
+        }
+        return ans;
+    }
+
+    private boolean checkArr(int[][] grid1, int[][] grid2, int i, int j) {
+        if (grid1[i][j] == 0) {
+            return false;
+        }
+        grid2[i][j] = 0;
+        int[][] direcs = { { 1, 0 }, { -1, 0 }, { 0, -1 }, { 0, 1 } };
+        int row = grid1.length, column = grid1[0].length;
+        for (int[] direc : direcs) {
+            int newi = i + direc[0];
+            int newj = j + direc[1];
+            if (newi >= 0 && newi < row && newj >= 0 && newj < column) {
+                if (grid2[newi][newj] == 1 && !check(grid1, grid2, i, j)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**
@@ -37,6 +71,7 @@ class Solution {
     }
 
     private boolean check(int[][] grid1, int[][] grid2, int i, int j) {
+        int[][] direcs = { { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
         grid2[i][j] = 0;
         int rows = grid2.length;
         int colums = grid2[0].length;

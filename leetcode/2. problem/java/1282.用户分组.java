@@ -13,8 +13,31 @@ import java.util.Map;
 class Solution {
     public List<List<Integer>> groupThePeople(int[] groupSizes) {
         // 哈希实现
-        // 更新一步： 利用數組代替Map，性能会有所提升
-        return extracted(groupSizes);
+        // return extracted(groupSizes);
+
+        // test
+        return test(groupSizes);
+    }
+
+    private List<List<Integer>> test(int[] groupSizes) {
+        List<List<Integer>> ans = new ArrayList<>();
+        int len = groupSizes.length;
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        for (int i = 0; i < len; i++) {
+            int num = groupSizes[i];
+            List<Integer> tempList = map.getOrDefault(num, new ArrayList<>());
+            if (tempList.size() < num) {
+                tempList.add(i);
+                if (tempList.size() == num) {
+                    ans.add(new ArrayList<>(tempList));
+                    List<Integer> newList = new ArrayList<>();
+                    map.put(num, newList);
+                } else {
+                    map.put(num, tempList);
+                }
+            }
+        }
+        return ans;
     }
 
     /**
