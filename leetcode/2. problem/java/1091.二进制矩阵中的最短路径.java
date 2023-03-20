@@ -1,6 +1,6 @@
-import java.time.format.TextStyle;
 import java.util.LinkedList;
 import java.util.Queue;
+
 
 /*
  * @lc app=leetcode.cn id=1091 lang=java
@@ -15,7 +15,41 @@ class Solution {
         // return extracted(grid);
 
         // test
-        return test(grid);
+        return testMatrix(grid);
+    }
+
+    private int testMatrix(int[][] grid) {
+        int len = grid.length;
+        if (grid[0][0] == 1 || grid[len - 1][len - 1] == 1) {
+            return -1;
+        }
+        int[][] direcs = { { 1, 1 }, { 1, 0 }, { 1, -1 }, { 0, 1 },
+                { 0, -1 }, { -1, 1 }, { -1, 0 }, { -1, -1 } };
+        Queue<int[]> queue = new LinkedList<>();
+        queue.offer(new int[] { 0, 0 });
+        grid[0][0] = 1;
+        int ans = 0;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            ans++;
+            for (int i = 0; i < size; i++) {
+                int[] temp = queue.poll();
+                int newi = temp[0];
+                int newj = temp[1];
+                if (newi == len - 1 && newj == len - 1) {
+                    return ans;
+                }
+                for (int j = 0; j < 8; j++) {
+                    int xx = newi + direcs[j][0];
+                    int yy = newj + direcs[j][1];
+                    if (xx >= 0 && xx < len && yy >= 0 && yy < len && grid[xx][yy] == 0) {
+                        queue.offer(new int[] { xx, yy });
+                        grid[xx][yy] = 1;
+                    }
+                }
+            }
+        }
+        return -1;
     }
 
     /**

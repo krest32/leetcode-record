@@ -16,7 +16,42 @@ class Solution {
         // return extracted(grid);
 
         // 多源BFS
-        return extracted2(grid);
+        // return extracted2(grid);
+
+        // test
+        return test(grid);
+    }
+
+    private int test(int[][] grid) {
+        int len = grid.length;
+        Deque<int[]> deque = new LinkedList<>();
+        for (int i = 0; i < len; i++) {
+            for (int j = 0; j < len; j++) {
+                if (grid[i][j] == 1) {
+                    deque.addLast(new int[] { i, j });
+                    grid[i][j] = -1;
+                }
+            }
+        }
+        int ans = -1;
+        int[][] direcs = { { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
+        while (!deque.isEmpty()) {
+            int[] temp = deque.pollFirst();
+            int dx = temp[0], dy = temp[1];
+            int step = Math.max(0, grid[dx][dy]);
+            for (int[] direc : direcs) {
+                int nx = dx + direc[0];
+                int ny = dy + direc[1];
+                if (nx < 0 || nx >= len || ny < 0 || ny >= len || grid[nx][ny] != 0) {
+                    continue;
+                }
+                deque.addLast(new int[] { nx, ny });
+                grid[nx][ny] = step + 1;
+                ans = Math.max(ans, step + 1);
+            }
+
+        }
+        return ans;
     }
 
     /**
