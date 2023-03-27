@@ -15,29 +15,39 @@ class Solution {
         // return extracted(intervals);
 
         // 1
-        return extracted2(intervals);
+        return test(intervals);
 
     }
 
-    private int[][] extracted2(int[][] intervals) {
-        List<int[]> res = new ArrayList<>();
+    private int[][] test(int[][] intervals) {
+        if (intervals.length == 0) {
+            return new int[0][0];
+        }
+        List<int[]> ans = new ArrayList<>();
+
         Arrays.sort(intervals, (o1, o2) -> {
             return o1[0] - o2[0];
         });
-
         for (int i = 0; i < intervals.length; i++) {
-            int start = intervals[i][0];
-            int end = intervals[i][1];
-            if (res.size() == 0 || res.get(res.size() - 1)[1] < start) {
-                res.add(new int[] { start, end });
+            int left = intervals[i][0];
+            int right = intervals[i][1];
+            if (ans.size() == 0 || ans.get(ans.size() - 1)[1] < left) {
+                ans.add(new int[] { left, right });
             } else {
-                int max = res.get(res.size() - 1)[1];
-                res.get(res.size() - 1)[1] = Math.max(max, end);
+                ans.get(ans.size() - 1)[1] = Math.max(right, ans.get(ans.size() - 1)[1]);
             }
         }
-        return res.toArray(new int[res.size()][]);
+        return ans.toArray(new int[ans.size()][]);
     }
 
+    /**
+     * 170/170 cases passed (7 ms)
+     * Your runtime beats 70.52 % of java submissions
+     * Your memory usage beats 10.6 % of java submissions (46.7 MB)
+     * 
+     * @param intervals
+     * @return
+     */
     private int[][] extracted(int[][] intervals) {
         if (intervals.length == 0)
             return new int[0][0];

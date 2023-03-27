@@ -22,23 +22,28 @@ class Solution {
         if (len == 0) {
             return 0;
         }
-        
-        Arrays.sort(points, Comparator.comparing(o -> o[1]));
-
         int count = 1;
+        Arrays.sort(points, Comparator.comparing(o -> o[1]));
         int end = points[0][1];
-        for (int i = 0; i < len; i++) {
+        for (int i = 1; i < len; i++) {
             int[] temp = points[i];
-            System.out.println(temp);
             int start = temp[0];
-            if (start > end) {
-                end = temp[1];
+            if (end < start) {
                 count++;
+                end = temp[1];
             }
         }
         return count;
     }
 
+    /**
+     * 50/50 cases passed (95 ms)
+     * Your runtime beats 5.05 % of java submissions
+     * Your memory usage beats 8.57 % of java submissions (78.4 MB)
+     * 
+     * @param points
+     * @return
+     */
     private int extracted(int[][] points) {
         if (points.length == 0) {
             return 0;

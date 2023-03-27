@@ -17,25 +17,25 @@ class Solution {
     }
 
     private int test(int[][] intervals) {
-        int len = intervals.length;
-        if (len == 0) {
+        if (intervals.length == 0) {
             return 0;
         }
+        int len = intervals.length;
+        int count = 1;
         Arrays.sort(intervals, (o1, o2) -> {
             return o1[1] - o2[1];
         });
         int end = intervals[0][1];
-        int count = 1;
         for (int i = 1; i < len; i++) {
             int[] temp = intervals[i];
             int start = temp[0];
-            if (start >= end) {
-                count++;
+            if (end <= start) {
+                count += 1;
                 end = temp[1];
             }
         }
-
         return len - count;
+
     }
 
     /**

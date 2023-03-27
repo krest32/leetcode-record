@@ -16,19 +16,17 @@ class Solution {
 
     private int test(int[] nums) {
         int len = nums.length;
-        int curCnt = 0;
-        int maxCnt = 0;
+        int ans = 0;
+        int curAns = 0;
         for (int i = 0; i < len; i++) {
             if (nums[i] == 1) {
-                curCnt++;
+                curAns += 1;
+                ans = Math.max(curAns, ans);
             } else {
-                maxCnt = Math.max(maxCnt, curCnt);
-                curCnt = 0;
+                curAns = 0;
             }
         }
-        maxCnt = Math.max(maxCnt, curCnt);
-
-        return maxCnt;
+        return ans;
     }
 
     /**
