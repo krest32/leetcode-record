@@ -17,21 +17,28 @@ class Solution {
 
     private double test(int[] nums, int k) {
         int sum = 0;
-        // 记录第一个窗口的数值
         for (int i = 0; i < k; i++) {
             sum += nums[i];
-
         }
-        // 此处保证窗口的初始值
+
         int max = sum;
         for (int i = k; i < nums.length; i++) {
             sum = sum + nums[i] - nums[i - k];
             max = Math.max(max, sum);
         }
-
         return 1.0 * max / k;
+
     }
 
+    /**
+     * 127/127 cases passed (2 ms)
+     * Your runtime beats 100 % of java submissions
+     * Your memory usage beats 24.9 % of java submissions (57.6 MB)
+     * 
+     * @param nums
+     * @param k
+     * @return
+     */
     private double extracted(int[] nums, int k) {
         int sum = 0;
         for (int i = 0; i < k; i++) {

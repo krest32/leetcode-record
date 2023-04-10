@@ -37,13 +37,16 @@ class Solution {
     }
 
     private int extracted(int[] nums) {
+        // 判断数组是否已经排序
         if (isSorted(nums)) {
             return 0;
         }
+        // 对数组进行 copy、排序
         int[] numsSorted = new int[nums.length];
         System.arraycopy(nums, 0, numsSorted, 0, nums.length);
         Arrays.sort(numsSorted);
 
+        // 查找区间数字
         int left = 0;
         while (nums[left] == numsSorted[left]) {
             left++;
@@ -52,7 +55,7 @@ class Solution {
         while (nums[right] == numsSorted[right]) {
             right--;
         }
-
+        // 返回区间的长度
         return right - left + 1;
     }
 

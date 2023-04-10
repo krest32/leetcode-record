@@ -7,9 +7,37 @@
 // @lc code=start
 class Solution {
     public int[] twoSum(int[] numbers, int target) {
-        return extracted(numbers, target);
+        // 双指针
+        // return extracted(numbers, target);
+
+        // test
+        return test(numbers, target);
     }
 
+    private int[] test(int[] numbers, int target) {
+        int left = 0, right = numbers.length - 1;
+        while (right > left) {
+            int sum = numbers[left] + numbers[right];
+            if (sum == target) {
+                return new int[] { left + 1, right + 1 };
+            } else if (sum < target) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+        return new int[0];
+    }
+
+    /**
+     * 23/23 cases passed (1 ms)
+     * Your runtime beats 98.86 % of java submissions
+     * Your memory usage beats 71.26 % of java submissions (44.1 MB)
+     * 
+     * @param numbers
+     * @param target
+     * @return
+     */
     private int[] extracted(int[] numbers, int target) {
         // 双指针，定义左侧、右侧指针
         int i = 0;

@@ -14,7 +14,7 @@ class Solution {
 
     /**
      * 排序，获取偶数下标的数字即可
-     * 
+     *  
      * @param nums
      * @return
      */

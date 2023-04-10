@@ -69,7 +69,8 @@ class Solution {
             // 如果出现冲突（即当前下标 index 对应的字符 s[index] 已经存在映射
             // 且不为 t[index] 或当前下标 index 对应的字符 t[index] 已经存在映射
             // 且不为 s[index]）时说明两个字符串无法构成同构，返回 false。
-            if ((sMap.containsKey(sChar) && sMap.get(sChar) != tChar)
+            if ((sMap.containsKey(sChar)
+                    && sMap.get(sChar) != tChar)
                     || (tMap.containsKey(tChar) && tMap.get(tChar) != sChar)) {
                 return false;
             }
