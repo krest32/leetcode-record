@@ -11,21 +11,24 @@ class Solution {
         // return extracted(nums, k);
 
         // 1
-        return extracted2(nums, k);
+        return test(nums, k);
 
     }
 
-    private int extracted2(int[] nums, int k) {
+    private int test(int[] nums, int k) {
         int len = nums.length;
-        int zeros = 0;
+        int left = 0;
+        int right = 0;
+        int cntZero = 0;
         int maxLen = 0;
-        int left = 0, right = 0;
         while (right < len) {
-            if (nums[right] == 0)
-                zeros++;
-            while (zeros > k) {
-                if (nums[left] == 0)
-                    zeros--;
+            if (nums[right] == 0) {
+                cntZero++;
+            }
+            while (cntZero > k) {
+                if (nums[left] == 0) {
+                    cntZero--;
+                }
                 left++;
             }
             maxLen = Math.max(maxLen, right - left + 1);
@@ -34,6 +37,15 @@ class Solution {
         return maxLen;
     }
 
+    /**
+     * 52/52 cases passed (3 ms)
+     * Your runtime beats 70.5 % of java submissions
+     * Your memory usage beats 70.91 % of java submissions (42.7 MB)
+     * 
+     * @param nums
+     * @param k
+     * @return
+     */
     private int extracted(int[] nums, int k) {
         int N = nums.length;
         int res = 0;

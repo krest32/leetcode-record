@@ -19,6 +19,26 @@ class Solution {
         // test
         return test(grid);
     }
+
+    private int test(int[][] grid) {
+        int colums = grid.length;
+        int rows = grid[0].length;
+        int[][] dp = new int[colums][rows];
+        dp[0][0] = grid[0][0];
+        for (int i = 1; i < colums; i++) {
+            dp[i][0] = dp[i - 1][0] + grid[i][0];
+        }
+        for (int j = 1; j < rows; j++) {
+            dp[0][j] = dp[0][j - 1] + grid[0][j];
+        }
+        for (int i = 1; i < colums; i++) {
+            for (int j = 1; j < rows; j++) {
+                dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];
+            }
+        }
+        return dp[colums - 1][rows - 1];
+    }
+
     /**
      * 61/61 cases passed (2 ms)
      * Your runtime beats 94.53 % of java submissions
@@ -48,25 +68,6 @@ class Solution {
         return dp[m - 1][n - 1];
     }
 
-    private int test(int[][] grid) {
-        int m = grid.length, n = grid[0].length;
-        int[][] dp = new int[m][n];
-        dp[0][0] = grid[0][0];
-        for (int i = 1; i < m; i++) {
-            dp[i][0] = dp[i - 1][0] + grid[i][0];
-        }
-        for (int j = 1; j < n; j++) {
-            dp[0][j] = dp[0][j - 1] + grid[0][j];
-        }
-
-        for (int i = 1; i < m; i++) {
-            for (int j = 1; j < n; j++) {
-                dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];
-            }
-        }
-        return dp[m - 1][n - 1];
-    }
-    
     /**
      * Time Limit Exceeded
      * 61/61 cases passed (N/A)
@@ -122,7 +123,6 @@ class Solution {
         }
         return cur;
     }
-
 
 }
 // @lc code=end

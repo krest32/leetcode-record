@@ -12,51 +12,53 @@ class Solution {
         // 回溯 + 剪枝
         // return extracted(nums);
 
-        // 1
-        return extracted2(nums);
+        // test
+        return test(nums);
     }
 
-    /**
-     * 195/195 cases passed (5 ms)
-     * Your runtime beats 83.77 % of java submissions
-     * Your memory usage beats 78.96 % of java submissions (39 MB)
-     * 
-     * @param nums
-     * @return
-     */
-    private boolean extracted2(int[] nums) {
-        int sum = Arrays.stream(nums).sum();
+    private boolean test(int[] nums) {
+        int sum = 0;
+        int len = nums.length;
+        for (int num : nums) {
+            sum += num;
+        }
         Arrays.sort(nums);
         int target = sum / 4;
-        int len = nums.length;
-        if (sum == 0 || sum % 4 != 0 || nums[len - 1] > target)
+        if (sum == 0 || sum % 4 != 0 || nums[len - 1] > target) {
             return false;
-        int[] size = new int[4];
-        return dfsTest(nums, len - 1, target, size);
+        }
+        return backTrackTest(nums, target, new int[4], 0);
     }
 
-    private boolean dfsTest(int[] nums, int idx, int target, int[] size) {
-        if (idx == -1) {
+    private boolean backTrackTest(int[] nums, int target, int[] size, int idx) {
+        if (idx == nums.length) {
             if (size[0] == size[1] && size[1] == size[2] && size[2] == size[3]) {
                 return true;
             }
             return false;
-        }
-
-        for (int i = 0; i < size.length; i++) {
-            if (size[i] + nums[idx] > target || (i > 0) && size[i] == size[i - 1]) {
-                continue;
+        } else {
+            for (int i = 0; i < size.length; i++) {
+                if (size[i] + nums[idx] > target || (i > 0 && size[i] == size[i - 1])) {
+                    continue;
+                }
+                size[i] += nums[idx];
+                if (backTrackTest(nums, target, size, idx + 1)) {
+                    return true;
+                }
+                size[i] -= nums[idx];
             }
-            size[i] += nums[idx];
-            if (dfsTest(nums, idx - 1, target, size)) {
-                return true;
-            }
-            size[i] -= nums[idx];
+            return false;
         }
-
-        return false;
     }
 
+    /**
+     * 195/195 cases passed (168 ms)
+     * Your runtime beats 14.28 % of java submissions
+     * Your memory usage beats 41.99 % of java submissions (39.4 MB)
+     * 
+     * @param nums
+     * @return
+     */
     private boolean extracted(int[] nums) {
         int total = 0;
         for (int num : nums) {

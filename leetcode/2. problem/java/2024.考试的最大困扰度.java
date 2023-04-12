@@ -8,16 +8,16 @@
 class Solution {
     public int maxConsecutiveAnswers(String answerKey, int k) {
         // 滑动窗口
-        return extracted(answerKey, k);
+        // return extracted(answerKey, k);
 
         // test
-        // return test(answerKey, k);
+        return test(answerKey, k);
     }
 
     private int test(String answerKey, int k) {
         int len = answerKey.length();
-        int ans = 0, numT = 0, numF = 0, left = 0;
-        for (int right = 0; right < len; right++) {
+        int numT = 0, numF = 0, left = 0, right = 0, ans = 0;
+        while (right < len) {
             if (answerKey.charAt(right) == 'T') {
                 numT++;
             } else {
@@ -32,6 +32,7 @@ class Solution {
                 left++;
             }
             ans = Math.max(ans, right - left + 1);
+            right++;
         }
         return ans;
     }

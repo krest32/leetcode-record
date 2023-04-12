@@ -8,13 +8,45 @@
 class Solution {
     public int totalFruit(int[] fruits) {
         // 滑动窗口
-        return extracted(fruits);
+        // return extracted(fruits);
+
+        return test(fruits);
 
     }
 
+    private int test(int[] fruits) {
+        int len = fruits.length;
+        if (len <= 2) {
+            return len;
+        }
+        int left = 0;
+        int right = 0;
+        int[] cnt = new int[len];
+        int count = 0;
+        int ans = 2;
+        while (right < len) {
+            cnt[fruits[right]]++;
+            if (cnt[fruits[right]] == 1) {
+                count++;
+            }
+            right++;
+
+            while (count > 2) {
+                cnt[fruits[left]]--;
+                if (cnt[fruits[left]] == 0) {
+                    count--;
+                }
+                left++;
+            }
+            ans = Math.max(ans, right - left);
+        }
+        return ans;
+    }
+
     /**
-     * Your runtime beats 88.28 % of java submissions
-     * Your memory usage beats 46.3 % of java submissions (48.7 MB)
+     * 91/91 cases passed (6 ms)
+     * Your runtime beats 90.03 % of java submissions
+     * Your memory usage beats 88.81 % of java submissions (49.2 MB)
      * 
      * @param fruits
      * @return

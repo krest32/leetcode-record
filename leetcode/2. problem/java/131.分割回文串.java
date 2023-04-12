@@ -20,19 +20,22 @@ class Solution {
 
     private List<List<String>> test(String s) {
         List<List<String>> ans = new ArrayList<>();
-        backTrackingTest(ans, s, new ArrayList<String>());
+        backTrackingTest(s, ans, new ArrayList<String>());
         return ans;
     }
 
-    private void backTrackingTest(List<List<String>> ans, String s, ArrayList<String> arr) {
+    private void backTrackingTest(
+            String s,
+            List<List<String>> ans,
+            ArrayList<String> tempList) {
         if (s.length() == 0) {
-            ans.add(new ArrayList<>(arr));
+            ans.add(new ArrayList<>(tempList));
         } else {
             for (int i = 0; i < s.length(); i++) {
                 if (isPailndome(s, 0, i)) {
-                    arr.add(s.substring(0, i + 1));
-                    backTrackingTest(ans, s.substring(i + 1), arr);
-                    arr.remove(arr.size() - 1);
+                    tempList.add(s.substring(0, i + 1));
+                    backTrackingTest(s.substring(i + 1), ans, tempList);
+                    tempList.remove(tempList.size() - 1);
                 }
             }
         }

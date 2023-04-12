@@ -21,18 +21,19 @@ class Solution {
 
     private int test(String s) {
         Set<String> set = new HashSet<>();
-        backTrackingTest(set, s, 0, 0);
+        backTrackTest(s, set, 0, 0);
         return maxSplit;
+
     }
 
-    private void backTrackingTest(Set<String> set, String s, int key, int split) {
-        if (key == s.length()) {
-            maxSplit = Math.max(maxSplit, split);
+    private void backTrackTest(String s, Set<String> set, int idx, int sum) {
+        if (idx == s.length()) {
+            maxSplit = Math.max(sum, maxSplit);
         } else {
-            for (int i = key; i < s.length(); i++) {
-                String subStr = s.substring(key, i + 1);
+            for (int i = idx; i < s.length(); i++) {
+                String subStr = s.substring(idx, i + 1);
                 if (set.add(subStr)) {
-                    backTrackingTest(set, s, i + 1, split + 1);
+                    backTrackTest(s, set, i + 1, sum + 1);
                     set.remove(subStr);
                 }
             }

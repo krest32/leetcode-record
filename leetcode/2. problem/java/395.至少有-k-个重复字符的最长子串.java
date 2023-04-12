@@ -33,29 +33,30 @@ class Solution {
      */
     private int test(String s, int k) {
         int len = s.length();
-        if (len == 0) {
+        if (len < k) {
             return 0;
         }
         Map<Character, Integer> map = new HashMap<>();
-        for (char ch : s.toCharArray()) {
+        // 获取每个字符出现的频次
+        for (Character ch : s.toCharArray()) {
             map.put(ch, map.getOrDefault(ch, 0) + 1);
         }
-        for (char ch : s.toCharArray()) {
+        for (char ch : map.keySet()) {
             if (map.get(ch) < k) {
                 int res = 0;
-                for (String str : s.split(String.valueOf(ch))) {
-                    res = Math.max(res, test(str, k));
+                for (String t : s.split(String.valueOf(ch))) {
+                    res = Math.max(res, test(t, k));
                 }
                 return res;
             }
         }
-        return len;
+        return s.length();
     }
 
     /**
      * 37/37 cases passed (4 ms)
-     * Your runtime beats 65.85 % of java submissions
-     * Your memory usage beats 48.55 % of java submissions (41.1 MB)
+     * Your runtime beats 59.21 % of java submissions
+     * Your memory usage beats 21.07 % of java submissions (41.6 MB)
      * 
      * @param s
      * @param k

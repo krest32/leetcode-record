@@ -44,20 +44,21 @@ class Solution {
 
     private List<String> test(TreeNode root) {
         List<String> ans = new ArrayList<>();
-        backTrackingTest(ans, root, new StringBuilder());
+        backTrackTest(ans, root, new StringBuilder());
         return ans;
     }
 
-    private void backTrackingTest(List<String> ans, TreeNode node, StringBuilder tempStr) {
+    private void backTrackTest(List<String> ans, TreeNode node, StringBuilder tempStr) {
         if (node != null) {
             StringBuilder path = new StringBuilder(tempStr);
-            path.append(node.val);
+            int val = node.val;
+            path.append(val);
             if (node.left == null && node.right == null) {
                 ans.add(path.toString());
             } else {
                 path.append("->");
-                backTrackingTest(ans, node.left, path);
-                backTrackingTest(ans, node.right, path);
+                backTrackTest(ans, node.left, path);
+                backTrackTest(ans, node.right, path);
             }
         }
     }

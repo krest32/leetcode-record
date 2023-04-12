@@ -11,10 +11,10 @@ class Solution {
         // return extracted(s, t, maxCost);
 
         // 1
-        return extracted2(s, t, maxCost);
+        return test(s, t, maxCost);
     }
 
-    private int extracted2(String s, String t, int maxCost) {
+    private int test(String s, String t, int maxCost) {
         int len = s.length();
         int[] cost = new int[len];
         for (int i = 0; i < len; i++) {

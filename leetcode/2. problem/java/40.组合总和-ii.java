@@ -21,27 +21,30 @@ class Solution {
     private List<List<Integer>> test(int[] candidates, int target) {
         List<List<Integer>> ans = new ArrayList<>();
         Arrays.sort(candidates);
-        backTrackTest(ans, candidates, target, 0, new ArrayList<Integer>());
+        backTrackTest(ans, candidates, target, 0, 0, new ArrayList<Integer>());
         return ans;
     }
 
     private void backTrackTest(List<List<Integer>> ans,
             int[] candidates,
             int target,
-            int k,
-            ArrayList<Integer> arr) {
-        if (target == 0) {
-            ans.add(new ArrayList<>(arr));
+            int idx,
+            int sum,
+            List<Integer> temArr) {
+        if (sum == target) {
+            ans.add(new ArrayList<>(temArr));
         } else {
-            for (int i = k; i < candidates.length; i++) {
-                // 注意 i != 0 , 继续本次循环
-                if (i != k && candidates[i - 1] == candidates[i]) {
+            for (int i = idx; i < candidates.length; i++) {
+                int num = candidates[i];
+                if (i > 0 && candidates[i - 1] == candidates[i] && i != idx) {
                     continue;
                 }
-                if (target - candidates[i] >= 0) {
-                    arr.add(candidates[i]);
-                    backTrackTest(ans, candidates, target - candidates[i], i + 1, arr);
-                    arr.remove(arr.size() - 1);
+                if (sum + num <= target) {
+                    sum += num;
+                    temArr.add(num);
+                    backTrackTest(ans, candidates, target, i + 1, sum, temArr);
+                    sum -= num;
+                    temArr.remove(temArr.size() - 1);
                 }
             }
         }

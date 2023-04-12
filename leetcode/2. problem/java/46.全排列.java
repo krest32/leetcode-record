@@ -19,27 +19,25 @@ class Solution {
     private List<List<Integer>> test(int[] nums) {
         List<List<Integer>> ans = new ArrayList<>();
         boolean[] vis = new boolean[nums.length];
-        backTrackTest(ans, nums, new ArrayList<Integer>(), vis);
+        backTrackTest(ans, nums, new ArrayList<>(), vis);
         return ans;
     }
 
     private void backTrackTest(List<List<Integer>> ans,
             int[] nums,
-            ArrayList<Integer> arr,
+            List<Integer> tempArr,
             boolean[] vis) {
-        if (arr.size() == nums.length) {
-            ans.add(new ArrayList<>(arr));
+        if (tempArr.size() == nums.length) {
+            ans.add(new ArrayList<>(tempArr));
         } else {
             for (int i = 0; i < nums.length; i++) {
-                if (vis[i]) {
-                    continue;
+                if (!vis[i]) {
+                    vis[i] = true;
+                    tempArr.add(nums[i]);
+                    backTrackTest(ans, nums, tempArr, vis);
+                    tempArr.remove(tempArr.size() - 1);
+                    vis[i] = false;
                 }
-                vis[i] = true;
-                arr.add(nums[i]);
-                backTrackTest(ans, nums, arr, vis);
-                arr.remove(arr.size() - 1);
-                vis[i] = false;
-
             }
         }
     }

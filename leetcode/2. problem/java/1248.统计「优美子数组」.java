@@ -10,6 +10,45 @@ class Solution {
         // 滑动窗口
         // return extracted(nums, k);
 
+        // 动态滑动窗口
+        return extracted2(nums, k);
+
+    }
+
+    /**
+     * 38/38 cases passed (9 ms)
+     * Your runtime beats 54.94 % of java submissions
+     * Your memory usage beats 73.43 % of java submissions (48.9 MB)
+     * 
+     * @param nums
+     * @param k
+     * @return
+     */
+    private int extracted2(int[] nums, int k) {
+        int len = nums.length;
+        int left1 = 0, left2 = 0, right = 0;
+        int sum1 = 0, sum2 = 0, ans = 0;
+        while (right < len) {
+            if (nums[right] % 2 == 1) {
+                sum1++;
+                sum2++;
+            }
+            while (left1 <= right && sum1 > k) {
+                if (nums[left1] % 2 == 1) {
+                    sum1--;
+                }
+                left1++;
+            }
+            while (left2 <= right && sum2 >= k) {
+                if (nums[left2] % 2 == 1) {
+                    sum2--;
+                }
+                left2++;
+            }
+            ans += left2 - left1;
+            right++;
+        }
+        return ans;
     }
 
     /**

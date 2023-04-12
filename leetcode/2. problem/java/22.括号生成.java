@@ -11,8 +11,37 @@ import java.util.List;
 class Solution {
     public List<String> generateParenthesis(int n) {
         // 回溯
-        return extracted(n);
+        // return extracted(n);
 
+        // test
+        return test(n);
+
+    }
+
+    private List<String> test(int n) {
+        List<String> ans = new ArrayList<>();
+        if (n == 0) {
+            return ans;
+        }
+        backTrackTest(ans, new StringBuilder(), n, 0, 0);
+        return ans;
+    }
+
+    private void backTrackTest(List<String> ans, StringBuilder tempStr, int n, int left, int right) {
+        if (tempStr.length() == n * 2) {
+            ans.add(new String(tempStr.toString()));
+        } else {
+            if (left < n) {
+                tempStr.append("(");
+                backTrackTest(ans, tempStr, n, left + 1, right);
+                tempStr.deleteCharAt(tempStr.length() - 1);
+            }
+            if (right < left) {
+                tempStr.append(")");
+                backTrackTest(ans, tempStr, n, left, right + 1);
+                tempStr.deleteCharAt(tempStr.length() - 1);
+            }
+        }
     }
 
     /**

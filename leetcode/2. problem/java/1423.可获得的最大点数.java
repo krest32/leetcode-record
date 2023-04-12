@@ -13,9 +13,13 @@ class Solution {
         // 滑动窗口
         // return extracted(cardPoints, k);
 
+        // 贪心？求解不正确
+        return test2(cardPoints, k);
+
         // test
-        return test(cardPoints, k);
+        // return test(cardPoints, k);
     }
+
 
     /**
      * 40/40 cases passed (2 ms)
@@ -45,6 +49,37 @@ class Solution {
 
         return total - minSum;
     }
+
+    /**
+     * 16/40 cases passed (N/A)
+     * 
+     * [11,49,100,20,86,29,72]
+     * 4
+     * 
+     * @param cardPoints
+     * @param k
+     * @return
+     */
+    private int test2(int[] cardPoints, int k) {
+        int len = cardPoints.length;
+        int left = 0, right = len - 1;
+        int sum = 0;
+        while (k > 0) {
+            int num = 0;
+            if (cardPoints[left] > cardPoints[right]) {
+                num = cardPoints[left];
+                left++;
+            } else {
+                num = cardPoints[right];
+                right--;
+            }
+            sum += num;
+            k--;
+        }
+        return sum;
+    }
+
+
 
     /**
      * 40/40 cases passed (5 ms)

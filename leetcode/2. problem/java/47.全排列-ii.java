@@ -1,3 +1,4 @@
+import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,7 +12,42 @@ import java.util.List;
 // @lc code=start
 class Solution {
     public List<List<Integer>> permuteUnique(int[] nums) {
+        // 回溯
         // return extracted(nums);
+
+        // test
+        return test(nums);
+
+    }
+
+    private List<List<Integer>> test(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        boolean[] vis = new boolean[nums.length];
+        backTrackTest(ans, vis, nums, new ArrayList<Integer>());
+        return ans;
+    }
+
+    private void backTrackTest(List<List<Integer>> ans,
+            boolean[] vis,
+            int[] nums,
+            ArrayList<Integer> tempArr) {
+        if (tempArr.size() == nums.length) {
+            ans.add(new ArrayList<>(tempArr));
+        } else {
+            for (int i = 0; i < nums.length; i++) {
+                if (vis[i]) {
+                    continue;
+                }
+                if (i > 0 && nums[i] == nums[i - 1] && !vis[i - 1]) {
+                    continue;
+                }
+                vis[i] = true;
+                tempArr.add(nums[i]);
+                backTrackTest(ans, vis, nums, tempArr);
+                tempArr.remove(tempArr.size() - 1);
+                vis[i] = false;
+            }
+        }
     }
 
     /**

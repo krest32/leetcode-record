@@ -21,6 +21,7 @@ class Solution {
                 total += customers[i];
             }
         }
+        // 初始的窗口值
         int increase = 0;
         for (int i = 0; i < minutes; i++) {
             if (grumpy[i] != 0) {

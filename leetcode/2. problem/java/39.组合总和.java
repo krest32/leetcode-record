@@ -12,6 +12,37 @@ class Solution {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         // 回溯
         // return extracted(candidates, target);
+
+        // test
+        return test(candidates, target);
+    }
+
+    private List<List<Integer>> test(int[] candidates, int target) {
+        List<List<Integer>> ans = new ArrayList<>();
+        backTrackTest(ans, candidates, target, 0, 0, new ArrayList<>());
+        return ans;
+    }
+
+    private void backTrackTest(List<List<Integer>> ans,
+            int[] candidates,
+            int target,
+            int idx,
+            int sum,
+            List<Integer> tempList) {
+        if (sum == target) {
+            ans.add(new ArrayList<>(tempList));
+        } else {
+            for (int i = idx; i < candidates.length; i++) {
+                int num = candidates[i];
+                if (sum + num <= target) {
+                    sum += num;
+                    tempList.add(num);
+                    backTrackTest(ans, candidates, target, i, sum, tempList);
+                    sum -= num;
+                    tempList.remove(tempList.size() - 1);
+                }
+            }
+        }
     }
 
     /**
@@ -29,8 +60,11 @@ class Solution {
         return res;
     }
 
-    private void dfs(int[] candidates, int target, List<List<Integer>> res,
-            ArrayList<Integer> temp, int idx) {
+    private void dfs(int[] candidates,
+            int target,
+            List<List<Integer>> res,
+            ArrayList<Integer> temp,
+            int idx) {
         if (target == 0) {
             res.add(new ArrayList<>(temp));
         } else {

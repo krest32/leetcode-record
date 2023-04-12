@@ -14,10 +14,20 @@ class Solution {
         return test(nums, goal);
     }
 
+    /**
+     * 60/60 cases passed (2 ms)
+     * Your runtime beats 98.78 % of java submissions
+     * Your memory usage beats 45.23 % of java submissions (45.5 MB)
+     * 
+     * @param nums
+     * @param goal
+     * @return
+     */
     private int test(int[] nums, int goal) {
         int len = nums.length;
+        int sum1 = 0, sum2 = 0;
         int left1 = 0, left2 = 0, right = 0;
-        int sum1 = 0, sum2 = 0, ans = 0;
+        int ans = 0;
         while (right < len) {
             sum1 += nums[right];
             sum2 += nums[right];
@@ -33,6 +43,7 @@ class Solution {
             right++;
         }
         return ans;
+
     }
 
     /**

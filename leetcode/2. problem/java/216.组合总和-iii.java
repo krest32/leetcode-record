@@ -20,19 +20,26 @@ class Solution {
 
     private List<List<Integer>> test(int k, int n) {
         List<List<Integer>> ans = new ArrayList<>();
-        backTrackingTest(n, k, ans, new ArrayList<Integer>(), 1);
+        backTrackTest(ans, k, n, new ArrayList<Integer>(), 0, 1);
         return ans;
     }
 
-    private void backTrackingTest(int sum, int k,
-            List<List<Integer>> ans, ArrayList<Integer> arr, int key) {
-        if (sum == 0 && arr.size() == k) {
-            ans.add(new ArrayList<>(arr));
+    private void backTrackTest(
+            List<List<Integer>> ans,
+            int k, int n,
+            ArrayList<Integer> tempArr,
+            int sum, int idx) {
+        if (sum == n && k == tempArr.size()) {
+            ans.add(new ArrayList<>(tempArr));
         } else {
-            for (int i = key; i <= 9; i++) {
-                arr.add(i);
-                backTrackingTest(sum - i, k, ans, arr, i + 1);
-                arr.remove(arr.size() - 1);
+            for (int i = idx; i <= 9; i++) {
+                if (sum + i <= n) {
+                    sum += i;
+                    tempArr.add(i);
+                    backTrackTest(ans, k, n, tempArr, sum, i + 1);
+                    sum -= i;
+                    tempArr.remove(tempArr.size() - 1);
+                }
             }
         }
     }
