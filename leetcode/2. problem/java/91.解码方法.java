@@ -19,11 +19,13 @@ class Solution {
         int[] dp = new int[len + 1];
         dp[0] = 1;
         for (int i = 1; i <= len; i++) {
-            if (s.charAt(i - 1) != '0') {
+            char ch = s.charAt(i - 1);
+            if (ch != '0') {
                 dp[i] += dp[i - 1];
             }
-            if (i > 1 && s.charAt(i - 2) != '0'
-                    && ((s.charAt(i - 2) - '0') * 10 + (s.charAt(i - 1) - '0')) <= 26) {
+            if (i > 1
+                    && s.charAt(i - 2) != '0'
+                    && ((s.charAt(i - 2) - '0') * 10 + ch - '0') <= 26) {
                 dp[i] += dp[i - 2];
             }
         }

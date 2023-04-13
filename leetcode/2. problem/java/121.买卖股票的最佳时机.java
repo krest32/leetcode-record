@@ -1,3 +1,5 @@
+import java.security.Identity;
+
 /*
  * @lc app=leetcode.cn id=121 lang=java
  *
@@ -25,15 +27,18 @@ class Solution {
 
     private int test(int[] prices) {
         int len = prices.length;
-        int[] dp = new int[len];
-        dp[0] = 0;
-        int ans = 0;
-        for (int i = 1; i < len; i++) {
-            int diff = prices[i] - prices[i - 1];
-            dp[i] = Math.max(dp[i - 1] + diff, 0);
-            ans = Math.max(ans, dp[i]);
+        if (len == 1) {
+            return 0;
         }
-        return ans;
+        int[] dp = new int[len];
+        dp[0] = prices[0];
+        int maxProfit = 0;
+        for (int i = 1; i < len; i++) {
+            dp[i] = Math.min(dp[i - 1], prices[i]);
+            maxProfit = Math.max(maxProfit, prices[i] - dp[i]);
+        }
+        return maxProfit;
+
     }
 
     /**
