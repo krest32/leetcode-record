@@ -11,7 +11,7 @@ class Solution {
         // return extracted(nums, left, right);
 
         // test
-        return test(nums, left, right);
+        // return test(nums, left, right);
     }
 
     private int test(int[] nums, int left, int right) {

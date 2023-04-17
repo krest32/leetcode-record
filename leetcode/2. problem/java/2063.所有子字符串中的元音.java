@@ -14,7 +14,29 @@ class Solution {
         // return extracted(word);
 
         // 普通动态规划
-        return extracted2(word);
+        // return extracted2(word);
+
+        // test
+        return test(word);
+    }
+
+    private long test(String word) {
+        int len = word.length();
+        long[] dp = new long[len];
+        long ans = 0;
+        if (check(word.charAt(0))) {
+            dp[0] = 1;
+            ans += dp[0];
+        }
+        for (int i = 1; i < len; i++) {
+            if (check(word.charAt(i))) {
+                dp[i] = dp[i - 1] + i + 1;
+            } else {
+                dp[i] = dp[i - 1];
+            }
+            ans += dp[i];
+        }
+        return ans;
     }
 
     private long extracted2(String word) {

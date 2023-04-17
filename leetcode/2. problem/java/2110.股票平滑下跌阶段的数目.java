@@ -10,19 +10,20 @@ import java.util.Arrays;
 class Solution {
     public long getDescentPeriods(int[] prices) {
         // 动态规划
-        // return extracted(prices);
+        return extracted(prices);
 
         // 1
-        return test(prices);
+        // return test(prices);
     }
 
     private long test(int[] prices) {
         int len = prices.length;
-        long[] dp = new long[len];
-        Arrays.fill(dp, 1);
+        long[] dp = new long[len + 1];
+        dp[0] = 1L;
         long ans = dp[0];
         for (int i = 1; i < len; i++) {
-            if (prices[i] + 1 == prices[i - 1]) {
+            dp[i] = 1L;
+            if (prices[i - 1] - prices[i] == 1) {
                 dp[i] += dp[i - 1];
             }
             ans += dp[i];

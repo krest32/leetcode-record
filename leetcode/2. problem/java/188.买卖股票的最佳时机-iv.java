@@ -16,11 +16,9 @@ class Solution {
 
     private int test(int k, int[] prices) {
         int len = prices.length;
-        // 0 表示卖出， 1 表示持有
+        // [天数][交易次数][是否持有股票] 0 不持有, 1 持有
         int[][][] dp = new int[len][k + 1][2];
-        if (len == 0) {
-            return 0;
-        }
+        // 初始化数据
         for (int i = 0; i <= k; i++) {
             dp[0][i][1] = -prices[0];
         }

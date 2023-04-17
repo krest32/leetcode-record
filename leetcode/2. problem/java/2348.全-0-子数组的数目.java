@@ -18,9 +18,28 @@ class Solution {
         // return extracted3(nums);
 
         // 动态规划优化 -- 79.11 % 两个变量，但是理解起来有些困难
-        return extracted4(nums);
+        // return extracted4(nums);
+
+        // test
+        return test(nums);
     }
 
+    private long test(int[] nums) {
+        int len = nums.length;
+        long[] dp = new long[len];
+        dp[0] = nums[0] == 0 ? 1L : 0L;
+        long ans = dp[0];
+        for (int i = 1; i < len; i++) {
+            int num = nums[i];
+            if (num != 0) {
+                dp[i] = 0L;
+            } else {
+                dp[i] = dp[i - 1] + 1;
+            }
+            ans += dp[i];
+        }
+        return ans;
+    }
 
     /**
      * 48/48 cases passed (3 ms)
@@ -42,27 +61,23 @@ class Solution {
     }
 
     /**
-     * 48/48 cases passed (9 ms)
-     * Your runtime beats 9.01 % of java submissions
-     * Your memory usage beats 99.94 % of java submissions (51.5 MB)
+     * 48/48 cases passed (4 ms)
+     * Your runtime beats 32.38 % of java submissions
+     * Your memory usage beats 5.18 % of java submissions (60.8 MB)
      */
     private long extracted(int[] nums) {
         int len = nums.length;
-        Long[] dp = new Long[len];
-        for (int i = 0; i < len; i++) {
-            if (nums[i] != 0) {
+        long[] dp = new long[len];
+        dp[0] = nums[0] == 0 ? 1L : 0L;
+        long ans = dp[0];
+        for (int i = 1; i < len; i++) {
+            int num = nums[i];
+            if (num != 0) {
                 dp[i] = 0L;
             } else {
-                if (i > 0) {
-                    dp[i] = dp[i - 1] + 1;
-                } else {
-                    dp[i] = 1L;
-                }
+                dp[i] = dp[i - 1] + 1;
             }
-        }
-        long ans = 0;
-        for (long num : dp) {
-            ans += num;
+            ans += dp[i];
         }
         return ans;
     }
@@ -90,8 +105,6 @@ class Solution {
         }
         return ans;
     }
-
-    
 
     /**
      * 48/48 cases passed (2 ms)

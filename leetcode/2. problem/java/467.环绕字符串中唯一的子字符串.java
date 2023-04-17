@@ -18,16 +18,16 @@ class Solution {
     private int test(String p) {
         // 记录到达该字符串，且以该字符结尾的字符串个数
         int[] dp = new int[26];
-        int lastChar = -1, curNum = 0;
+        int lastChar = -1, max = 0;
         for (char ch : p.toCharArray()) {
             int curChar = ch - 'a';
             if (lastChar + 1 == curChar || (lastChar == 25 && curChar == 0)) {
-                curNum++;
+                max += 1;
             } else {
-                curNum = 1;
+                max = 1;
             }
-            if (curNum > dp[curChar]) {
-                dp[curChar] = curNum;
+            if (max > dp[curChar]) {
+                dp[curChar] = max;
             }
             lastChar = curChar;
         }

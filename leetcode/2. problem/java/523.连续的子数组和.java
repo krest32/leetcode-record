@@ -15,26 +15,27 @@ class Solution {
 
         // 1
         return test(nums, k);
+
     }
+
 
     private boolean test(int[] nums, int k) {
         int len = nums.length;
-        if (len < 2)
+        if (len < 2) {
             return false;
-
+        }
         Map<Integer, Integer> map = new HashMap<>();
-        int remainder = 0;
-        // 初始化Map，假设能够整除k的数字从0开始
         map.put(0, -1);
+        int res = 0;
         for (int i = 0; i < len; i++) {
-            remainder = (remainder + nums[i]) % k;
-            if (map.containsKey(remainder)) {
-                int preIdx = map.get(remainder);
-                if (i - preIdx >= 2) {
+            res = (res + nums[i]) % k;
+            if (map.containsKey(res)) {
+                int idx = map.get(res);
+                if (i - idx >= 2) {
                     return true;
                 }
             } else {
-                map.put(remainder, i);
+                map.put(res, i);
             }
         }
         return false;

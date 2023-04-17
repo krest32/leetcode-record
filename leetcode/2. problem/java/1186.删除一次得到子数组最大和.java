@@ -40,7 +40,7 @@ class Solution {
     private int extracted(int[] arr) {
         int n = arr.length;
         // dp1 一个表示不删除元素的情况下最大子数组和，
-        // dp2 代表删除元素的情况下的最大子数组和
+        // dp2 代表删除某个元素的情况下的最大子数组和
         int[] dp1 = new int[n];
         int[] dp2 = new int[n];
         int res = arr[0];

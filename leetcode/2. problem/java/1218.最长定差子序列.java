@@ -4,7 +4,7 @@ import java.util.Map;
 /*
  * @lc app=leetcode.cn id=1218 lang=java
  *
- * [ ] 最长定差子序列
+ * [1218] 最长定差子序列
  */
 
 // @lc code=start
@@ -25,9 +25,10 @@ class Solution {
     private int test(int[] arr, int diff) {
         int ans = 0;
         Map<Integer, Integer> map = new HashMap<>();
-        for (int num : arr) {
-            map.put(num, map.getOrDefault(num - diff, 0) + 1);
-            ans = Math.max(ans, map.get(num));
+        int len = arr.length;
+        for (int i = 0; i < len; i++) {
+            map.put(arr[i], map.getOrDefault(map.get(arr[i] - diff), 0) + 1);
+            ans = Math.max(ans, map.get(arr[i]));
         }
         return ans;
     }

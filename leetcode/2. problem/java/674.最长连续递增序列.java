@@ -11,7 +11,8 @@ class Solution {
         // return extracted(nums);
 
         // 动态规划
-        return extracted2(nums);
+        // return extracted2(nums);
+
     }
 
     private int extracted2(int[] nums) {

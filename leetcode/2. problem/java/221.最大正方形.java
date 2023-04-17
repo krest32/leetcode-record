@@ -8,6 +8,39 @@
 // @lc code=start
 class Solution {
     public int maximalSquare(char[][] matrix) {
+        // 动态规划
+        // return extracted(matrix);
+
+        // test
+        return test(matrix);
+
+    }
+
+    private int test(char[][] matrix) {
+        int maxSide = 0;
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return maxSide;
+        } else {
+            int colums = matrix.length, rows = matrix[0].length;
+            int[][] dp = new int[colums][rows];
+            for (int i = 0; i < colums; i++) {
+                for (int j = 0; j < rows; j++) {
+                    if (matrix[i][j] == '1') {
+                        if (i == 0 || j == 0) {
+                            dp[i][j] = 1;
+                        } else {
+                            dp[i][j] = Math.min(dp[i - 1][j - 1], Math.min(dp[i - 1][j], dp[i][j - 1])) + 1;
+                        }
+                        maxSide = Math.max(maxSide, dp[i][j]);
+                    }
+                }
+            }
+            return maxSide * maxSide;
+        }
+
+    }
+
+    private int extracted(char[][] matrix) {
         int maxSide = 0;
         if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
             return maxSide;
