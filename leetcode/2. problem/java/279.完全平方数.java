@@ -18,24 +18,29 @@ class Solution {
         // 广度遍历
         // return extracted(n);
 
-        // 动态规划 完全背包
+        // 动态规划 完全背包 反向遍历
         // return extracted2(n);
 
-        // 1
-        return test(n);
+        // 动态规划 完全背包 正向遍历
+        return extracted3(n);
 
     }
 
-    private int test(int n) {
-        int max = Integer.MAX_VALUE;
+    /**
+     * 588/588 cases passed (45 ms)
+     * Your runtime beats 32.64 % of java submissions
+     * Your memory usage beats 24.19 % of java submissions (40.9 MB)
+     * 
+     * @param n
+     * @return
+     */
+    private int extracted3(int n) {
         int[] dp = new int[n + 1];
-        Arrays.fill(dp, max);
+        Arrays.fill(dp, Integer.MAX_VALUE - 1);
         dp[0] = 0;
-        for (int i = 0; i * i <= n; i++) {
-            for (int j = i * i; j <= n; j++) {
-                if (dp[j - i * i] != max) {
-                    dp[j] = Math.min(dp[j], dp[j - i * i] + 1);
-                }
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j * j <= i; j++) {
+                dp[i] = Math.min(dp[i], dp[i - j * j] + 1);
             }
         }
         return dp[n];

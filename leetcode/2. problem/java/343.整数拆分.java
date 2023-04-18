@@ -1,4 +1,3 @@
-import java.time.format.TextStyle;
 
 /*
  * @lc app=leetcode.cn id=343 lang=java
@@ -49,6 +48,9 @@ class Solution {
     }
 
     /**
+     * 50/50 cases passed (1 ms)
+     * Your runtime beats 78.95 % of java submissions
+     * Your memory usage beats 75.7 % of java submissions (38.1 MB)
      * 
      * @param n
      * @return

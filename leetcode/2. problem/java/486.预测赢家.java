@@ -1,4 +1,3 @@
-import javax.lang.model.element.Element;
 
 /*
  * @lc app=leetcode.cn id=486 lang=java

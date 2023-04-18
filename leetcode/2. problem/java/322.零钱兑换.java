@@ -18,8 +18,7 @@ class Solution {
 
     private int test(int[] coins, int amount) {
         int[] dp = new int[amount + 1];
-        int max = amount + 1;
-        Arrays.fill(dp, max);
+        Arrays.fill(dp, amount + 1);
         dp[0] = 0;
         for (int i = 1; i <= amount; i++) {
             for (int j = 0; j < coins.length; j++) {
@@ -28,7 +27,7 @@ class Solution {
                 }
             }
         }
-        return dp[amount] > amount ? -1 : dp[amount];
+        return dp[amount] == amount + 1 ? -1 : dp[amount];
     }
 
     /**

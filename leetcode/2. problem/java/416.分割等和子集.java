@@ -26,12 +26,11 @@ class Solution {
         }
         int half = sum / 2;
         boolean[][] dp = new boolean[len + 1][half + 1];
-
         for (int i = 1; i <= len; i++) {
             int curVal = nums[i - 1];
             for (int j = 0; j <= half; j++) {
                 dp[i][j] = dp[i - 1][j];
-                if (curVal == j) {
+                if (j == curVal) {
                     dp[i][j] = true;
                 }
                 if (curVal < j) {

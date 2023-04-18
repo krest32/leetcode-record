@@ -18,9 +18,8 @@ class Solution {
         int[][] dp = new int[m + 1][n + 1];
         int len = strs.length;
         for (int i = 0; i < len; i++) {
-            int[] nums = getZerosOnes(strs[i]);
-            int zeros = nums[0], ones = nums[1];
-            // 背包问题
+            int[] ans = getZerosOnes(strs[i]);
+            int zeros = ans[0], ones = ans[1];
             for (int j = m; j >= zeros; j--) {
                 for (int k = n; k >= ones; k--) {
                     dp[j][k] = Math.max(dp[j][k], dp[j - zeros][k - ones] + 1);

@@ -13,16 +13,17 @@ class Solution {
         // 1
         return test(amount, coins);
 
+
+
     }
 
     private int test(int amount, int[] coins) {
         int[] dp = new int[amount + 1];
-        // dp[i] += dp[i-coins[j]]
         dp[0] = 1;
-        for (int j = 0; j < coins.length; j++) {
+        for (int coin : coins) {
             for (int i = 0; i <= amount; i++) {
-                if (i >= coins[j]) {
-                    dp[i] += dp[i - coins[j]];
+                if (i >= coin) {
+                    dp[i] += dp[i - coin];
                 }
             }
         }

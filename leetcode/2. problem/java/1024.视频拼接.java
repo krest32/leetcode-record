@@ -21,14 +21,14 @@ class Solution {
         int[] dp = new int[time + 1];
         Arrays.fill(dp, Integer.MAX_VALUE - 1);
         dp[0] = 0;
-        for (int i = 1; i <= time; i++) {
+        for (int i = 0; i <= time; i++) {
             for (int[] clip : clips) {
-                if (clip[0] < i && clip[1] >= i) {
+                if (clip[0] < i && i <= clip[1]) {
                     dp[i] = Math.min(dp[i], dp[clip[0]] + 1);
                 }
             }
         }
-        return dp[time] == Integer.MAX_VALUE - 1 ? -1 : dp[time];
+        return dp[time] = dp[time] == Integer.MAX_VALUE - 1 ? -1 : dp[time];
     }
 
     /**

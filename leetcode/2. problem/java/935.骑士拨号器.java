@@ -1,5 +1,4 @@
 
-
 /*
  * @lc app=leetcode.cn id=935 lang=java
  *
@@ -36,7 +35,6 @@ class Solution {
         // 记忆化递归
         // return extracted2(N);
 
-        
     }
 
     /**
@@ -83,8 +81,7 @@ class Solution {
             for (int num = 0; num < 10; num++) {
                 // 再去遍历可以到达的种类数量
                 for (int arrive : path[num])
-                    dp[time][num] = (dp[time][num]
-                            + dp[time - 1][arrive]) % MOD;
+                    dp[time][num] = (dp[time][num] + dp[time - 1][arrive]) % MOD;
             }
         }
         int res = 0;
