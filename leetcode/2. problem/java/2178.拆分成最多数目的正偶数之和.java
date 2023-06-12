@@ -34,7 +34,6 @@ class Solution {
             }
             ans.add(even);
         }
-
         return ans;
     }
 }
