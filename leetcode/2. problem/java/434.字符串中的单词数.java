@@ -26,7 +26,7 @@ class Solution {
         String[] strArr = s.split(" ");
         int ans = 0;
         for (String tempStr : strArr) {
-            if (tempStr.length() > 0) {
+            if (null != tempStr && tempStr.length() > 0) {
                 ans++;
             }
         }

@@ -31,7 +31,6 @@ class Solution {
                 right++;
             }
         }
-        System.out.print(right);
         left = right;
         for (char ch : s.toCharArray()) {
             if (ch == '(') {

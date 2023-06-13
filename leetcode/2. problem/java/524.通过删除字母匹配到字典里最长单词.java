@@ -23,7 +23,7 @@ class Solution {
      * @return
      */
     private String extracted(String s, List<String> dictionary) {
-        String max_str = "";
+        String msxStr = "";
         for (int i = 0; i < dictionary.size(); i++) {
             String str = dictionary.get(i);
             // 判断能否通过删除得到
@@ -32,14 +32,13 @@ class Solution {
                  * 1.判断字符长度
                  * 2.判断字母序
                  */
-                if (str.length() > max_str.length()
-                        || (str.length() == max_str.length()
-                                && str.compareTo(max_str) < 0)) {
-                    max_str = str;
+                if (str.length() > msxStr.length()
+                        || (str.length() == msxStr.length() && str.compareTo(msxStr) < 0)) {
+                    msxStr = str;
                 }
             }
         }
-        return max_str;
+        return msxStr;
     }
 
     boolean isLongestWord(String s, String str) {

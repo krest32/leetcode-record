@@ -37,6 +37,18 @@ class Solution {
 
     }
 
+    private ListNode test1(ListNode head) {
+        ListNode pre = null;
+        ListNode cur = head;
+        while (cur != null) {
+            ListNode temp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = temp;
+        }
+        return pre;
+    }
+
     /**
      * 28/28 cases passed (1 ms)
      * Your runtime beats 4.61 % of java submissions
@@ -61,18 +73,6 @@ class Solution {
             cur = cur.next;
         }
         return pre.next;
-    }
-
-    private ListNode test1(ListNode head) {
-        ListNode pre = null;
-        ListNode cur = head;
-        while (cur != null) {
-            ListNode next = cur.next;
-            cur.next = pre;
-            pre = cur;
-            cur = next;
-        }
-        return pre;
     }
 
     /**

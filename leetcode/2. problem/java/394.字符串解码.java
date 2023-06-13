@@ -18,7 +18,8 @@ class Solution {
         // return extracted(s);
 
         // 2. 栈操作
-        return extracted2(s);
+        // return extracted2(s);
+
     }
 
     /**

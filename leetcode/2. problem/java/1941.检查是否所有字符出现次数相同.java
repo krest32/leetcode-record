@@ -13,7 +13,7 @@ class Solution {
 
     /**
      * 134/134 cases passed (1 ms)
-     * Your runtime beats 100 % of java submissions
+     * Your runtime bea、ts 100 % of java submissions
      * Your memory usage beats 75.93 % of java submissions (39.5 MB)
      * 
      * @param s

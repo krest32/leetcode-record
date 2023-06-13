@@ -10,7 +10,6 @@ import java.util.List;
 // @lc code=start
 class Solution {
     public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
-        int n = candies.length;
         int maxValue = 0;
         for (int candy : candies) {
             maxValue = Math.max(maxValue, candy);
