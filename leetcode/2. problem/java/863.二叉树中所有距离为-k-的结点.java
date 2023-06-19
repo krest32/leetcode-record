@@ -29,7 +29,49 @@ class Solution {
     public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
 
         // 树的反向查找
-        return extracted(root, target, k);
+        // return extracted(root, target, k);
+
+        // test
+        return test(root, target, k);
+    }
+
+    private List<Integer> test(TreeNode root, TreeNode target, int k) {
+        findParentTest(root);
+        findAnsTest(target, null, 0, k);
+        return ans;
+    }
+
+    private void findAnsTest(TreeNode node, TreeNode from, int depth, int k) {
+        if (node == null) {
+            return;
+        }
+        if (depth == k) {
+            ans.add(node.val);
+            return;
+        }
+
+        if (node.left != from) {
+            findAnsTest(node.left, node, depth + 1, k);
+        }
+
+        if (node.right != from) {
+            findAnsTest(node.right, node, depth + 1, k);
+        }
+
+        if (parents.get(node.val) != from) {
+            findAnsTest(parents.get(node.val), node, depth + 1, k);
+        }
+    }
+
+    private void findParentTest(TreeNode root) {
+        if (root.left != null) {
+            parents.put(root.left.val, root);
+            findParentTest(root.left);
+        }
+        if (root.right != null) {
+            parents.put(root.right.val, root);
+            findParentTest(root.right);
+        }
     }
 
     /**
@@ -73,14 +115,14 @@ class Solution {
             ans.add(node.val);
             return;
         }
-
+        // 向下查找
         if (node.left != from) {
             findAns(node.left, node, depth + 1, k);
         }
         if (node.right != from) {
             findAns(node.right, node, depth + 1, k);
         }
-        // 树的反向查找
+        // 向上查找
         if (parents.get(node.val) != from) {
             findAns(parents.get(node.val), node, depth + 1, k);
         }

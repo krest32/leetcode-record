@@ -44,10 +44,11 @@ class Solution {
         if (root2 == null) {
             return root1;
         }
-        TreeNode root = new TreeNode(root1.val + root2.val);
-        root.left = test(root1.left, root2.left);
-        root.right = test(root1.right, root2.right);
-        return root;
+        TreeNode ans = new TreeNode(root1.val + root2.val);
+        ans.left = test(root1.left, root2.left);
+        ans.right = test(root1.right, root2.right);
+        return ans;
+
     }
 
     /**
