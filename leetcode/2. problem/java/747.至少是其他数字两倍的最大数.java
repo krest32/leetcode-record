@@ -16,7 +16,7 @@ class Solution {
         // return extracted(nums);
 
         // 哈希
-        // return extracted2(nums);
+        return extracted2(nums);
 
     }
 
