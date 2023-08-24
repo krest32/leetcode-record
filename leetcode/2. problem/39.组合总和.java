@@ -11,11 +11,12 @@ import java.util.List;
 class Solution {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         // 回溯
-        // return extracted(candidates, target);
-
+        return extracted(candidates, target);
+        
         // test
-        return test(candidates, target);
+        // return test(candidates, target);
     }
+
 
     private List<List<Integer>> test(int[] candidates, int target) {
         List<List<Integer>> ans = new ArrayList<>();
@@ -44,6 +45,7 @@ class Solution {
             }
         }
     }
+
 
     /**
      * 160/160 cases passed (1 ms)
