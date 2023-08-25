@@ -56,7 +56,7 @@ class Solution {
      * @param obstacleGrid
      * @return
      */
-    private int extracted2(int[][] numss) {
+    private int extracted2(int[][] nums) {
         int m = nums.length, n = nums[0].length;
         int[][] dp = new int[m][n];
         // 初始化 0 值
