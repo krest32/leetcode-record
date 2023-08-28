@@ -9,10 +9,10 @@ class Solution {
     public int findLength(int[] A, int[] B) {
 
         // 动态规划 倒序
-        // return extracted1(A, B);
+        return extracted1(A, B);
 
         // 动态规划 正序
-        return extracted2(A, B);
+        // return extracted2(A, B);
 
         
     }

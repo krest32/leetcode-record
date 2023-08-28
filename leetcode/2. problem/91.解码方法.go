@@ -13,19 +13,18 @@ func numDecodings(s string) int {
 }
 
 func func2(str string) int {
-	n := len(str)
-	dp := make([]int, n+1)
+	length := len(str)
+	dp := make([]int, length+1)
 	dp[0] = 1
-	for i := 1; i <= n; i++ {
+	for i := 1; i <= length; i++ {
 		if str[i-1] != '0' {
 			dp[i] += dp[i-1]
 		}
-
-		if i > 1 && str[i-2] != '0' && ((str[i-2]-'0')*10+(str[i-1]-'0') <= 26) {
+		if i > 1 && str[i-2] != '0' && (str[i-2]-'0')*10+str[i-1]-'0' <= 26 {
 			dp[i] += dp[i-2]
 		}
 	}
-	return dp[n]
+	return dp[length]
 }
 
 // 269/269 cases passed (0 ms)
