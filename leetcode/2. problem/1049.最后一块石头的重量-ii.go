@@ -3,10 +3,11 @@
  *
  * [1049] 最后一块石头的重量 II
  */
+package main
 
 // @lc code=start
 func lastStoneWeightII(stones []int) int {
 
 }
-// @lc code=end
 
+// @lc code=end
