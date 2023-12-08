@@ -33,10 +33,28 @@ class Solution {
 
     public List<Integer> postorderTraversal(TreeNode root) {
         // 递归
-        return extracted(root);
+        // return extracted(root);
 
         // 迭代
         // return extracted2(root);
+
+        // test
+        return test(root);
+    }
+
+    private List<Integer> test(TreeNode root) {
+        List<Integer> ans = new ArrayList<>();
+        getAllData(root, ans);
+        return ans;
+    }
+
+    private void getAllData(TreeNode root, List<Integer> ans) {
+        if (root == null) {
+            return;
+        }
+        getAllData(root.left, ans);
+        getAllData(root.right, ans);
+        ans.add(root.val);
     }
 
     /**

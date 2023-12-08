@@ -45,10 +45,10 @@ class Solution {
         queue.offer(root);
         while (!queue.isEmpty()) {
             int size = queue.size();
-            List<Integer> tempArr = new ArrayList<>();
+            List<Integer> tempAns = new ArrayList<>();
             for (int i = 0; i < size; i++) {
                 TreeNode node = queue.poll();
-                tempArr.add(node.val);
+                tempAns.add(node.val);
                 if (node.left != null) {
                     queue.offer(node.left);
                 }
@@ -56,7 +56,7 @@ class Solution {
                     queue.offer(node.right);
                 }
             }
-            ans.add(tempArr);
+            ans.add(tempAns);
         }
         return ans;
     }

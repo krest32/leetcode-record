@@ -34,12 +34,42 @@ class Node {
 class Solution {
     public List<List<Integer>> levelOrder(Node root) {
         // 队列实现层次遍历
-        return extracted(root);
+        // return extracted(root);
+
+        return test(root);
+    }
+
+    private List<List<Integer>> test(Node root) {
+        List<List<Integer>> ans = new ArrayList<>();
+        if (root == null) {
+            return ans;
+        }
+        Queue<Node> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            List<Integer> tempAns = new ArrayList<>();
+            for (int i = 0; i < size; i++) {
+                Node node = queue.poll();
+                tempAns.add(node.val);
+                List<Node> children = node.children;
+                for (int j = 0; j < children.size(); j++) {
+                    if (children.get(j) != null) {
+                        queue.offer(children.get(j));
+                    }
+                }
+            }
+            ans.add(tempAns);
+        }
+
+        return ans;
     }
 
     /**
-     * Your runtime beats 75.04 % of java submissions
-     * Your memory usage beats 17.38 % of java submissions (42.5 MB)
+     * 
+     * 38/38 cases passed (3 ms)
+     * Your runtime beats 89.17 % of java submissions
+     * Your memory usage beats 19.79 % of java submissions (43.3 MB)
      * 
      * @param root
      * @return
