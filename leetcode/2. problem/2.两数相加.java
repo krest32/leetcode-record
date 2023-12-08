@@ -1,4 +1,3 @@
-import java.util.List;
 
 import entrty.ListNode;
 
@@ -23,10 +22,10 @@ class Solution {
     // 1
     return test(l1, l2);
   }
-
+  
   private ListNode test(ListNode l1, ListNode l2) {
-    ListNode dummy = new ListNode(-1);
-    ListNode cur = dummy;
+    ListNode dummyNode = new ListNode(-1);
+    ListNode cur = dummyNode;
     int carry = 0;
     while (l1 != null || l2 != null) {
       int n1 = l1 == null ? 0 : l1.val;
@@ -36,6 +35,7 @@ class Solution {
       sum = sum % 10;
       cur.next = new ListNode(sum);
       cur = cur.next;
+
       if (l1 != null) {
         l1 = l1.next;
       }
@@ -44,9 +44,10 @@ class Solution {
       }
     }
     if (carry == 1) {
-      cur.next = new ListNode(1);
+      cur.next = new ListNode(carry);
     }
-    return dummy.next;
+
+    return dummyNode.next;
   }
 
   /**

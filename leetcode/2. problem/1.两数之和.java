@@ -9,7 +9,7 @@ import java.util.Map;
 
 // @lc code=start
 class Solution {
-          public int[] twoSum(int[] nums, int target) {
+  public int[] twoSum(int[] nums, int target) {
     // return extracted1(nums, target);
 
     // return extracted2(nums, target);
@@ -23,10 +23,11 @@ class Solution {
     for (int i = 0; i < nums.length; i++) {
       if (map.containsKey(target - nums[i])) {
         return new int[] { map.get(target - nums[i]), i };
+      } else {
+        map.put(nums[i], i);
       }
-      map.put(nums[i], i);
     }
-    return new int[0];
+    return new int[] {};
   }
 
   /**
