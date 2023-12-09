@@ -41,28 +41,6 @@ class Solution {
         return ans;
     }
 
-    private void findAnsTest(TreeNode node, TreeNode from, int depth, int k) {
-        if (node == null) {
-            return;
-        }
-        if (depth == k) {
-            ans.add(node.val);
-            return;
-        }
-
-        if (node.left != from) {
-            findAnsTest(node.left, node, depth + 1, k);
-        }
-
-        if (node.right != from) {
-            findAnsTest(node.right, node, depth + 1, k);
-        }
-
-        if (parents.get(node.val) != from) {
-            findAnsTest(parents.get(node.val), node, depth + 1, k);
-        }
-    }
-
     private void findParentTest(TreeNode root) {
         if (root.left != null) {
             parents.put(root.left.val, root);
@@ -71,6 +49,25 @@ class Solution {
         if (root.right != null) {
             parents.put(root.right.val, root);
             findParentTest(root.right);
+        }
+    }
+
+    private void findAnsTest(TreeNode node, TreeNode from, int i, int k) {
+        if (node == null) {
+            return;
+        }
+        if (i == k) {
+            ans.add(node.val);
+            return;
+        }
+        if (node.left != from) {
+            findAnsTest(node.left, node, i + 1, k);
+        }
+        if (node.right != from) {
+            findAnsTest(node.right, node, i + 1, k);
+        }
+        if (parents.get(node.val) != from) {
+            findAnsTest(parents.get(node.val), node, i + 1, k);
         }
     }
 

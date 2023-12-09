@@ -30,6 +30,23 @@ class Solution {
     Set<Integer> set = new HashSet<Integer>();
 
     public boolean findTarget(TreeNode root, int k) {
+        // return extracted(root, k);
+
+        return test(root, k);
+    }
+
+    private boolean test(TreeNode root, int k) {
+        if (root == null) {
+            return false;
+        }
+        if (set.contains(k - root.val)) {
+            return true;
+        }
+        set.add(root.val);
+        return test(root.left, k) || test(root.right, k);
+    }
+
+    private boolean extracted(TreeNode root, int k) {
         if (root == null) {
             return false;
         }

@@ -29,11 +29,40 @@ import entrty.TreeNode;
  */
 class Solution {
     public List<Double> averageOfLevels(TreeNode root) {
+
         // 广度优先遍历, 解决的思路会更加清晰一些
-        return extracted(root);
+        // return extracted(root);
 
         // 深度优先遍历
         // return extracted2(root);
+
+        //
+        return test(root);
+    }
+
+    private List<Double> test(TreeNode root) {
+        List<Double> ans = new ArrayList<>();
+        if (root == null) {
+            return ans;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            double sum = 0;
+            for (int i = 0; i < size; i++) {
+                TreeNode cuTreeNode = queue.poll();
+                sum += cuTreeNode.val;
+                if (cuTreeNode.left != null) {
+                    queue.offer(cuTreeNode.left);
+                }
+                if (cuTreeNode.right != null) {
+                    queue.offer(cuTreeNode.right);
+                }
+            }
+            ans.add(sum / size);
+        }
+        return ans;
     }
 
     /**
