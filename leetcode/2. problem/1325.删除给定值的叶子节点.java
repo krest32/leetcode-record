@@ -24,7 +24,7 @@ import entrty.TreeNode;
  */
 class Solution {
     public TreeNode removeLeafNodes(TreeNode root, int target) {
-        // 深度有限
+        
         // return extracted(root, target);
 
         return test(root, target);
