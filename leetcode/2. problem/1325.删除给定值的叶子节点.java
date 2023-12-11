@@ -32,14 +32,15 @@ class Solution {
 
     private TreeNode test(TreeNode root, int target) {
         if (root == null) {
-            return root;
+            return null;
         }
         root.left = test(root.left, target);
         root.right = test(root.right, target);
         if (root.left == null && root.right == null && root.val == target) {
             return null;
+        } else {
+            return root;
         }
-        return root;
     }
 
     /**

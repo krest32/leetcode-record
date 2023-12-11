@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-
 import entrty.ListNode;
 
 /*
@@ -73,14 +72,14 @@ class Solution {
         for (int i = 1; i < left; i++) {
             leftHead = leftHead.next;
         }
-
         ListNode cur = leftHead.next;
         for (int i = 0; i < right - left; i++) {
-            ListNode temp = cur.next;
-            cur.next = temp.next;
-            temp.next = leftHead.next;
-            leftHead.next = temp;
+            ListNode next = cur.next;
+            cur.next = next.next;
+            next.next = leftHead.next;
+            leftHead.next = next;
         }
+
         return pre.next;
     }
 

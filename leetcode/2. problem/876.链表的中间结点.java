@@ -23,7 +23,19 @@ class Solution {
         // return extracted(head);
 
         // 快慢指针
-        return extracted2(head);
+        // return extracted2(head);
+
+        //
+        return test(head);
+    }
+
+    private ListNode test(ListNode head) {
+        ListNode slow = head, fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
     }
 
     private ListNode extracted2(ListNode head) {

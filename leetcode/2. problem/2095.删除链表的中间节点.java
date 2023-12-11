@@ -19,15 +19,25 @@ import entrty.ListNode;
  */
 class Solution {
     public ListNode deleteMiddle(ListNode head) {
-        //  迭代
+        // 迭代
         // return getFast(head);
-        
+
         // test
         return test(head);
     }
 
     private ListNode test(ListNode head) {
-        return null;
+        if (head.next == null) {
+            return null;
+        }
+        ListNode fast = new ListNode(-1, head);
+        ListNode slow = new ListNode(-1, head);
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        slow.next = slow.next.next;
+        return head;
     }
 
     private ListNode getFast(ListNode head) {
@@ -38,10 +48,11 @@ class Solution {
         ListNode fast = new ListNode(), slow = new ListNode();
         fast.next = head;
         slow.next = head;
-        while(fast.next != null && fast.next.next != null){
+        while (fast.next != null && fast.next.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
+        System.out.println(slow.next.val);
         slow.next = slow.next.next;
         return head;
     }

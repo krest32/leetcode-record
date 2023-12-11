@@ -31,24 +31,35 @@ class Solution {
     }
 
     private ListNode test(ListNode head) {
-        Map<Integer, ListNode> map = new HashMap<>();
         ListNode pre = new ListNode(-1, head);
+        Map<Integer, ListNode> map = new HashMap<>();
+
         int sum = 0;
-        ListNode dummy = pre;
-        while (dummy != null) {
-            sum += dummy.val;
-            map.put(sum, dummy);
+        ListNode cur = pre;
+        while (cur != null) {
+            sum += cur.val;
+            map.put(sum, cur);
+            cur = cur.next;
         }
 
-        dummy = pre;
         sum = 0;
-        while (dummy != null) {
-            sum += dummy.val;
-            dummy.next = map.get(sum).next;
+        cur = pre;
+        while (cur != null) {
+            sum += cur.val;
+            cur.next = map.get(sum).next;
+            cur = cur.next;
         }
-        return dummy.next;
+        return pre.next;
     }
 
+    /**
+     * 105/105 cases passed (2 ms)
+     * Your runtime beats 91.26 % of java submissions
+     * Your memory usage beats 10.11 % of java submissions (42.3 MB)
+     * 
+     * @param head
+     * @return
+     */
     private ListNode extracted(ListNode head) {
         ListNode dummy = new ListNode(-1);
         dummy.next = head;

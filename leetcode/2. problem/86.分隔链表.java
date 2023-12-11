@@ -29,25 +29,23 @@ class Solution {
     }
 
     private ListNode test(ListNode head, int x) {
-        ListNode small = new ListNode(0);
-        ListNode smallHead = small;
-        ListNode large = new ListNode(0);
-        ListNode largeHead = large;
+        ListNode smallHead = new ListNode(-1);
+        ListNode smallCur = smallHead;
+        ListNode largeHead = new ListNode(-1);
+        ListNode largeCur = largeHead;
         while (head != null) {
-            if (head.val < x) {
-                small.next = head;
-                small = small.next;
+            int val = head.val;
+            if (val<x) {
+                smallCur.next = head;
+                smallCur = smallCur.next;
             }else{
-                large.next = head;
-                large = large.next;
+                largeCur.next = head;
+                largeCur = largeCur.next;
             }
             head = head.next;
         }
-        // 去掉链表中的环
-        large.next = null;
-        // 拼接链表
-        small.next = largeHead.next;
-        // 返回数据
+        smallCur.next = largeHead.next;
+        largeCur.next = null;
         return smallHead.next;
     }
 
@@ -69,7 +67,7 @@ class Solution {
             if (head.val < x) {
                 small.next = head;
                 small = small.next;
-            }else{
+            } else {
                 large.next = head;
                 large = large.next;
             }

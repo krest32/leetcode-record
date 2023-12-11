@@ -17,6 +17,44 @@ import entrty.ListNode;
  */
 class Solution {
     public ListNode oddEvenList(ListNode head) {
+        // 使用额外空间
+        // return method1(head);
+
+        // 链表迭代
+        return method2(head);
+    }
+
+    /**
+     * 70/70 cases passed (0 ms)
+     * Your runtime beats 100 % of java submissions
+     * Your memory usage beats 6.08 % of java submissions (42.5 MB)
+     * 
+     * @param head
+     * @return
+     */
+    private ListNode method2(ListNode head) {
+        ListNode evenHead = new ListNode(-1);
+        ListNode even = evenHead;
+        ListNode oddHead = new ListNode(-1);
+        ListNode odd = oddHead;
+        int flag = 0;
+        while (head != null) {
+            if (flag % 2 == 0) {
+                even.next = head;
+                even = even.next;
+            } else {
+                odd.next = head;
+                odd = odd.next;
+            }
+            head = head.next;
+            flag++;
+        }
+        odd.next = null;
+        even.next = oddHead.next;
+        return evenHead.next;
+    }
+
+    private ListNode method1(ListNode head) {
         // 奇数
         List<ListNode> odd = new ArrayList<>();
         // 偶数
@@ -52,7 +90,6 @@ class Solution {
             cur = cur.next;
         }
         return pre.next;
-
     }
 }
 // @lc code=end

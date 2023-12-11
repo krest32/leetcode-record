@@ -31,16 +31,15 @@ class Solution {
         if (head == null) {
             return head;
         }
-
         ListNode pre = new ListNode(-1, head);
         ListNode cur = pre;
         while (cur.next != null && cur.next.next != null) {
             if (cur.next.val == cur.next.next.val) {
-                int v = cur.next.val;
-                while (cur.next != null && cur.next.val == v) {
+                int val = cur.next.val;
+                while (cur.next != null && val == cur.next.val) {
                     cur.next = cur.next.next;
                 }
-            } else {
+            }else{
                 cur = cur.next;
             }
         }
