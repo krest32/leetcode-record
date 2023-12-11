@@ -31,6 +31,24 @@ class Solution {
         return test(head, left, right);
     }
 
+    private ListNode test(ListNode head, int left, int right) {
+        ListNode pre = new ListNode(-1, head);
+        ListNode leftHead = pre;
+        for (int i = 1; i < left; i++) {
+            leftHead = leftHead.next;
+        }
+
+        ListNode cur = leftHead.next;
+        for (int i = 0; i < right - left; i++) {
+            ListNode temp = cur.next;
+            cur.next = temp.next;
+            temp.next = leftHead.next;
+            leftHead.next = temp;
+        }
+
+        return pre.next;
+    }
+
     /**
      * 44/44 cases passed (0 ms)
      * Your runtime beats 100 % of java submissions
@@ -63,23 +81,6 @@ class Solution {
         }
 
         leftHead.next = cur;
-        return pre.next;
-    }
-
-    private ListNode test(ListNode head, int left, int right) {
-        ListNode pre = new ListNode(-1, head);
-        ListNode leftHead = pre;
-        for (int i = 1; i < left; i++) {
-            leftHead = leftHead.next;
-        }
-        ListNode cur = leftHead.next;
-        for (int i = 0; i < right - left; i++) {
-            ListNode next = cur.next;
-            cur.next = next.next;
-            next.next = leftHead.next;
-            leftHead.next = next;
-        }
-
         return pre.next;
     }
 

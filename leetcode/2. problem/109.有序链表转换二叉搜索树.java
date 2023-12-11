@@ -47,7 +47,6 @@ class Solution {
             return null;
         }
         ListNode mid = getMidTest(left, right);
-
         TreeNode root = new TreeNode(mid.val);
         root.left = test(left, mid);
         root.right = test(mid.next, right);
@@ -55,11 +54,10 @@ class Solution {
     }
 
     private ListNode getMidTest(ListNode left, ListNode right) {
-        ListNode slow = left;
-        ListNode fast = left;
+        ListNode slow = left, fast = left;
         while (fast != right && fast.next != right) {
-            fast = fast.next.next;
             slow = slow.next;
+            fast = fast.next.next;
         }
         return slow;
     }

@@ -32,26 +32,25 @@ class Solution {
             return head;
         }
         int len = 1;
-        ListNode cur = head;
-        while (cur.next != null) {
-            cur = cur.next;
+        ListNode temp = head;
+        while (temp.next != null) {
+            temp = temp.next;
             len++;
         }
+
         k = len - k % len;
         if (k == len) {
             return head;
         }
 
-        // 拼接形成一个环形列表
-        cur.next = head;
+        temp.next = head;
         while (k > 0) {
-            cur = cur.next;
+            temp = temp.next;
             k--;
         }
-        ListNode ret = cur.next;
-        cur.next = null;
+        ListNode ret = temp.next;
+        temp.next = null;
         return ret;
-
     }
 
     private ListNode extracted(ListNode head, int k) {
