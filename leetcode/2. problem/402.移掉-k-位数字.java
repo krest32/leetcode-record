@@ -10,6 +10,8 @@ import java.util.LinkedList;
 // @lc code=start
 class Solution {
     public String removeKdigits(String num, int k) {
+        // 原理：如果当前的数字后一个数字大，那么就移除当前的数字
+
         // 双端队列
         // return extracted(num, k);
 

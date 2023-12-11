@@ -25,12 +25,27 @@ class Solution {
                         return Double.compare(o2, o1);
                     }
                 });
-        return 0;
+
+        Double sum = 0d;
+        for (int num : nums) {
+            sum += num;
+            queue.offer((double) num);
+        }
+        double half = sum / 2;
+        int count = 0;
+        while (sum > half && !queue.isEmpty()) {
+            double halfNum = queue.poll() / 2;
+            sum -= halfNum;
+            queue.offer(halfNum);
+            count++;
+        }
+        return count;
     }
 
     /**
-     * Your runtime beats 18.53 % of java submissions
-     * Your memory usage beats 5 % of java submissions (61.8 MB)
+     * 62/62 cases passed (184 ms)
+     * Your runtime beats 26.53 % of java submissions
+     * Your memory usage beats 89.91 % of java submissions (55 MB)
      * 
      * @param nums
      * @return
@@ -44,16 +59,17 @@ class Solution {
                         return Double.compare(o2, o1);
                     }
                 });
+
         Double sum = 0d;
         for (int num : nums) {
             sum += num;
             queue.offer((double) num);
         }
-        Double half = sum / 2;
+        double half = sum / 2;
         int count = 0;
         while (sum > half && !queue.isEmpty()) {
-            Double halfNum = queue.peek() / 2;
-            sum = sum - (queue.poll() / 2);
+            double halfNum = queue.poll() / 2;
+            sum -= halfNum;
             queue.offer(halfNum);
             count++;
         }

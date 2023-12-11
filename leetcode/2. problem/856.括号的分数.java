@@ -23,18 +23,17 @@ class Solution {
             if (ch == '(') {
                 stack.push(0);
             } else {
-                // 
-                int w = stack.pop();
-                // 上一个得分
-                int v = stack.pop();
-                v = v + Math.max(2 * w, 1);
-                stack.push(v);
+                
+                int a = stack.pop();
+                int b = stack.pop();
+                stack.push(b + Math.max(2 * a, 1));
             }
         }
         return stack.pop();
     }
 
     /**
+     * 86/86 cases passed (1 ms)
      * Your runtime beats 42 % of java submissions
      * Your memory usage beats 79.85 % of java submissions (38.7 MB)
      * 

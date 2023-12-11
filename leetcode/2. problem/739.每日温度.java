@@ -13,7 +13,25 @@ class Solution {
         // return extracted(temperatures);
 
         // 暴力
-        return extracted2(temperatures);
+        // return extracted2(temperatures);
+
+        return test(temperatures);
+    }
+
+    private int[] test(int[] temperatures) {
+        int len = temperatures.length;
+        int[] ans = new int[len];
+
+        Stack<Integer> stack = new Stack<>();
+        for (int i = 0; i < len; i++) {
+            int temp = temperatures[i];
+            while (!stack.isEmpty() && temperatures[stack.peek()] < temp) {
+                int idx = stack.pop();
+                ans[idx] = i - idx;
+            }
+            stack.push(i);
+        }
+        return ans;
     }
 
     /**
@@ -41,14 +59,25 @@ class Solution {
         return ans;
     }
 
+    /**
+     * 48/48 cases passed (166 ms)
+     * Your runtime beats 32.84 % of java submissions
+     * Your memory usage beats 79.14 % of java submissions (53.9 MB)
+     * 
+     * @param temperatures
+     * @return
+     */
     private int[] extracted(int[] temperatures) {
         int len = temperatures.length;
+        // ans 中的默认值是0
         int[] ans = new int[len];
+        // stack 内部温度递增，记录的是温度在数组中的下标
         Stack<Integer> stack = new Stack<>();
         for (int i = 0; i < len; i++) {
             int temp = temperatures[i];
             while (!stack.isEmpty() && temp > temperatures[stack.peek()]) {
                 int preIndex = stack.pop();
+                // 更新 ans 中数组下标的数据
                 ans[preIndex] = i - preIndex;
             }
             stack.push(i);
