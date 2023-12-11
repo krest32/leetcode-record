@@ -19,6 +19,18 @@ import entrty.ListNode;
  */
 class Solution {
     public ListNode deleteMiddle(ListNode head) {
+        //  迭代
+        // return getFast(head);
+        
+        // test
+        return test(head);
+    }
+
+    private ListNode test(ListNode head) {
+        return null;
+    }
+
+    private ListNode getFast(ListNode head) {
         if (head.next == null) {
             return null;
         }

@@ -1,6 +1,4 @@
 
-import java.util.List;
-
 import entrty.ListNode;
 
 /*
@@ -34,6 +32,7 @@ class Solution {
 
         // 解法二： 递归
         // return extracted2(list1, list2);
+        
 
         // test
         return test(list1, list2);
@@ -49,7 +48,7 @@ class Solution {
             } else if (l2 == null) {
                 cur.next = l1;
                 l1 = l1.next;
-            } else if (l1.val < l2.val) {
+            } else if (l1.val <= l2.val) {
                 cur.next = l1;
                 l1 = l1.next;
             } else {
@@ -61,7 +60,6 @@ class Solution {
         return pre.next;
     }
 
-    
     /**
      * 递归
      * 

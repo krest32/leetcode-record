@@ -36,21 +36,17 @@ public class Solution {
     }
 
     private boolean test(ListNode head) {
-        if (head == null) {
+        if (head == null || head.next == null) {
             return false;
         }
-        if (head.next == null || head.next.next == null) {
-            return false;
-        }
-        ListNode slow = head.next;
-        ListNode fast = head.next.next;
-
+        ListNode slow = head;
+        ListNode fast = head.next;
         while (slow != fast) {
             if (fast.next == null || fast.next.next == null) {
                 return false;
             }
-            fast = fast.next.next;
             slow = slow.next;
+            fast = fast.next.next;
         }
         return true;
 
@@ -84,15 +80,12 @@ public class Solution {
      * @return
      */
     private boolean extracted(ListNode head) {
-        if (head == null || head.next == null)
+        if (head == null || head.next == null) {
             return false;
-        if (head == head.next && head.next != null)
-            return true;
-        // 定义连个快慢指针
+        }
         ListNode slow = head;
         ListNode fast = head.next;
         while (slow != fast) {
-            // 定义终止条件
             if (fast.next == null || fast.next.next == null) {
                 return false;
             }

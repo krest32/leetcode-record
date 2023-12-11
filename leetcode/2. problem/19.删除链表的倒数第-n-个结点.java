@@ -32,18 +32,18 @@ class Solution {
     }
 
     private ListNode test(ListNode head, int n) {
-        ListNode pre = new ListNode(-1, head);
-        ListNode idxNode = head;
+        ListNode pre = new ListNode(-1);
+        pre.next = head;
+        ListNode cur = head;
         for (int i = 0; i < n; i++) {
-            idxNode = idxNode.next;
+            cur = cur.next;
         }
-
-        ListNode temp = pre;
-        while (idxNode != null) {
-            idxNode = idxNode.next;
-            temp = temp.next;
+        ListNode dummy = pre;
+        while (cur != null) {
+            dummy = dummy.next;
+            cur = cur.next;
         }
-        temp.next = temp.next.next;
+        dummy.next = dummy.next.next;
         return pre.next;
     }
 

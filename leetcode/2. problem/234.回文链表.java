@@ -25,7 +25,9 @@ class Solution {
         // 虽然可以用过快慢指针的方式找到中间节点，但是实现方法过于繁琐
 
         // list 首尾双指针
-        return extracted(head);
+        // return extracted(head);
+
+        
     }
 
     /**

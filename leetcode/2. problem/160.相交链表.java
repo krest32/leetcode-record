@@ -37,17 +37,19 @@ public class Solution {
     }
 
     private ListNode test(ListNode headA, ListNode headB) {
-        ListNode A = headA, B = headB;
+        ListNode A = headA;
+        ListNode B = headB;
         while (A != B) {
-            if (A == null) {
-                A = headB;
-            } else {
+            if (A != null) {
                 A = A.next;
-            }
-            if (B == null) {
-                B = headA;
             } else {
+                A = headB;
+            }
+            
+            if (B != null) {
                 B = B.next;
+            } else {
+                B = headA;
             }
         }
         return A;

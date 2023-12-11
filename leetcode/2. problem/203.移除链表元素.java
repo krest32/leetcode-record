@@ -32,12 +32,13 @@ class Solution {
     }
 
     private ListNode test(ListNode head, int val) {
-        ListNode pre = new ListNode(-1, head);
+        ListNode pre = new ListNode(-1);
         ListNode cur = pre;
+        cur.next = head;
         while (cur.next != null) {
             if (cur.next.val == val) {
                 cur.next = cur.next.next;
-            } else {
+            }else{
                 cur = cur.next;
             }
         }
