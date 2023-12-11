@@ -19,11 +19,29 @@ import entrty.ListNode;
  */
 class Solution {
     public ListNode removeElements(ListNode head, int val) {
+        // o(1)的时间复杂度，o(1)常量空间
+
         // 迭代
         // return extracted(head, val);
 
         // 递归
-        return extracted2(head, val);
+        // return extracted2(head, val);
+
+        //
+        return test(head, val);
+    }
+
+    private ListNode test(ListNode head, int val) {
+        ListNode pre = new ListNode(-1, head);
+        ListNode cur = pre;
+        while (cur.next != null) {
+            if (cur.next.val == val) {
+                cur.next = cur.next.next;
+            } else {
+                cur = cur.next;
+            }
+        }
+        return pre.next;
     }
 
     /**

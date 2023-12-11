@@ -25,12 +25,13 @@ import entrty.ListNode;
 public class Solution {
 
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        // 要求时间复杂度是 o(m+n), 空间复杂度是 o(1) 常量空间
+
         // 解法一 迭代
         // return extracted(headA, headB);
 
         // 解法二 哈希
         // return extracted2(headA, headB);
-
         return test(headA, headB);
 
     }
@@ -38,15 +39,15 @@ public class Solution {
     private ListNode test(ListNode headA, ListNode headB) {
         ListNode A = headA, B = headB;
         while (A != B) {
-            if (A != null) {
-                A = A.next;
-            } else {
+            if (A == null) {
                 A = headB;
-            }
-            if (B != null) {
-                B = B.next;
             } else {
+                A = A.next;
+            }
+            if (B == null) {
                 B = headA;
+            } else {
+                B = B.next;
             }
         }
         return A;

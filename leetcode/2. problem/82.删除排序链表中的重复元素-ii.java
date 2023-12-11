@@ -1,5 +1,3 @@
-import java.util.List;
-
 import entrty.ListNode;
 
 /*
@@ -33,12 +31,13 @@ class Solution {
         if (head == null) {
             return head;
         }
+
         ListNode pre = new ListNode(-1, head);
         ListNode cur = pre;
         while (cur.next != null && cur.next.next != null) {
             if (cur.next.val == cur.next.next.val) {
-                int val = cur.next.val;
-                while (cur.next != null && cur.next.val == val) {
+                int v = cur.next.val;
+                while (cur.next != null && cur.next.val == v) {
                     cur.next = cur.next.next;
                 }
             } else {

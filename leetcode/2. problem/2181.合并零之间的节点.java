@@ -20,7 +20,27 @@ import entrty.ListNode;
 class Solution {
     public ListNode mergeNodes(ListNode head) {
         // 迭代
-        return extracted(head);
+        // return extracted(head);
+
+        return test(head);
+    }
+
+    private ListNode test(ListNode head) {
+        ListNode pre = new ListNode(-1);
+        ListNode cur = pre;
+        while (head.next != null) {
+            if (head.val == 0) {
+                head = head.next;
+                ListNode temp = new ListNode(head.val);
+                while (head.val != 0) {
+                    head = head.next;
+                    temp.val = temp.val + head.val;
+                }
+                cur.next = temp;
+                cur = cur.next;
+            }
+        }
+        return pre.next;
     }
 
     private ListNode extracted(ListNode head) {
@@ -29,13 +49,12 @@ class Solution {
         // 注意需要从head.next开始判断
         while (head.next != null) {
             if (head.val == 0) {
-                int sum = 0;
                 head = head.next;
+                ListNode temp = new ListNode(head.val);
                 while (head.val != 0) {
-                    sum += head.val;
                     head = head.next;
+                    temp.val = temp.val + head.val;
                 }
-                ListNode temp = new ListNode(sum);
                 cur.next = temp;
                 cur = cur.next;
             }

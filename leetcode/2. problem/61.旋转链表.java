@@ -28,6 +28,33 @@ class Solution {
     }
 
     private ListNode test(ListNode head, int k) {
+        if (k == 0 || head == null || head.next == null) {
+            return head;
+        }
+        int len = 1;
+        ListNode pre = head;
+        while (pre.next != null) {
+            pre = pre.next;
+            len++;
+        }
+        k = len - k % len;
+        if (k == len) {
+            return head;
+        }
+        
+
+        // 拼接头结点
+        pre.next = head;
+        while (k > 0) {
+            pre = pre.next;
+            k--;
+        }
+        ListNode ret = pre.next;
+        pre.next = null;
+        return ret;
+    }
+
+    private ListNode extracted(ListNode head, int k) {
         // 判断特殊情况
         if (k == 0 || head == null || head.next == null) {
             return head;
@@ -53,30 +80,6 @@ class Solution {
         }
         ListNode ret = pre.next;
         pre.next = null;
-        return ret;
-    }
-
-    private ListNode extracted(ListNode head, int k) {
-        if (k == 0 || head == null || head.next == null)
-            return head;
-        int n = 1;
-        ListNode iter = head;
-        while (iter.next != null) {
-            iter = iter.next;
-            n++;
-        }
-
-        int add = n - k % n;
-        if (add == n) {
-            return head;
-        }
-        // 首尾相连，形成环形链表
-        iter.next = head;
-        while (add-- > 0) {
-            iter = iter.next;
-        }
-        ListNode ret = iter.next;
-        iter.next = null;
         return ret;
     }
 }

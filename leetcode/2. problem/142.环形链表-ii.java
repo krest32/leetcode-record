@@ -23,7 +23,34 @@ import entrty.ListNode;
  */
 public class Solution {
     public ListNode detectCycle(ListNode head) {
-        return extracted(head);
+
+        // return extracted(head);
+
+        //
+        return test(head);
+
+    }
+
+    private ListNode test(ListNode head) {
+        ListNode fast = head, slow = head;
+        while (true) {
+            if (fast == null || fast.next == null) {
+                return null;
+            }
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+                break;
+            }
+        }
+
+        // 寻找重复节点
+        fast = head;
+        while (slow != fast) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+        return fast;
     }
 
     private ListNode extracted(ListNode head) {

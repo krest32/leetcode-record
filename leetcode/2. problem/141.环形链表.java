@@ -23,6 +23,7 @@ import entrty.ListNode;
  */
 public class Solution {
     public boolean hasCycle(ListNode head) {
+        // 使用 o(1) 常量空间
 
         // 使用迭代方式 (快慢指针)--> 最优解
         // return extracted(head);
@@ -35,23 +36,24 @@ public class Solution {
     }
 
     private boolean test(ListNode head) {
-        if (head == null || head.next == null) {
+        if (head == null) {
             return false;
         }
-        if (head == head.next) {
-            return true;
-
+        if (head.next == null || head.next.next == null) {
+            return false;
         }
-        ListNode slow = head;
-        ListNode fast = head.next;
+        ListNode slow = head.next;
+        ListNode fast = head.next.next;
+
         while (slow != fast) {
             if (fast.next == null || fast.next.next == null) {
                 return false;
             }
-            slow = slow.next;
             fast = fast.next.next;
+            slow = slow.next;
         }
         return true;
+
     }
 
     /**

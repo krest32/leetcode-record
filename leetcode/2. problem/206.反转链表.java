@@ -23,6 +23,7 @@ import entrty.ListNode;
  */
 class Solution {
     public ListNode reverseList(ListNode head) {
+        // 最好不要使用额外的空间
         // 迭代
         // return extracted(head);
 
@@ -41,10 +42,10 @@ class Solution {
         ListNode pre = null;
         ListNode cur = head;
         while (cur != null) {
-            ListNode temp = cur.next;
+            ListNode next = cur.next;
             cur.next = pre;
             pre = cur;
-            cur = temp;
+            cur = next;
         }
         return pre;
     }

@@ -26,8 +26,8 @@ class Solution {
     private ListNode test(ListNode head) {
         ListNode pre = new ListNode(-101, head);
         ListNode cur = pre;
-        while (cur.next != null) {
-            if (cur.val == cur.next.val) {
+        while (cur.next != null && cur.next.next != null) {
+            if (cur.next.val == cur.next.next.val) {
                 cur.next = cur.next.next;
             } else {
                 cur = cur.next;
@@ -47,8 +47,8 @@ class Solution {
     private ListNode extracted(ListNode head) {
         ListNode pre = new ListNode(-101, head);
         ListNode cur = pre;
-        while (cur.next != null) {
-            if (cur.val == cur.next.val) {
+        while (cur.next != null && cur.next.next != null) {
+            if (cur.next.val == cur.next.next.val) {
                 cur.next = cur.next.next;
             } else {
                 cur = cur.next;

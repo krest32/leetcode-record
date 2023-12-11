@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Stack;
 import entrty.ListNode;
 
@@ -31,14 +32,15 @@ class Solution {
     }
 
     private ListNode test(ListNode head, int n) {
-        ListNode pre = new ListNode(0, head);
-        ListNode idx = head;
-        ListNode temp = pre;
+        ListNode pre = new ListNode(-1, head);
+        ListNode idxNode = head;
         for (int i = 0; i < n; i++) {
-            idx = idx.next;
+            idxNode = idxNode.next;
         }
-        while (idx != null) {
-            idx = idx.next;
+
+        ListNode temp = pre;
+        while (idxNode != null) {
+            idxNode = idxNode.next;
             temp = temp.next;
         }
         temp.next = temp.next.next;

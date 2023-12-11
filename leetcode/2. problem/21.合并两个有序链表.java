@@ -1,4 +1,6 @@
 
+import java.util.List;
+
 import entrty.ListNode;
 
 /*
@@ -47,7 +49,7 @@ class Solution {
             } else if (l2 == null) {
                 cur.next = l1;
                 l1 = l1.next;
-            } else if (l1.val <= l2.val) {
+            } else if (l1.val < l2.val) {
                 cur.next = l1;
                 l1 = l1.next;
             } else {
@@ -59,6 +61,7 @@ class Solution {
         return pre.next;
     }
 
+    
     /**
      * 递归
      * 
