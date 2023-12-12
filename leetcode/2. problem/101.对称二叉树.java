@@ -80,7 +80,9 @@ class Solution {
     }
 
     /**
-     * 递归
+     * 199/199 cases passed (0 ms)
+     * Your runtime beats 100 % of java submissions
+     * Your memory usage beats 5.4 % of java submissions (40 MB)
      * 
      * @param root1
      * @param root2

@@ -40,9 +40,9 @@ class Solution {
         if (root == null) {
             return true;
         }
-        int leftDepth = depth(root.left);
-        int rightDepth = depth(root.right);
-        return Math.abs(rightDepth - leftDepth) <= 1
+        int right = depth(root.right);
+        int left = depth(root.left);
+        return Math.abs(left - right) <= 1
                 && test(root.left)
                 && test(root.right);
 

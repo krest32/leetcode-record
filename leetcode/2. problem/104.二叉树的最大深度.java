@@ -41,9 +41,6 @@ class Solution {
         if (root == null) {
             return 0;
         }
-        if (root.left == null && root.right == null) {
-            return 1;
-        }
         return Math.max(test(root.left), test(root.right)) + 1;
     }
 
@@ -77,6 +74,14 @@ class Solution {
         return ans;
     }
 
+    /**
+     * 39/39 cases passed (0 ms)
+     * Your runtime beats 100 % of java submissions
+     * Your memory usage beats 13.99 % of java submissions (40.8 MB)
+     * 
+     * @param root
+     * @return
+     */
     private int maxLen(TreeNode root) {
         // 判空
         if (root == null)

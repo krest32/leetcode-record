@@ -50,7 +50,9 @@ class Solution {
         } else if (p == null || q == null) {
             return false;
         } else {
-            return p.val == q.val && test(p.left, q.left) && test(p.right, q.right);
+            return p.val == q.val
+                    && test(p.left, q.left)
+                    && test(p.right, q.right);
         }
     }
 

@@ -32,9 +32,10 @@ class Solution {
     }
 
     private boolean test(TreeNode root, long minValue, long maxValue) {
-        if (root == null)
+        if (root == null) {
             return true;
-        if (root.val <= minValue || root.val >= maxValue) {
+        }
+        if (root.val >= maxValue || root.val <= minValue) {
             return false;
         }
         return test(root.left, minValue, root.val)
