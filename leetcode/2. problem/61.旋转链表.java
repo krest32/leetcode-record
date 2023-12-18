@@ -31,26 +31,31 @@ class Solution {
         if (k == 0 || head == null || head.next == null) {
             return head;
         }
+        // 计数
         int len = 1;
-        ListNode temp = head;
-        while (temp.next != null) {
-            temp = temp.next;
+        ListNode cur = head;
+        while (cur.next != null) {
+            cur = cur.next;
             len++;
         }
 
+        // 如果 k= len 说明链表正好旋转了一周
         k = len - k % len;
         if (k == len) {
             return head;
         }
 
-        temp.next = head;
+        // 构建一个链表环
+        cur.next = head;
         while (k > 0) {
-            temp = temp.next;
+            cur = cur.next;
             k--;
         }
-        ListNode ret = temp.next;
-        temp.next = null;
-        return ret;
+        // 这一段比较难理解
+        ListNode ans = cur.next;
+        cur.next = null;
+        return ans;
+
     }
 
     private ListNode extracted(ListNode head, int k) {

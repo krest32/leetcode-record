@@ -39,13 +39,14 @@ public class Solution {
         if (head == null || head.next == null) {
             return false;
         }
-        ListNode slow = head, fast = head.next;
+        ListNode slow = head;
+        ListNode fast = head.next;
         while (slow != fast) {
-            if (fast.next == null || fast.next.next == null) {
+            if (fast == null || fast.next == null) {
                 return false;
             }
-            fast = fast.next.next;
             slow = slow.next;
+            fast = fast.next.next;
         }
         return true;
 

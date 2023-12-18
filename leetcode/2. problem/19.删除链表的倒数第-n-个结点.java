@@ -33,10 +33,11 @@ class Solution {
 
     private ListNode test(ListNode head, int n) {
         ListNode pre = new ListNode(-1, head);
-        ListNode cur = pre.next;
+        ListNode cur = head;
         for (int i = 0; i < n; i++) {
             cur = cur.next;
         }
+
         ListNode temp = pre;
         while (cur != null) {
             cur = cur.next;
@@ -44,6 +45,34 @@ class Solution {
         }
         temp.next = temp.next.next;
         return pre.next;
+    }
+
+    /**
+     * 
+     * 0 ms, 在所有 Java 提交中击败了100.00%的用户
+     * 内存消耗：39.3 MB, 在所有 Java 提交中击败了50.75%的用户
+     * 
+     * @param head
+     * @param n
+     * @return
+     */
+    private ListNode extracted(ListNode head, int n) {
+        // 需要注意边界问题。计算机计算是从0开始的，而我们数东西是从1开始的
+        ListNode dummy = new ListNode(0, head);
+        ListNode cur = head;
+        // 遍历使用，不能使用pre, 否则遍历的数量会不正确
+        for (int i = 0; i < n; i++) {
+            cur = cur.next;
+        }
+
+        // 结合包含前驱节点的链表进行工作
+        ListNode temp = dummy;
+        while (cur != null) {
+            cur = cur.next;
+            temp = temp.next;
+        }
+        temp.next = temp.next.next;
+        return dummy.next;
     }
 
     /**
@@ -71,29 +100,5 @@ class Solution {
         return dummy.next;
     }
 
-    /**
-     * 
-     * 0 ms, 在所有 Java 提交中击败了100.00%的用户
-     * 内存消耗：39.3 MB, 在所有 Java 提交中击败了50.75%的用户
-     * 
-     * @param head
-     * @param n
-     * @return
-     */
-    private ListNode extracted(ListNode head, int n) {
-        // 需要注意边界问题。计算机计算是从0开始的，而我们数东西是从1开始的
-        ListNode dummy = new ListNode(0, head);
-        ListNode cur = head;
-        ListNode temp = dummy;
-        for (int i = 0; i < n; i++) {
-            cur = cur.next;
-        }
-        while (cur != null) {
-            cur = cur.next;
-            temp = temp.next;
-        }
-        temp.next = temp.next.next;
-        return dummy.next;
-    }
 }
 // @lc code=end
