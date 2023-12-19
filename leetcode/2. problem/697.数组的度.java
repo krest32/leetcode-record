@@ -25,10 +25,10 @@ class Solution {
         Map<Integer, int[]> map = new HashMap<Integer, int[]>();
         int n = nums.length;
         /**
-         *  Map 记录的数组三个元素分别代表:
-         *  这个数出现的次数、
-         *  这个数在原数组中第一次出现的位置
-         *  和这个数在原数组中最后一次出现的位置
+         * Map 记录的数组三个元素分别代表:
+         * 这个数出现的次数、
+         * 这个数在原数组中第一次出现的位置
+         * 和这个数在原数组中最后一次出现的位置
          */
         for (int i = 0; i < n; i++) {
             if (map.containsKey(nums[i])) {

@@ -32,6 +32,7 @@ class Solution {
             // 这里就分为两种情况讨论，
             // 第一种，pieces[i].length>1，这种查看元素间的顺序是否严格对应arr的顺序
             if (pieces[i].length > 1) {
+                // 因为要判断数字是否是连续的，所以这里从1开始计数
                 for (int j = 1; j < pieces[i].length; j++) {
                     // 判段元素是否在arr中出现
                     if (indexs[pieces[i][j]] == -1 || indexs[pieces[i][j - 1]] == -1) {

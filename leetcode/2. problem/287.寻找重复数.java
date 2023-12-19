@@ -11,7 +11,30 @@ import java.util.Set;
 class Solution {
     public int findDuplicate(int[] nums) {
         // 哈希
-        return extracted(nums);
+        // return extracted(nums);
+
+        // return method2(nums);
+    }
+
+    /**
+     * Time Limit Exceeded
+     * 55/58 cases passed (N/A)
+     * 
+     * @param nums
+     * @return
+     */
+    private int method2(int[] nums) {
+        int len = nums.length;
+        for (int i = 0; i < len; i++) {
+            int a = nums[i];
+            for (int j = i + 1; j < len; j++) {
+                int b = nums[j];
+                if (a == b) {
+                    return a;
+                }
+            }
+        }
+        return -1;
     }
 
     /**

@@ -24,7 +24,7 @@ class Solution {
      */
     private List<String> extracted(String[] words1, String[] words2) {
         List<String> ret = new ArrayList<>();
-        // 统计words2字符数
+        // 统计words2字符数，某个子字符串的字符最多的数量
         int[] cnt = new int[26];
         for (int i = 0; i < words2.length; i++) {
             String temp = words2[i];
@@ -48,6 +48,7 @@ class Solution {
         for (int i = 0; i < str.length(); i++) {
             cnt[str.charAt(i) - 'a']++;
         }
+        // 计算字符的个数
         for (int i = 0; i < 26; i++) {
             if (cnt[i] < map[i]) {
                 return false;
