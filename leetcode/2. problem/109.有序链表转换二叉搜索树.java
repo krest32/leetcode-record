@@ -46,15 +46,16 @@ class Solution {
         if (left == right) {
             return null;
         }
-        ListNode mid = getMidTest(left, right);
-        TreeNode root = new TreeNode(mid.val);
-        root.left = test(left, mid);
-        root.right = test(mid.next, right);
+        ListNode middle = getMiddle(left, right);
+        TreeNode root = new TreeNode(middle.val);
+        root.left = test(left, middle);
+        root.right = test(middle.next, right);
         return root;
     }
 
-    private ListNode getMidTest(ListNode left, ListNode right) {
-        ListNode slow = left, fast = left;
+    private ListNode getMiddle(ListNode left, ListNode right) {
+        ListNode slow = left;
+        ListNode fast = left;
         while (fast != right && fast.next != right) {
             slow = slow.next;
             fast = fast.next.next;

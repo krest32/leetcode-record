@@ -34,9 +34,13 @@ class Solution {
     }
 
     private ListNode test(ListNode head) {
-        ListNode pre= new ListNode(-1, head);
-        ListNode cur =
-
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode newHead = head.next;
+        head.next = test(newHead.next);
+        newHead.next = head;
+        return newHead;
     }
 
     /**
@@ -77,7 +81,7 @@ class Solution {
             return head;
         }
         ListNode newHead = head.next;
-        head.next = swapPairs(newHead.next);
+        head.next = extracted(newHead.next);
         newHead.next = head;
         return newHead;
     }

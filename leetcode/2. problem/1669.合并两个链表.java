@@ -22,30 +22,60 @@ class Solution {
         // 迭代
         // return extracted(list1, a, b, list2);
 
+        // test
+        return test(list1, a, b, list2);
     }
 
-    private ListNode extracted(ListNode list1, int a, int b, ListNode list2) {
-        // 哑元节点
-        ListNode ans = new ListNode();
-        ans.next = list1;
-        ListNode l = list1;
-        int move = a;
-        while (move > 1) {
-            l = l.next;
-            move--;
+    private ListNode test(ListNode list1, int a, int b, ListNode list2) {
+        ListNode pre = new ListNode(-1, list1);
+        b -= a;
+        while (a > 1) {
+            list1 = list1.next;
+            a--;
         }
-        b = b - a;
-        ListNode r = l;
+        ListNode right = list1;
         while (b > -1) {
-            r = r.next;
+            right = right.next;
             b--;
         }
-        l.next = list2;
+        list1.next = list2;
         while (list2.next != null) {
             list2 = list2.next;
         }
-        list2.next = r.next;
-        return ans.next;
+        list2.next = right.next;
+        return pre.next;
+    }
+
+    /**
+     * 61/61 cases passed (1 ms)
+     * Your runtime beats 100 % of java submissions
+     * Your memory usage beats 13.69 % of java submissions (45.4 MB)
+     * 
+     * @param list1
+     * @param a
+     * @param b
+     * @param list2
+     * @return
+     */
+    private ListNode extracted(ListNode list1, int a, int b, ListNode list2) {
+        ListNode pre = new ListNode(-1, list1);
+        b -= a;
+        while (a > 1) {
+            list1 = list1.next;
+            a--;
+        }
+        ListNode right = list1;
+        while (b > -1) {
+            right = right.next;
+            b--;
+        }
+        list1.next = list2;
+        while (list2.next != null) {
+            list2 = list2.next;
+        }
+        list2.next = right.next;
+        return pre.next;
+
     }
 }
 // @lc code=end

@@ -20,25 +20,57 @@ import entrty.ListNode;
 class Solution {
     public ListNode swapNodes(ListNode head, int k) {
         // 迭代
-        return extracted(head, k);
+        // return extracted(head, k);
+
+        return test(head, k);
     }
 
+    private ListNode test(ListNode head, int k) {
+        ListNode left = head;
+        ListNode right = head;
+        // 找到左节点
+        while (k > 1) {
+            left = left.next;
+            k--;
+        }
+
+        ListNode cur = left;
+        while (cur.next != null) {
+            cur = cur.next;
+            right = right.next;
+        }
+        int temp = left.val;
+        left.val = right.val;
+        right.val = temp;
+        return head;
+    }
+
+    /**
+     * 132/132 cases passed (2 ms)
+     * Your runtime beats 99.35 % of java submissions
+     * Your memory usage beats 57.74 % of java submissions (55.8 MB)
+     * 
+     * @param head
+     * @param k
+     * @return
+     */
     private ListNode extracted(ListNode head, int k) {
         ListNode left = head;
         ListNode right = head;
-        // 找到 left 节点
-        for (int i = 1; i < k; i++) {
+        // 找到左节点
+        while (k > 1) {
             left = left.next;
+            k--;
         }
+
         ListNode cur = left;
-        // 找到right节点
         while (cur.next != null) {
-            right = right.next;
             cur = cur.next;
+            right = right.next;
         }
-        int m = right.val;
-        right.val = left.val;
-        left.val = m;
+        int temp = left.val;
+        left.val = right.val;
+        right.val = temp;
         return head;
     }
 }

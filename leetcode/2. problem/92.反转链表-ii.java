@@ -33,17 +33,17 @@ class Solution {
 
     private ListNode test(ListNode head, int left, int right) {
         ListNode pre = new ListNode(-1, head);
-        ListNode leftHead = pre;
+        ListNode leftNode = pre;
         for (int i = 1; i < left; i++) {
-            leftHead = leftHead.next;
+            leftNode = leftNode.next;
         }
 
-        ListNode cur = leftHead.next;
+        ListNode cur = leftNode.next;
         for (int i = 0; i < right - left; i++) {
             ListNode temp = cur.next;
             cur.next = temp.next;
-            temp.next = leftHead.next;
-            leftHead.next = temp;
+            temp.next = leftNode.next;
+            leftNode.next = temp;
         }
 
         return pre.next;

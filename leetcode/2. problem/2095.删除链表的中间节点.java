@@ -40,6 +40,11 @@ class Solution {
         return head;
     }
 
+    /**
+     * 70/70 cases passed (3 ms)
+     * Your runtime beats 100 % of java submissions
+     * Your memory usage beats 33.86 % of java submissions (62.2 MB)
+     */
     private ListNode getFast(ListNode head) {
         if (head.next == null) {
             return null;

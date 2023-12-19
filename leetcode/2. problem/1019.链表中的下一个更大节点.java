@@ -23,24 +23,56 @@ import entrty.ListNode;
  */
 class Solution {
     public int[] nextLargerNodes(ListNode head) {
-        List<Integer> list = new ArrayList<>();
+        // 使用栈
+        // return getIndex(head);
+
+        // test
+        // return test(head);
+    }
+
+    private int[] test(ListNode head) {
+        List<Integer> ans = new ArrayList<>();
+        // 存入的是 链表的索引，内部维持一个递增的索引顺序
         Stack<Integer> stack = new Stack<>();
-        int index = 0;
+        int idx = 0;
         while (head != null) {
-            int ele = head.val;
-            while (!stack.isEmpty() && list.get(stack.peek()) < ele) {
-                list.set(stack.pop(), ele);
+            int val = head.val;
+            // 每次遇到更大的值，就取更新 list 中的内容
+            while (!stack.isEmpty() && ans.get(stack.peek()) < val) {
+                ans.set(stack.pop(), val);
             }
-            // 将下标索引放入到stack中
-            stack.push(index);
-            list.add(ele);
-            index++;
+            stack.push(idx);
+            ans.add(val);
+            idx++;
             head = head.next;
         }
         while (!stack.isEmpty()) {
-            list.set(stack.pop(), 0);
+            ans.set(stack.pop(), 0);
         }
-        return list.stream().mapToInt(Integer::intValue).toArray();
+        return ans.stream().mapToInt(Integer::intValue).toArray();
+    }
+
+    private int[] getIndex(ListNode head) {
+        List<Integer> ans = new ArrayList<>();
+        // 存入的是 链表的索引，内部维持一个递增的索引顺序
+        Stack<Integer> stack = new Stack<>();
+        int idx = 0;
+        while (head != null) {
+            int val = head.val;
+            // 每次遇到更大的值，就取更新 list 中的内容
+            while (!stack.isEmpty() && ans.get(stack.peek()) < val) {
+                ans.set(stack.pop(), val);
+            }
+            // 先存入一个原始值
+            stack.push(idx);
+            ans.add(val);
+            idx++;
+            head = head.next;
+        }
+        while (!stack.isEmpty()) {
+            ans.set(stack.pop(), 0);
+        }
+        return ans.stream().mapToInt(Integer::intValue).toArray();
     }
 }
 // @lc code=end

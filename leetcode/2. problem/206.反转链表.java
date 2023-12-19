@@ -47,7 +47,7 @@ class Solution {
             pre = cur;
             cur = temp;
         }
-        return pre;  
+        return pre;
     }
 
     /**
