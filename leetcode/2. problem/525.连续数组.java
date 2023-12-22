@@ -30,12 +30,13 @@ class Solution {
     private int test(int[] nums) {
         int maxLen = 0;
         int len = nums.length;
-        Map<Integer, Integer> map = new HashMap<>();
         int cnt = 0;
-        // 初始化 map 
+        Map<Integer, Integer> map = new HashMap<>();
         map.put(0, -1);
+
         for (int i = 0; i < len; i++) {
-            if (nums[i] == 1) {
+            int num = nums[i];
+            if (num == 1) {
                 cnt++;
             } else {
                 cnt--;
@@ -57,28 +58,26 @@ class Solution {
      * @return
      */
     private int extracted3(int[] nums) {
-        int maxLength = 0;
-        // map 记录戒指当前位置的累加数值对应的idx位置
-        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-        int counter = 0;
-        map.put(counter, -1);
-        int n = nums.length;
-        for (int i = 0; i < n; i++) {
+        int maxLen = 0;
+        int len = nums.length;
+        int cnt = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(0, -1);
+
+        for (int i = 0; i < len; i++) {
             int num = nums[i];
             if (num == 1) {
-                counter++;
+                cnt++;
             } else {
-                counter--;
+                cnt--;
             }
-            if (map.containsKey(counter)) {
-                int prevIndex = map.get(counter);
-                // 求取一个位置的区间
-                maxLength = Math.max(maxLength, i - prevIndex);
+            if (map.containsKey(cnt)) {
+                maxLen = Math.max(maxLen, i - map.get(cnt));
             } else {
-                map.put(counter, i);
+                map.put(cnt, i);
             }
         }
-        return maxLength;
+        return maxLen;
     }
 
     /**

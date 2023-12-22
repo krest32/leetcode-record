@@ -21,8 +21,7 @@ class Solution {
 
     private List<Integer> test(int[] nums) {
         List<Integer> ans = new ArrayList<>();
-        int len = nums.length;
-        for (int i = 0; i < len; i++) {
+        for (int i = 0; i < nums.length; i++) {
             int idx = Math.abs(nums[i]) - 1;
             if (nums[idx] < 0) {
                 ans.add(idx + 1);
@@ -41,14 +40,15 @@ class Solution {
      * @return
      */
     private List<Integer> extracted(int[] nums) {
-        List<Integer> res = new ArrayList<>();
-        for (int i = 0; i < nums.length; ++i) {
-            int index = Math.abs(nums[i]) - 1;
-            if (nums[index] < 0)
-                res.add(Math.abs(index + 1));
-            nums[index] = -nums[index];
+        List<Integer> ans = new ArrayList<>();
+        for (int i = 0; i < nums.length; i++) {
+            int idx = Math.abs(nums[i]) - 1;
+            if (nums[idx] < 0) {
+                ans.add(idx + 1);
+            }
+            nums[idx] = -nums[idx];
         }
-        return res;
+        return ans;
     }
 }
 // @lc code=end

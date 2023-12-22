@@ -19,19 +19,16 @@ class Solution {
 
     private int test(int[] nums) {
         Set<Integer> set = new HashSet<>();
-        int ans = 0;
-
         for (int num : nums) {
             set.add(num);
         }
-
+        int ans = 0;
         for (int num : nums) {
             if (!set.contains(num - 1)) {
-                int tempNum = num;
-                int cnt = 1;
-                while (set.contains(tempNum + 1)) {
+                int cnt = 0;
+                while (set.contains(num)) {
                     cnt++;
-                    tempNum++;
+                    num += 1;
                 }
                 ans = Math.max(ans, cnt);
             }
