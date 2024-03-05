@@ -32,7 +32,6 @@ class Solution {
 
         // 解法二： 递归
         // return extracted2(list1, list2);
-        
 
         // test
         return test(list1, list2);
