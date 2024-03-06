@@ -17,7 +17,31 @@ class Solution {
         // return extracted2(s);
 
         // 最优解：滑动窗口
-        return extracted3(s);
+        // return extracted3(s);
+
+        return test(s);
+
+    }
+
+    private int test(String s) {
+        int left = 0, right = 2, count = 0;
+        while (right < s.length()) {
+            boolean flag = true;
+            for (int i = left; i < left + 2; i++) {
+                for (int j = i + 1; j <= left + 2; j++) {
+                    if (s.charAt(i) == s.charAt(j)) {
+                        flag = false;
+                        break;
+                    }
+                }
+            }
+            if (flag) {
+                count++;
+            }
+            left++;
+            right++;
+        }
+        return count;
     }
 
     /**
@@ -31,15 +55,15 @@ class Solution {
     private int extracted3(String s) {
         int left = 0;
         int right = 2;
-        int i, j;
         boolean flags = true;
         int count = 0;
 
         // 始终维持一个长度为3的字符窗口
         while (right < s.length()) {
             flags = true;
-            for (i = left; i < left + 2; i++) {
-                for (j = i + 1; j <= left + 2; j++) {
+            // 判断窗口是否有重复字符
+            for (int i = left; i < left + 2; i++) {
+                for (int j = i + 1; j <= left + 2; j++) {
                     if (s.charAt(i) == s.charAt(j)) {
                         flags = false;
                         break;

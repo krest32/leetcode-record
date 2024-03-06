@@ -14,7 +14,28 @@ class Solution {
         // return extracted(s, t);
 
         // 数组映射 --> 最优解
-        return extracted2(s, t);
+        // return extracted2(s, t);
+
+        return test(s, t);
+    }
+
+    private boolean test(String s, String t) {
+        int len = s.length();
+        int[] mapS = new int[128];
+        int[] mapT = new int[128];
+        for (int i = 0; i < len; i++) {
+            char c1 = s.charAt(i);
+            char c2 = t.charAt(i);
+            if (mapS[c1] != mapT[c2]) {
+                return false;
+            } else {
+                if (mapS[c1] == 0) {
+                    mapS[c1] = i + 1;
+                    mapT[c2] = i + 1;
+                }
+            }
+        }
+        return true;
     }
 
     /**

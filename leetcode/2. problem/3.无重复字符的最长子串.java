@@ -22,14 +22,14 @@ class Solution {
 
     private int test(String s) {
         Map<Character, Integer> map = new HashMap<>();
-        int ans = 0;
-        int len = s.length();
-        for (int right = 0, left = 0; right < len; right++) {
+        int ans = 0, left = 0;
+        for (int right = 0; right < s.length(); right++) {
+            char ch = s.charAt(right);
             if (map.containsKey(s.charAt(right))) {
-                left = Math.max(left, map.get(s.charAt(right)) + 1);
+                left = Math.max(left, map.get(ch) + 1);
             }
             ans = Math.max(ans, right - left + 1);
-            map.put(s.charAt(right), right);
+            map.put(ch, right);
         }
         return ans;
     }

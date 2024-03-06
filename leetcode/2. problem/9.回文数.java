@@ -1,5 +1,4 @@
 
-
 /*
  * @lc app=leetcode.cn id=9 lang=java
  *
@@ -11,8 +10,8 @@ class Solution {
     public boolean isPalindrome(int x) {
         // string类 翻转字符串
         return extract1(x);
-        
-        // 双指针
+
+        // 首尾双指针,截取逐个字符进行比对
         // return extract2(x);
     }
 
@@ -27,7 +26,7 @@ class Solution {
      * @return
      */
     boolean extract2(int x) {
-        // 方法二： 首尾双指针,截取逐个字符进行比对
+        //
         String orginStr = String.valueOf(x);
         int left = 0, right = orginStr.length() - 1;
         while (left < right) {

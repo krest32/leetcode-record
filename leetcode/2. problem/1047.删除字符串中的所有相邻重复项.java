@@ -10,10 +10,10 @@ import java.util.Stack;
 class Solution {
     public String removeDuplicates(String s) {
         // 模拟
-        // return extracted(s);
+        return extracted(s);
 
         // rest
-        return test(s);
+        // return test(s);
     }
 
     /**

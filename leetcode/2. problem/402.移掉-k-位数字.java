@@ -23,31 +23,29 @@ class Solution {
         Deque<Character> deque = new LinkedList<>();
         int len = num.length();
         for (int i = 0; i < len; i++) {
-            char digit = num.charAt(i);
-            while (!deque.isEmpty() && k > 0 && deque.peekLast() > digit) {
+            char digt = num.charAt(i);
+            while (!deque.isEmpty() && k > 0 && deque.peekLast() > digt) {
                 deque.pollLast();
                 k--;
             }
-            deque.offerLast(digit);
+            deque.offerLast(digt);
         }
 
-        if (k > 0) {
-            for (int i = k; i > 0; i--) {
-                deque.pollLast();
-            }
+        for (int i = 0; i < k; i++) {
+            deque.pollLast();
         }
 
-        StringBuilder ans = new StringBuilder();
-        boolean isZeroLeading = true;
+        StringBuilder res = new StringBuilder();
+        boolean leadingZero = true;
         while (!deque.isEmpty()) {
-            char digit = deque.pollFirst();
-            if (isZeroLeading && digit == '0') {
+            char digt = deque.pollFirst();
+            if (leadingZero && digt == '0') {
                 continue;
             }
-            isZeroLeading = false;
-            ans.append(digit);
+            leadingZero = false;
+            res.append(digt);
         }
-        return ans.length() == 0 ? "0" : ans.toString();
+        return res.length() == 0 ? "0" : res.toString();
     }
 
     /**

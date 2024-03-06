@@ -11,6 +11,14 @@ class Solution {
         return extracted(s);
     }
 
+    /**
+     * 480/480 cases passed (2 ms)
+     * Your runtime beats 97.21 % of java submissions
+     * Your memory usage beats 56.33 % of java submissions (43.8 MB)
+     * 
+     * @param s
+     * @return
+     */
     private String extracted(String s) {
         char[] sChar = s.toCharArray();
         int right = s.length() - 1;

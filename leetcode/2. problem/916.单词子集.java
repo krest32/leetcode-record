@@ -31,7 +31,8 @@ class Solution {
             int[] tempCnt = new int[26];
             for (int j = 0; j < temp.length(); j++) {
                 tempCnt[temp.charAt(j) - 'a']++;
-                cnt[temp.charAt(j) - 'a'] = Math.max(cnt[temp.charAt(j) - 'a'], tempCnt[temp.charAt(j) - 'a']);
+                cnt[temp.charAt(j) - 'a'] = Math
+                        .max(cnt[temp.charAt(j) - 'a'], tempCnt[temp.charAt(j) - 'a']);
             }
         }
 
